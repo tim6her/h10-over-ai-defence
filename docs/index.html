@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Tim B. Herbstrith">
+  <meta name="dcterms.date" content="2018-06-15">
+  <meta name="keywords" content="number theory, theoretical computer science, decidability">
+  <title>Hilbert’s tenth problem</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="./reveal.js/css/reset.css">
+  <link rel="stylesheet" href="./reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="./reveal.js/css/theme/metropolis.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? './reveal.js/css/print/pdf.css' : './reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="./reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Hilbert’s tenth problem</h1>
+  <p class="subtitle">over rings of algebraic integers</p>
+  <p class="author">Tim B. Herbstrith</p>
+  <p class="date">15 June 2018</p>
+</section>
+
+<section>
+<section id="hilberts-tenth-problem-turing-machines-and-decidability" class="title-slide slide level1">
+<h1>Hilbert’s tenth problem, Turing machines, and decidability</h1>
+
+</section>
+<section id="hilberts-tenth-problem" class="slide level2">
+<h2>Hilbert’s tenth problem</h2>
+<p><span>      </p>
+<p></span></p>
+<div class="columns">
+<div class="column" style="width:70%;">
+<blockquote>
+<p>Given a Diophantine equation with any number of unknown quantities and with <span class="fragment highlight-current-red" data-fragment-index="3"> rational integral </span> numerical coefficients: To devise a <span class="fragment highlight-current-red" data-fragment-index="1"> process </span> according to which it can be <span class="fragment highlight-current-red" data-fragment-index="2"> determined </span> by a <span class="fragment highlight-current-red" data-fragment-index="1"> finite number of operations </span> whether the <span class="fragment highlight-current-red" data-fragment-index="2"> equation is solvable </span> in <span class="fragment highlight-current-red" data-fragment-index="3"> rational integers. </span></p>
+<p>– <span class="citation" data-cites="Hilbert1900">Hilbert (1900)</span></p>
+</blockquote>
+</div><div class="column" style="width:30%;">
+<figure>
+<img data-src="imgs/Hilbert.jpg" alt="" /><figcaption>David Hilbert</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="turing-machines" class="slide level2">
+<h2>Turing machines</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<h3 id="definition">Definition</h3>
+<p>A <em>Turing machine</em> <span class="math inline">\mathbb{A}</span> on the <em>alphabet</em> <span class="math inline">A = \lbrace\mathtt{\texttt{\S}, \_, 0, 1}\rbrace</span> is a tuple <span class="math inline">(S, δ)</span>, where <span class="math inline">s_{start}, s_{halt} \in S</span> is a finite non-empty set, called <em>set of states</em>, and</p>
+<p><span class="math display">δ: S \times A \to S \times A \times \lbrace -1, 0, 1 \rbrace</span></p>
+<p>is called <em>transition function</em>. If <span class="math inline">δ(s, a) = (s&#39;, b, m)</span>, one demands that the following axioms are satisfied</p>
+<ul>
+<li><span class="math inline">a = \texttt{\S}</span> if and only if <span class="math inline">b = \texttt{\S}</span>,</li>
+<li>If <span class="math inline">a = \texttt{\S}</span>, then <span class="math inline">m \neq -1</span>, and</li>
+<li>If <span class="math inline">s = s_{halt}</span>, then <span class="math inline">s&#39; = s_{halt}</span>, <span class="math inline">a = b</span> and <span class="math inline">m = 0</span>.</li>
+</ul>
+</div><div class="column" style="width:30%;">
+<figure>
+<img data-src="imgs/Turing.jpg" alt="" /><figcaption>Alan Turing</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="turing-machines-1" class="slide level2">
+<h2>Turing machines</h2>
+<h3 id="example-adding-1-to-a-number-in-binary-encoding">Example: Adding <span class="math inline">1</span> to a number in binary encoding</h3>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1"></a>δ(<span class="st">&quot;start&quot;</span>,    <span class="ch">&#39;§&#39;</span>) <span class="ot">=</span> (<span class="st">&quot;overflow&quot;</span>, <span class="ch">&#39;§&#39;</span>, <span class="dv">1</span> )</span>
+<span id="cb1-2"><a href="#cb1-2"></a>δ(<span class="st">&quot;overflow&quot;</span>, <span class="ch">&#39;1&#39;</span>) <span class="ot">=</span> (<span class="st">&quot;overflow&quot;</span>, <span class="ch">&#39;0&#39;</span>, <span class="dv">1</span> )</span>
+<span id="cb1-3"><a href="#cb1-3"></a>δ(<span class="st">&quot;overflow&quot;</span>, <span class="ch">&#39;0&#39;</span>) <span class="ot">=</span> (<span class="st">&quot;return&quot;</span>,   <span class="ch">&#39;1&#39;</span>, <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>δ(<span class="st">&quot;overflow&quot;</span>, <span class="ch">&#39;_&#39;</span>) <span class="ot">=</span> (<span class="st">&quot;return&quot;</span>,   <span class="ch">&#39;1&#39;</span>, <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>δ(<span class="st">&quot;return&quot;</span>,   <span class="ch">&#39;§&#39;</span>) <span class="ot">=</span> (<span class="st">&quot;halt&quot;</span>,     <span class="ch">&#39;§&#39;</span>, <span class="dv">0</span> )</span>
+<span id="cb1-6"><a href="#cb1-6"></a>δ(<span class="st">&quot;return&quot;</span>,   b)   <span class="ot">=</span> (<span class="st">&quot;return&quot;</span>,   b  , <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb1-7"><a href="#cb1-7"></a>δ(<span class="st">&quot;halt&quot;</span>,     b)   <span class="ot">=</span> (<span class="st">&quot;halt&quot;</span>,     b  , <span class="dv">0</span> )</span></code></pre></div>
+</div><div class="column" style="width:40%;">
+<div class="image-float">
+<p class="fragment current-visible" data-fragment-index="0" style="position: relative; left:15px; top:15px;">
+<a href="imgs/turing_add1_1.svg"> <img src="imgs/turing_add1_1.svg" width="400vh"/> </a>
+</p>
+<p class="fragment current-visible" data-fragment-index="1" style="position:absolute; left:20px; top:20px;">
+<a href="imgs/turing_add1_2.svg"> <img src="imgs/turing_add1_2.svg" width="400vh"/> </a>
+</p>
+<p class="fragment current-visible" data-fragment-index="2" style="position:absolute; left:20px; top:20px;">
+<a href="imgs/turing_add1_3.svg"> <img src="imgs/turing_add1_3.svg" width="400vh"/> </a>
+</p>
+<p class="fragment current-visible" data-fragment-index="3" style="position:absolute; left:20px; top:20px;">
+<a href="imgs/turing_add1_4.svg"> <img src="imgs/turing_add1_4.svg" width="400vh"/> </a>
+</p>
+<p class="fragment current-visible" data-fragment-index="4" style="position:absolute; left:20px; top:20px;">
+<a href="imgs/turing_add1_5.svg"> <img src="imgs/turing_add1_5.svg" width="400vh"/> </a>
+</p>
+<p class="fragment current-visible" data-fragment-index="5" style="position:absolute; left:20px; top:20px;">
+<a href="imgs/turing_add1_6.svg"> <img src="imgs/turing_add1_6.svg" width="400vh"/> </a>
+</p>
+<p class="fragment current-visible" data-fragment-index="6" style="position:absolute; left:20px; top:20px;">
+<a href="imgs/turing_add1_7.svg"> <img src="imgs/turing_add1_7.svg" width="400vh"/> </a>
+</p>
+<p class="fragment" data-fragment-index="7" style="position:absolute; left:20px; top:20px;">
+<a href="imgs/turing_add1_8.svg"> <img src="imgs/turing_add1_8.svg" width="400vh"/> </a>
+</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>I write <span class="math inline">\mathbb{A}(x)</span> for the output of Turing machine <span class="math inline">\mathbb{A}</span> on input <span class="math inline">x</span> if <span class="math inline">\mathbb{A}</span> halts on <span class="math inline">x</span>.</p>
+</div>
+</section>
+<section id="decision-problems" class="slide level2">
+<h2>Decision problems</h2>
+<h3 id="definition-1">Definition</h3>
+<p>A <em>decision problem</em> is a subset of the set of finite <span class="math inline">\mathtt 0</span>-<span class="math inline">\mathtt 1</span>-strings <span class="math inline">ω = \lbrace \mathtt{0, 1} \rbrace^*</span> including the empty string <span class="math inline">\lambda</span>.</p>
+<h3 id="example-connected-graphs">Example: Connected graphs</h3>
+<p>The set of all connected graphs can be encoded as the set of the respective adjacency matrices written as a string</p>
+<p><span class="math display">b_{00}b_{01} … b_{0n}b_{10} … b_{nn}</span></p>
+<p>of length <span class="math inline">(n + 1)^2</span>.</p>
+</section>
+<section id="decidability" class="slide level2">
+<h2>Decidability</h2>
+<h3 id="definition-2">Definition</h3>
+<ul>
+<li class="fragment">A partial function <span class="math inline">f: ω \to ω</span> is <em>computable</em> if there is a Turing machine <span class="math inline">\mathbb{A}</span> with <span class="math inline">\mathbb{A}(x) = f(x)</span> for all <span class="math inline">x</span> in the domain of <span class="math inline">f</span>.</li>
+<li class="fragment">A decision problem is <em>decidable</em> if its characteristic function is computable.</li>
+<li class="fragment">A decision problem <span class="math inline">Q</span> is <em>semi-decidable</em> or <em>computably enumerable</em> if there is a Turing machine that returns <span class="math inline">\mathtt{1}</span> on all members of <span class="math inline">Q</span>.</li>
+</ul>
+</section>
+<section id="characterizations-of-semi-decidable-sets" class="slide level2">
+<h2>Characterizations of semi-decidable sets</h2>
+<h3 id="proposition">Proposition</h3>
+<p>Let <span class="math inline">Q \subseteq ω</span> be a problem. The following are equivalent.</p>
+<ul>
+<li><span class="math inline">Q</span> is semi-decidable.</li>
+<li><span class="math inline">Q</span> is the range of a computable function.</li>
+<li>There exists a computable binary relation <span class="math inline">R</span> on <span class="math inline">ω^2</span> such that <span class="math display"> x \in Q \Leftrightarrow \exists y : R(x, y)</span></li>
+</ul>
+</section>
+<section id="the-halting-set" class="slide level2">
+<h2>The halting set</h2>
+<h3 id="definition-3">Definition</h3>
+<p>The <em>halting set</em> is the set of all codes of Turing machines <span class="math inline">\mathbb{A}</span> that halt upon receiving their code as input i.e.</p>
+<p><span class="math display">\mathcal{K} := \left\lbrace \ulcorner \mathbb{A} \urcorner \mid \mathbb{A} \text{ halts on } \ulcorner \mathbb{A} \urcorner \right\rbrace</span></p>
+<section id="theorem" data-fragment="true">
+<h3>Theorem</h3>
+<p>The halting set is semi-decidable but not decidable.</p>
+</section>
+</section>
+<section class="slide level2">
+
+<h3 id="sketch-of-proof">Sketch of Proof</h3>
+<p>Assume <span class="math inline">\mathbb{B}</span> decides the halting set i.e.</p>
+<p><span class="math display">\mathbb{B}(\ulcorner \mathbb{A} \urcorner) =
+\begin{cases}
+  \mathtt 1&amp; \text{if } \mathbb{A} \text{ halts on } \ulcorner \mathbb{A} \urcorner \\
+  \mathtt 0&amp; \text{otherwise}
+\end{cases}.
+</span></p>
+<div class="fragment">
+<p>Consider <span class="math inline">\mathbb{B}&#39;</span> defined by</p>
+<p><span class="math display">\mathbb{B}&#39;(\ulcorner \mathbb{A} \urcorner) =
+\begin{cases}
+  \mathtt 1&amp; \text{if } \mathbb{B}(\ulcorner \mathbb{A} \urcorner) = \mathtt 0\\
+  \uparrow &amp; \text{otherwise}
+\end{cases}.
+</span></p>
+</div>
+<div class="fragment">
+<p>What is <span class="math inline">\mathbb{B}&#39;(\ulcorner \mathbb{B}&#39; \urcorner)</span>?</p>
+</div>
+</section>
+<section id="church-turing-thesis" class="slide level2">
+<h2>Church-Turing thesis</h2>
+<p>I will use without hesitation:</p>
+<blockquote>
+<p>The class of intuitively computable functions coincides with the class of all Turing computable functions.</p>
+</blockquote>
+</section>
+</section>
+<section>
+<section id="some-number-theory" class="title-slide slide level1">
+<h1>Some number theory</h1>
+
+</section>
+<section id="number-fields" class="slide level2">
+<h2>Number fields</h2>
+<h3 id="definition-4">Definition</h3>
+<p>A <em>number field</em> <span class="math inline">K</span> is a finite extension of the rationals <span class="math inline">ℚ</span>.</p>
+<section id="examples" data-fragment="true">
+<h3>Examples</h3>
+<ul>
+<li><span class="math inline">ℚ[i] = \left\lbrace x + i y \mid x, y ∈ ℚ \right\rbrace</span></li>
+<li><span class="math inline">ℚ[\sqrt[3]{2}] = \left\lbrace x + \sqrt[3]{2} y + \sqrt[3]{4} z \mid x, y, z ∈ ℚ \right\rbrace</span></li>
+</ul>
+</section>
+</section>
+<section id="algebraic-integers" class="slide level2">
+<h2>Algebraic integers</h2>
+<h3 id="definition-5">Definition</h3>
+<p>An element <span class="math inline">α \in ℂ</span> is called <em>algebraic integer</em> if there exists a monic polynomial <span class="math inline">p \in ℤ[X]</span> such that</p>
+<p><span class="math display">p(α) = α^n + c_{n - 1} α^{n - 1} + … + c_0 = 0</span></p>
+<ul>
+<li class="fragment">We write <span class="math inline">\mathcal{O}_{}</span> for the set of all algebraic integers …</li>
+<li class="fragment">… and if <span class="math inline">K</span> is a number field, we set <span class="math inline">\mathcal{O}_{K}= \mathcal{O}_{} ∩ K</span>.</li>
+</ul>
+</section>
+<section id="properties-of-algebraic-integers" class="slide level2">
+<h2>Properties of algebraic integers</h2>
+<h3 id="proposition-1">Proposition</h3>
+<ul>
+<li class="fragment">Both <span class="math inline">\mathcal{O}_{}</span> and <span class="math inline">\mathcal{O}_{K}</span> are sub-rings of <span class="math inline">ℂ</span> (for all <span class="math inline">K</span>).</li>
+<li class="fragment"><span class="math inline">\mathcal{O}_{K}</span> is a finitely generated free <span class="math inline">ℤ</span>-module (for all <span class="math inline">K</span>). A basis is called <em>integral basis</em>.</li>
+<li class="fragment">The quotient field of <span class="math inline">\mathcal{O}_{K}</span> is (isomorphic to) <span class="math inline">K</span>.</li>
+</ul>
+</section>
+</section>
+<section>
+<section id="diophantine-sets-and-variants-of-hilberts-tenth-problem" class="title-slide slide level1">
+<h1>Diophantine sets and variants of Hilbert’s tenth problem</h1>
+
+</section>
+<section id="purely-diophantine-sets" class="slide level2">
+<h2>Purely Diophantine sets</h2>
+<h3 id="definition-6">Definition</h3>
+<p>Let <span class="math inline">R</span> be a commutative ring with unit. A set <span class="math inline">S \subseteq R^n</span> is called <em>purely Diophantine</em> if there exists a polynomial <span class="math inline">p \in ℤ[{X}_1, \ldots, {X}_{n}, {Y}_1, \ldots, {Y}_{m}]</span> such that</p>
+<p><span class="math display">({α}_1, \ldots, {α}_{n}) \in S \Leftrightarrow \exists {y}_1, \ldots, {y}_{m} \in R^m : p({α}_1, \ldots, {α}_{n}, {y}_1, \ldots, {y}_{m}) = 0</span></p>
+</section>
+<section id="examples-of-purely-diophantine-sets" class="slide level2">
+<h2>Examples of purely Diophantine sets</h2>
+<p>Let <span class="math inline">R</span> be a commutative ring with unit. Then divisibility is purely Diophantine over <span class="math inline">R</span>.</p>
+<div class="fragment">
+<h3 id="proof">Proof</h3>
+<p>We have <span class="math inline">a \mid b</span> iff <span class="math inline">\exists y ∈ R: a y = b</span>. Choose <span class="math inline">p(a, b, y) = a y - b</span> and obtain</p>
+<p><span class="math display">a \mid b \quad ⇔ \quad ∃ y ∈ R: p(a, b, y) = 0.</span></p>
+</div>
+</section>
+<section id="alternative-characterization" class="slide level2">
+<h2>Alternative characterization</h2>
+<h3 id="definition-7">Definition</h3>
+<p>The language of rings with unit is <span class="math inline">\mathcal{L}_{ring} = \left\lbrace +, -, \cdot, 0, 1 \right\rbrace</span>.</p>
+<div class="fragment">
+<div data-fragment="true">
+<h3>
+Remark
+</h3>
+<p>A set <span class="math inline">S \subseteq R^n</span> is purely Diophantine over the ring structure <span class="math inline">\mathfrak{R} = ⟨R; +^{\mathfrak{R}}, -^{\mathfrak{R}}, \cdot^{\mathfrak{R}}; 0^{\mathfrak{R}}, 1^{\mathfrak{R}}⟩</span> iff</p>
+<p><span class="math display">({α}_1, \ldots, {α}_{n}) ∈ S \quad ⇔ \quad \mathfrak{R} \models ∃ {y}_1, \ldots, {y}_{m}: φ({α}_1, \ldots, {α}_{n}, {y}_1, \ldots, {y}_{m})</span></p>
+<p>holds for an atomic <span class="math inline">\mathcal{L}_{ring}</span>-formula <span class="math inline">φ</span>.</p>
+</div>
+</div>
+</section>
+<section id="diophantine-sets" class="slide level2">
+<h2>Diophantine Sets</h2>
+<h3 id="definition-8">Definition</h3>
+<p>Let <span class="math inline">R</span> be a commutative ring with unit. A set <span class="math inline">S \subseteq R^n</span> is called <em>Diophantine</em> if there exists a polynomial <span class="math inline">p \in R[{X}_1, \ldots, {X}_{n}, {Y}_1, \ldots, {Y}_{m}]</span> such that</p>
+<p><span class="math display">({α}_1, \ldots, {α}_{n}) \in S \Leftrightarrow \exists {y}_1, \ldots, {y}_{m} \in R^m : p({α}_1, \ldots, {α}_{n}, {y}_1, \ldots, {y}_{m}) = 0</span></p>
+</section>
+<section id="examples-of-diophantine-sets" class="slide level2">
+<h2>Examples of Diophantine Sets</h2>
+<p>Let <span class="math inline">R</span> be an integral domain. Then every finite set <span class="math inline">S \subset R</span> is Diophantine.</p>
+<div class="fragment">
+<h3 id="proof-1">Proof</h3>
+<p>Take</p>
+<p><span class="math display">p(X) = \prod_{a ∈ S} (X - a).</span></p>
+</div>
+</section>
+<section id="examples-of-diophantine-sets-1" class="slide level2">
+<h2>Examples of Diophantine sets</h2>
+<p>The set of natural numbers <span class="math inline">ℕ</span> is Diophantine over <span class="math inline">ℤ</span>.</p>
+<div class="fragment">
+<h3 id="proof-2">Proof</h3>
+<p>Using Minkowski’s theorem on convex bodies one can prove that</p>
+<p><span class="math display">x ∈ ℕ \quad \Leftrightarrow \quad \exists y_1, y_2, y_3, y_4 \in ℤ: x = y_1^2 + y_2^2 + y_3^2 + y_4^2.</span></p>
+</div>
+</section>
+<section id="examples-of-diophantine-sets-2" class="slide level2">
+<h2>Examples of Diophantine sets</h2>
+<p>Let <span class="math inline">K</span> be a number field and <span class="math inline">\mathcal{O}_{K}</span> its ring of algebraic integers. Then <span class="math inline">\mathcal{O}_{K}\setminus \left\lbrace 0 \right\rbrace</span> is Diophantine over <span class="math inline">\mathcal{O}_{K}</span>.</p>
+<div class="fragment">
+<h3 id="proof-3">Proof</h3>
+<p>Using the Chinese remainder theorem one can prove that</p>
+<p><span class="math display">α ≠ 0 \quad ⇔ \quad ∃ β, γ ∈ \mathcal{O}_{K}: α β = (2 γ - 1)(3 γ - 1).</span></p>
+</div>
+</section>
+<section id="alternative-characterization-1" class="slide level2">
+<h2>Alternative characterization</h2>
+<h3 id="definition-9">Definition</h3>
+<p>Let <span class="math inline">R</span> be an at most countable commutative ring with unit. The <span class="math inline">R</span>-language is <span class="math inline">\mathcal{L}_{R} = \mathcal{L}_{ring} ∪ \left\lbrace c_r \mid r ∈ R \right\rbrace</span>.</p>
+<div class="fragment">
+<div data-fragment="true">
+<h3>
+Remark
+</h3>
+<p>A set <span class="math inline">S \subseteq R^n</span> is Diophantine over <span class="math inline">R</span> iff</p>
+<p><span class="math display">({α}_1, \ldots, {α}_{n}) ∈ S \quad ⇔ \quad \mathfrak{R} \models ∃ {y}_1, \ldots, {y}_{m}: φ({α}_1, \ldots, {α}_{n}, {y}_1, \ldots, {y}_{m})</span></p>
+<p>holds for an atomic <span class="math inline">\mathcal{L}_{R}</span>-formula <span class="math inline">φ</span>.</p>
+</div>
+</div>
+</section>
+<section id="connection-to-hilberts-tenth-problem" class="slide level2">
+<h2>Connection to Hilbert’s tenth problem</h2>
+<p>Given a commutative ring with unit <span class="math inline">R</span> we consider <span class="math inline">4</span> theories.</p>
+<table>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 38%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><span class="math inline">\mathcal{L}_{ring}</span>-theories</th>
+<th><span class="math inline">\mathcal{L}_{R}</span>-theories</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><span class="math inline">∃</span></strong>-quantified</td>
+<td>purely Diophantine <span class="math inline">\mathtt{H10}^*(R)</span></td>
+<td>Diophantine <span class="math inline">\mathtt{H10}(R)</span></td>
+</tr>
+<tr class="even">
+<td><strong><span class="math inline">∃</span></strong>- or <strong><span class="math inline">∀</span></strong>-quantified</td>
+<td>full theory <span class="math inline">\mathtt{Th}(R)</span></td>
+<td>complete diagram <span class="math inline">D^c(R)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="slide level2">
+
+<div style="font-size: 200%;">
+<p><strong> Which sets are Diophantine? </strong></p>
+</div>
+</section>
+<section id="what-we-know-1" class="slide level2">
+<h2>What we know 1</h2>
+<h3 id="theorem-goedel1931rosser1936">Theorem <span class="citation" data-cites="Goedel1931 Rosser1936">(Gödel 1931; Rosser 1936)</span></h3>
+<p>The full theory <span class="math inline">\mathtt{Th}(ℕ)</span> is undecidable.</p>
+<section id="corollary" data-fragment="true">
+<h3>Corollary</h3>
+<p>The full theory <span class="math inline">\mathtt{Th}(ℤ)</span> is undecidable.</p>
+</section>
+<div class="fragment">
+<section id="theorem-robinson1959" data-fragment="true">
+<h3>Theorem <span class="citation" data-cites="Robinson1959">(Robinson 1959)</span></h3>
+<p>The full first order theories <span class="math inline">\mathtt{Th}(K)</span> and <span class="math inline">\mathtt{Th}(\mathcal{O}_{K})</span> are undecidable for every number field <span class="math inline">K</span>.</p>
+</section>
+</div>
+</section>
+<section id="what-we-know-2" class="slide level2">
+<h2>What we know 2</h2>
+<h3 id="theorem-1">Theorem</h3>
+<p>The full theory <span class="math inline">\mathtt{Th}(ℂ)</span> is decidable. Thus, <span class="math inline">\mathtt{H10}^*(ℂ)</span> is decidable.</p>
+<section id="theorem-rumely1986dries1988" data-fragment="true">
+<h3>Theorem <span class="citation" data-cites="Rumely1986 Dries1988">(Rumely 1986; van den Dries 1988)</span></h3>
+<p>The theories <span class="math inline">\mathtt{H10}(\mathcal{O}_{})</span> and <span class="math inline">D^c(\mathcal{O}_{})</span> are decidable.</p>
+</section>
+</section>
+<section id="what-we-know-3" class="slide level2">
+<h2>What we know 3</h2>
+<h3 id="dprm-theorem-matijasevic1970">DPRM theorem <span class="citation" data-cites="Matijasevic1970">(Matijasevič 1970)</span></h3>
+<p>A subset of <span class="math inline">ℤ</span> is semi-decidable if and only if it is Diophantine over <span class="math inline">ℤ</span>.</p>
+<section id="corollary-1" data-fragment="true">
+<h3>Corollary</h3>
+<p><span class="math inline">\mathtt{H10}(ℤ)</span> is undecidable.</p>
+</section>
+</section>
+<section id="what-we-know-4" class="slide level2">
+<h2>What we know 4</h2>
+<h3 id="theorem-2">Theorem</h3>
+<p><span class="math inline">\mathtt{H10}(\mathcal{O}_{K})</span> is undecidable if</p>
+<ul>
+<li><span class="math inline">K</span> is totally real <span class="citation" data-cites="Denef1980">(Denef 1980)</span>,</li>
+<li><span class="math inline">K</span> has exactly one pair of non-real embeddings <span class="citation" data-cites="Pheidas1988 Shlapentokh1989">(Pheidas 1988; Shlapentokh 1989)</span>,</li>
+<li>if <span class="math inline">K</span> is a quadratic extension of a totally real number field <span class="citation" data-cites="Denef1978">(Denef and Lipshitz 1978)</span>, or</li>
+<li>if <span class="math inline">K</span> is a subfield of a field with one of the properties above <span class="citation" data-cites="Shapiro1989">(Shapiro and Shlapentokh 1989)</span>.</li>
+</ul>
+</section>
+<section id="what-we-would-like-to-know" class="slide level2">
+<h2>What we would like to know</h2>
+<ul>
+<li class="fragment">Is <span class="math inline">\mathtt{H10}(\mathcal{O}_{K})</span> and <span class="math inline">\mathtt{H10}(K)</span> undecidable for all number fields <span class="math inline">K</span>?</li>
+<li class="fragment">Especially: Is <span class="math inline">\mathtt{H10}(ℚ)</span> decidable?</li>
+</ul>
+</section>
+</section>
+<section>
+<section id="computable-rings-and-structural-methods" class="title-slide slide level1">
+<h1>Computable rings and structural methods</h1>
+
+</section>
+<section id="computable-ring" class="slide level2">
+<h2>Computable ring</h2>
+<h3 id="definition-10">Definition</h3>
+<ul>
+<li class="fragment">A ring <span class="math inline">R \subseteq ω</span> is <em>computable</em> if <span class="math inline">R</span> is decidable and all ring operations are computable.</li>
+<li class="fragment">A ring <span class="math inline">R</span> is <em>computably presentable</em> if <span class="math inline">R</span> is isomorphic to a computable ring.</li>
+</ul>
+</section>
+<section id="examples-of-computably-presentable-rings" class="slide level2">
+<h2>Examples of computably presentable rings</h2>
+<ul>
+<li class="fragment"><span class="math inline">ℤ</span> is computably presentable.</li>
+<li class="fragment">Using an integral basis, the ring of integers <span class="math inline">\mathcal{O}_{K}</span> is computably presentable.</li>
+<li class="fragment">If <span class="math inline">R</span> is a computable integral domain then the ring of polynomials <span class="math inline">R[X_1, X_2, …]</span> is computably presentable.</li>
+</ul>
+</section>
+<section id="connection-to-hilberts-tenth-problem-1" class="slide level2">
+<h2>Connection to Hilbert’s tenth problem</h2>
+<h3 id="corollary-2">Corollary</h3>
+<p>Let <span class="math inline">K</span> be a number field. Then Hilbert’s tenth problem over <span class="math inline">\mathcal{O}_{K}</span> is semi-decidable.</p>
+<section id="proof-4" class="fragment fade-in">
+<h3>Proof</h3>
+<p>Let <span class="math inline">p ∈ \mathcal{O}_{K}{} [{X}_1, \ldots, {X}_{n}]</span> be a polynomial. Interpret <span class="math inline">p: \mathcal{O}_{K}^n → \mathcal{O}_{K}</span>, then <span class="math inline">p</span> is computable.</p>
+</section>
+<div class="fragment fade-in">
+<p>Deciding whether <span class="math inline">p</span> has roots in <span class="math inline">\mathcal{O}_{K}</span> is equivalent to deciding</p>
+<p><span class="math display">∃ {x}_1, \ldots, {x}_{n} : p({x}_1, \ldots, {x}_{n}) \doteq 0,</span></p>
+<p>which is semi-decidable.</p>
+</div>
+<!-- ## Computable categoricity
+
+### Proposition
+
+Let $R$ be computably presentable, finitely generated ring. Then between any
+pair of computable representations $R_1, R_2$ of $R$ there is a computable
+ring-isomorphism $φ: R_1 → R_2$.
+
+. . .
+
+<div fragment="true">
+### Corollary
+
+The decidability of Hilbert's tenth problem over $\algint$ does not depend on
+the computable representation of $\algint$.
+</div>
+
+<div class="notes">
+### Sketch of proof
+
+Associate $R = R_1$ and let $R = ⟨\seq{ξ}⟩$. By assumption there is an
+isomorphism $φ: R → R_2$ and $R_2 = ⟨φ(ξ_1), …, φ(ξ_n)⟩$.
+
+Now store $φ(ξ_1), …, φ(ξ_n)$ and there multiplication table in memory and
+extend $φ$.
+</div> -->
+</section>
+<section id="unions-and-conjunctions" class="slide level2">
+<h2>Unions and conjunctions</h2>
+<h3 id="lemma">Lemma</h3>
+<p>If <span class="math inline">S_1</span> and <span class="math inline">S_2</span> are Diophantine over <span class="math inline">\mathcal{O}_{K}</span>, so are</p>
+<p><span class="math display">S_1 ∪ S_2 \quad \text{and} \quad S_1 ∩ S_2.</span></p>
+<p>The resp. polynomial identities can be found effectively.</p>
+</section>
+<section class="slide level2">
+
+<h3 id="proof-5">Proof</h3>
+<p>Let <span class="math inline">p_1(X, Y), p_2(X, Y) ∈ \mathcal{O}_{K}{}{[X, Y]}</span> give Diophantine definitions of <span class="math inline">S_1</span> and <span class="math inline">S_2</span>.</p>
+<div class="fragment">
+<p>We have <span class="math display">S_1 ∪ S_2 = \left\lbrace α \mid ∃ y ∈ \mathcal{O}_{K}: p_1(α, y) p_2(α, y) = 0 \right\rbrace.</span></p>
+</div>
+</section>
+<section class="slide level2">
+
+<p>To prove the claim for intersections of Diophantine sets, let</p>
+<p><span class="math display">h(T) = a_m T^m + … + a_1 T + a_0 ∈ \mathcal{O}_{K}{}[T]</span></p>
+<p>be a polynomial of degree <span class="math inline">m &gt; 0</span> without roots in <span class="math inline">\mathrm{Quot}\, \mathcal{O}_{K}= K</span>. Then <span class="math inline">\overline h(T) = T^m h(T^{-1})</span> does not have roots in <span class="math inline">K</span> either.</p>
+<div class="fragment">
+<p>Set</p>
+<p><span class="math display">H(X, Y_1, Y_2) = \sum_{i=0}^m a_i p_1(X, Y_1)^i p_2(X, Y_2)^{m - i},</span></p>
+<p>then</p>
+<p><span class="math display">∃ y_1, y_2 ∈ \mathcal{O}_{K}: H(α, y_1, y_2) = 0 \quad ⇔</span> <span class="math display">∃ y_1 ∈ \mathcal{O}_{K}: p_1(α, y_1) = 0 \text{ and } ∃ y_2 ∈ \mathcal{O}_{K}: p_2(α, y_2) = 0</span></p>
+<aside class="notes">
+<p>Divide by <span class="math inline">p_1^m</span> or <span class="math inline">p_2^m</span> and find that <span class="math inline">h</span> or <span class="math inline">\overline{h}</span> has a root.</p>
+</aside>
+</div>
+</section>
+<section id="going-up" class="slide level2">
+<h2>Going up</h2>
+<h3 id="lemma-1">Lemma</h3>
+<p>Let <span class="math inline">L / K</span> be an extension of algebraic number fields. If <span class="math inline">\mathtt{H10}</span> is undecidable over <span class="math inline">\mathcal{O}_{K}</span> and <span class="math inline">\mathcal{O}_{K}</span> is Diophantine over <span class="math inline">\mathcal{O}_{L}</span>, then <span class="math inline">\mathtt{H10}</span> is undecidable over <span class="math inline">\mathcal{O}_{L}</span>.</p>
+<section id="proof-6" data-fragment="true">
+<h3>Proof</h3>
+<p>Assume otherwise and let <span class="math inline">p_K ∈ \mathcal{O}_{L}[X, Y]</span> give a Diophantine definition of <span class="math inline">\mathcal{O}_{K}</span> over <span class="math inline">\mathcal{O}_{L}</span>.</p>
+<p>If <span class="math inline">q ∈ \mathcal{O}_{K}{}[X_1, …, X_n]</span>, then <span class="math inline">q</span> has a root in <span class="math inline">\mathcal{O}_{K}</span> if and only if</p>
+<p><span class="math display">∃ {x}_1, \ldots, {x}_{n} ∈ \mathcal{O}_{L} \; ∃ {y}_1, \ldots, {y}_{n} ∈ \mathcal{O}_{L} : q({x}_1, \ldots, {x}_{n}) = 0 ∧ \bigwedge_{i=1}^n p_K(x_i, y_i) = 0</span></p>
+</section>
+</section>
+<section id="a-diophantine-definition-of-rational-integers-is-key" class="slide level2">
+<h2>A Diophantine definition of rational integers is key</h2>
+<h3 id="theorem-3">Theorem</h3>
+<p>Every semi-decidable subset of <span class="math inline">\mathcal{O}_{K}</span> is Diophantine if and only if <span class="math inline">ℤ</span> is Diophantine over <span class="math inline">\mathcal{O}_{K}</span>.</p>
+</section>
+<section id="strong-vertical-method-of-denef-and-lipshitz" class="slide level2">
+<h2>Strong vertical method of Denef and Lipshitz</h2>
+<h3 id="theorem-4">Theorem</h3>
+<p>Let <span class="math inline">L /K</span> be an extension of number fields and <span class="math inline">n = [L : ℚ]</span>. If <span class="math inline">x, y ∈ \mathcal{O}_{L}</span> and <span class="math inline">α ∈ \mathcal{O}_{K}</span> satisfy</p>
+<ol type="1">
+<li><span class="math inline">y</span> is not a unit,</li>
+<li><span class="math inline">|σ_i(x)| ≤ |N_{L/ℚ}(y^c)|</span> for all <span class="math inline">1 ≤ i ≤ n</span>,</li>
+<li><span class="math inline">|σ_i(α)| ≤ |N_{L/ℚ}(y^c)|</span> for all <span class="math inline">1 ≤ i ≤ n</span>, and</li>
+<li><span class="math inline">x \equiv α \mathrel{\mathrm{mod}}\left(2 y^{2cn}\right)</span> in <span class="math inline">\mathcal{O}_{L}</span></li>
+</ol>
+<p>where <span class="math inline">{σ}_1, \ldots, {σ}_{n}</span> denote the embeddings of <span class="math inline">L</span> into <span class="math inline">ℂ</span> and <span class="math inline">c ∈ ℕ</span> is a fixed, then</p>
+<p><span class="math display">x = α ∈ \mathcal{O}_{K}.</span></p>
+</section>
+</section>
+<section>
+<section id="a-diophantine-definition-of-rational-integers-over-the-integers-of-a-totally-real-number-field" class="title-slide slide level1">
+<h1>A Diophantine definition of rational integers over the integers of a totally real number field</h1>
+
+</section>
+<section id="two-sequences" class="slide level2">
+<h2>Two sequences</h2>
+<section id="definition-11" data-fragment="true">
+<h3>Definition</h3>
+<p>Let <span class="math inline">K</span> be totally real and <span class="math inline">a ∈ \mathcal{O}_{K}</span>. We set</p>
+<ul>
+<li><span class="math inline">δ(a) := \sqrt{a^2 - 1}</span> and</li>
+<li><span class="math inline">ε(a) := a + δ(a)</span>.</li>
+</ul>
+</section>
+<div class="fragment">
+<div data-fragment="true">
+<p>If <span class="math inline">δ(a) ∉ K</span>, we define <span class="math inline">\mathrm x_m(a), \mathrm y_m(a)</span> by</p>
+<p><span class="math display">\mathrm x_m(a) + δ(a) \mathrm y_m(a) = ε(a)^m</span></p>
+</div>
+</div>
+<div class="fragment">
+<div data-fragment="true">
+<p>View this as an analogue to</p>
+<p><span class="math display">\cos(m) + i \sin(m) = e^{im}</span></p>
+</div>
+</div>
+</section>
+<section id="pells-equation" class="slide level2">
+<h2>Pell’s equation</h2>
+<p><span class="math display">X^2 - (a^2 - 1) Y^2 = 1</span></p>
+<h3 id="lemma-2">Lemma</h3>
+<p><span class="math inline">(±\mathrm x_m(a), ±\mathrm y_m(a))_{m ∈ ℕ}</span> are all solutions to Pell’s equation with parameter <span class="math inline">a</span> in <span class="math inline">\mathcal{O}_{K}</span>.</p>
+<div class="fragment">
+<div data-fragment="true">
+<p>View this as an analogue to</p>
+<p><span class="math display">\cos(m)^2 - i^2 \sin(m)^2 = 1</span></p>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="notation">Notation</h3>
+<p>Let <span class="math inline">K</span> be number field of degree <span class="math inline">n = [K : ℚ]</span> and let <span class="math inline">{σ}_1, \ldots, {σ}_{n}</span> denote all embeddings of <span class="math inline">K</span> into <span class="math inline">ℂ</span>. For all <span class="math inline">α ∈ K</span> we set</p>
+<p><span class="math display">α_i := σ_i(α) \quad\text{for all } 1 ≤ i ≤ n</span></p>
+</section>
+<section class="slide level2">
+
+<h3 id="main-lemma">Main Lemma</h3>
+<p>Let <span class="math inline">K ≠ ℚ</span> be a totally real number field of degree <span class="math inline">n = [K : ℚ]</span> and let <span class="math inline">a ∈ \mathcal{O}_{K}</span> satisfy</p>
+<p><span class="math display">a_1 ≥ 2^{2n}, \quad |a_i| ≤ \frac{1}{8} \text{ for all } 2 ≤ i ≤ n.</span></p>
+<p>Define <span class="math inline">S \subseteq \mathcal{O}_{K}</span> by <span class="math inline">ξ ∈ S ⇔ ∃ x, y, w, z, u, v, s, t, b ∈ \mathcal{O}_{K}:</span></p>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><span class="math display">\begin{aligned}
+x^2 - (a^2 - 1)y^2 &amp;= 1\\
+w^2 - (a^2 - 1)z^2 &amp;= 1\\
+u^2 - (a^2 - 1)v^2 &amp;= 1\\
+s^2 - (b^2 - 1)t^2 &amp;= 1\\
+v &amp;≠ 0\\
+z^2 &amp; \mid v\\
+\end{aligned}</span></p>
+</div><div class="column" style="width:36%;">
+<p><span class="math display">\begin{aligned}
+b_1 &amp;≥ 2^{2n}\\
+|b_i| &amp;≤ \frac{1}{2} \; \text{for } 2 ≤ i ≤ n\\
+|u_i| &amp;≥ \frac{1}{2} \; \text{for } 2 ≤ i ≤ n\\
+|z_i| &amp;≥ \frac{1}{2} \; \text{for } 2 ≤ i ≤ n\\
+b &amp;\equiv 1 \mathrel{\mathrm{mod}}(z)\\
+\end{aligned}</span></p>
+</div><div class="column" style="width:39%;">
+<p><span class="math display">\begin{aligned}
+b &amp;\equiv a \mathrel{\mathrm{mod}}(u)\\
+s &amp;\equiv x \mathrel{\mathrm{mod}}(u)\\
+t &amp;\equiv ξ \mathrel{\mathrm{mod}}(z)\\
+2^{2n+1}&amp; \prod_{i = 0}^{n - 1} (ξ + i)^n \prod_{j = 0}^{n - 1} (x + j)^n \;\big\vert\; z
+\end{aligned}</span></p>
+</div>
+</div>
+<p>Then <span class="math inline">ℕ \subseteq S \subseteq ℤ</span>.</p>
+</section>
+<section class="slide level2">
+
+<h3 id="main-lemma-1">Main Lemma</h3>
+<p>Let <span class="math inline">K ≠ ℚ</span> be a totally real number field of degree <span class="math inline">n = [K : ℚ]</span> and let <span class="math inline">a ∈ \mathcal{O}_{K}</span> satisfy</p>
+<p><span class="math display">a_1 ≥ 2^{2n}, \quad |a_i| ≤ \frac{1}{8} \text{ for all } 2 ≤ i ≤ n.</span></p>
+<p>Define <span class="math inline">S \subseteq \mathcal{O}_{K}</span> by <span class="math inline">ξ ∈ S ⇔ ∃ x, y, w, z, u, v, s, t, b ∈ \mathcal{O}_{K}:</span></p>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><span class="math display">\begin{aligned}
+x = ±\mathrm x_k(a), &amp; \; y = ±\mathrm y_k(a)\\
+w = ±\mathrm x_h(a), &amp; \; z = ±\mathrm y_h(a)\\
+u = ±\mathrm x_m(a), &amp; \; v = ±\mathrm y_m(a)\\
+s = ±\mathrm x_j(b), &amp; \; t = ±\mathrm y_k(b)\\
+v &amp;≠ 0\\
+z^2 &amp; \mid v\\
+\end{aligned}</span></p>
+</div><div class="column" style="width:36%;">
+<p><span class="math display">\begin{aligned}
+b_1 &amp;≥ 2^{2n}\\
+|b_i| &amp;≤ \frac{1}{2} \; \text{for } 2 ≤ i ≤ n\\
+|u_i| &amp;≥ \frac{1}{2} \; \text{for } 2 ≤ i ≤ n\\
+|z_i| &amp;≥ \frac{1}{2} \; \text{for } 2 ≤ i ≤ n\\
+b &amp;\equiv 1 \mathrel{\mathrm{mod}}(z)\\
+\end{aligned}</span></p>
+</div><div class="column" style="width:39%;">
+<p><span class="math display">\begin{aligned}
+b &amp;\equiv a \mathrel{\mathrm{mod}}(u)\\
+s &amp;\equiv x \mathrel{\mathrm{mod}}(u)\\
+t &amp;\equiv ξ \mathrel{\mathrm{mod}}(z)\\
+2^{2n+1}&amp; \prod_{i = 0}^{n - 1} (ξ + i)^n \prod_{j = 0}^{n - 1} (x + j)^n \;\big\vert\; z
+\end{aligned}</span></p>
+</div>
+</div>
+<p>Then <span class="math inline">ℕ \subseteq S \subseteq ℤ</span>.</p>
+</section>
+<section id="diophantine-definition-of-the-rational-integers" class="slide level2">
+<h2>Diophantine definition of the rational integers</h2>
+<h3 id="theorem-denef1980">Theorem <span class="citation" data-cites="Denef1980">(Denef 1980)</span></h3>
+<p>Let <span class="math inline">K</span> be a totally real number field. Then <span class="math inline">ℤ</span> is Diophantine over <span class="math inline">\mathcal{O}_{K}</span>.</p>
+<div class="fragment">
+<div data-fragment="true">
+<p>Use Minkowski’s theorem on convex bodies to find an <span class="math inline">a ∈ \mathcal{O}_{K}</span> satisfying the estimates in the previous lemma.</p>
+</div>
+</div>
+<div class="fragment">
+<div data-fragment="true">
+<p>Then <span class="math inline">ℕ \subseteq S \subseteq ℤ</span> is Diophantine over <span class="math inline">\mathcal{O}_{K}</span>, and <span class="math inline">\left\lbrace -1, 1 \right\rbrace</span> is Diophantine as well. Now</p>
+<p><span class="math display">α ∈ ℤ \quad ⇔ \quad ∃ s, ξ: α = s ξ ∧ (s - 1)(s + 1) = 0 ∧ ξ ∈ S</span></p>
+</div>
+</div>
+</section>
+<section id="references" class="slide level2 unnumbered">
+<h2 class="unnumbered">References</h2>
+<div id="refs" class="references hanging-indent" role="doc-bibliography">
+<div id="ref-Denef1980">
+<p>Denef, J. 1980. “Diophantine Sets over Algebraic Integer Rings. II.” <em>Trans. Amer. Math. Soc.</em> 257 (1): 227–36. <a href="https://doi.org/10.2307/1998133">https://doi.org/10.2307/1998133</a>.</p>
+</div>
+<div id="ref-Denef1978">
+<p>Denef, J., and L. Lipshitz. 1978. “Diophantine Sets over Some Rings of Algebraic Integers.” <em>J. London Math. Soc. (2)</em> 18 (3): 385–91. <a href="https://doi.org/10.1112/jlms/s2-18.3.385">https://doi.org/10.1112/jlms/s2-18.3.385</a>.</p>
+</div>
+<div id="ref-Goedel1931">
+<p>Gödel, Kurt. 1931. “Über Formal Unentscheidbare Sätze Der Principia Mathematica Und Verwandter Systeme I.” <em>Monatsh. Math. Phys.</em> 38 (1): 173–98. <a href="https://doi.org/10.1007/BF01700692">https://doi.org/10.1007/BF01700692</a>.</p>
+</div>
+<div id="ref-Hilbert1900">
+<p>Hilbert, David. 1900. “Mathematische Probleme. Vortrag, Gehalten Auf Dem Internationalen Mathematiker-Kongreß Zu Paris 1900.” <em>Nachrichten von Der Königl. Gesellschaft Der Wissenschaften Zu Göttingen.</em>, 253–79.</p>
+</div>
+<div id="ref-Matijasevic1970">
+<p>Matijasevič, Ju. V. 1970. “The Diophantineness of Enumerable Sets.” <em>Doklady Akademii Nauk SSSR</em> 191: 279–82.</p>
+</div>
+<div id="ref-Pheidas1988">
+<p>Pheidas, Thanases. 1988. “Hilbert’s Tenth Problem for a Class of Rings of Algebraic Integers.” <em>Proc. Amer. Math. Soc.</em> 104 (2): 611–20. <a href="https://doi.org/10.2307/2047021">https://doi.org/10.2307/2047021</a>.</p>
+</div>
+<div id="ref-Robinson1959">
+<p>Robinson, Julia. 1959. “The Undecidability of Algebraic Rings and Fields.” <em>Proc. Amer. Math. Soc.</em> 10: 950–57. <a href="https://doi.org/10.2307/2033628">https://doi.org/10.2307/2033628</a>.</p>
+</div>
+<div id="ref-Rosser1936">
+<p>Rosser, Barkley. 1936. “Extensions of Some Theorems of Gödel and Church.” <em>Journal of Symbolic Logic</em> 1 (3): 87–91. <a href="https://doi.org/10.2307/2269028">https://doi.org/10.2307/2269028</a>.</p>
+</div>
+<div id="ref-Rumely1986">
+<p>Rumely, Robert S. 1986. “Arithmetic over the Ring of All Algebraic Integers.” <em>J. Reine Angew. Math.</em> 368: 127–33. <a href="https://doi.org/10.1515/crll.1986.368.127">https://doi.org/10.1515/crll.1986.368.127</a>.</p>
+</div>
+<div id="ref-Shapiro1989">
+<p>Shapiro, Harold N., and Alexandra Shlapentokh. 1989. “Diophantine Relationships Between Algebraic Number Fields.” <em>Comm. Pure Appl. Math.</em> 42 (8): 1113–22. <a href="https://doi.org/10.1002/cpa.3160420805">https://doi.org/10.1002/cpa.3160420805</a>.</p>
+</div>
+<div id="ref-Shlapentokh1989">
+<p>Shlapentokh, Alexandra. 1989. “Extension of Hilbert’s Tenth Problem to Some Algebraic Number Fields.” <em>Comm. Pure Appl. Math.</em> 42 (7): 939–62. <a href="https://doi.org/10.1002/cpa.3160420703">https://doi.org/10.1002/cpa.3160420703</a>.</p>
+</div>
+<div id="ref-Dries1988">
+<p>van den Dries, Lou. 1988. “Elimination Theory for the Ring of Algebraic Integers.” <em>J. Reine Angew. Math.</em> 388: 189–205. <a href="https://doi.org/10.1515/crll.1988.388.189">https://doi.org/10.1515/crll.1988.388.189</a>.</p>
+</div>
+</div>
+</section>
+</section>
+    </div>
+  </div>
+
+  <script src="./reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: './reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: './reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
