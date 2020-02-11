@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Tim B. Herbstrith">
-  <meta name="dcterms.date" content="2018-06-15">
+  <meta name="dcterms.date" content="2020-02-28">
   <meta name="keywords" content="number theory, theoretical computer science, decidability">
-  <title>Hilbert’s tenth problem</title>
+  <title>Hilbert’s tenth problem over rings of algebraic integers</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -19,68 +19,6 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="./reveal.js/css/theme/metropolis.css" id="theme">
   <!-- Printing and PDF exports -->
@@ -114,10 +52,10 @@
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">Hilbert’s tenth problem</h1>
-  <p class="subtitle">over rings of algebraic integers</p>
+  <h1 class="title">Hilbert’s tenth problem over rings of algebraic integers</h1>
+  <p class="subtitle">Master Defense</p>
   <p class="author">Tim B. Herbstrith</p>
-  <p class="date">15 June 2018</p>
+  <p class="date">28 February 2020</p>
 </section>
 
 <section>
@@ -130,91 +68,53 @@
 <p><span>      </p>
 <p></span></p>
 <div class="columns">
-<div class="column" style="width:70%;">
+<div class="column" style="width:65%;">
 <blockquote>
 <p>Given a Diophantine equation with any number of unknown quantities and with <span class="fragment highlight-current-red" data-fragment-index="3"> rational integral </span> numerical coefficients: To devise a <span class="fragment highlight-current-red" data-fragment-index="1"> process </span> according to which it can be <span class="fragment highlight-current-red" data-fragment-index="2"> determined </span> by a <span class="fragment highlight-current-red" data-fragment-index="1"> finite number of operations </span> whether the <span class="fragment highlight-current-red" data-fragment-index="2"> equation is solvable </span> in <span class="fragment highlight-current-red" data-fragment-index="3"> rational integers. </span></p>
 <p>– <span class="citation" data-cites="Hilbert1900">Hilbert (1900)</span></p>
 </blockquote>
 </div><div class="column" style="width:30%;">
 <figure>
-<img data-src="imgs/Hilbert.jpg" alt="" /><figcaption>David Hilbert</figcaption>
+<img data-src="imgs/Hilbert.jpg" id="fig:David-Hilbert" alt="" /><figcaption>Figure 1: Portrait of David Hilbert (1912)</br><span class="citation" data-cites="Reid1970">(Published in Reid and Weyl 1970)</span></figcaption>
 </figure>
 </div>
-</div>
-</section>
-<section id="turing-machines" class="slide level2">
-<h2>Turing machines</h2>
-<div class="columns">
-<div class="column" style="width:70%;">
-<h3 id="definition">Definition</h3>
-<p>A <em>Turing machine</em> <span class="math inline">\mathbb{A}</span> on the <em>alphabet</em> <span class="math inline">A = \lbrace\mathtt{\texttt{\S}, \_, 0, 1}\rbrace</span> is a tuple <span class="math inline">(S, δ)</span>, where <span class="math inline">s_{start}, s_{halt} \in S</span> is a finite non-empty set, called <em>set of states</em>, and</p>
-<p><span class="math display">δ: S \times A \to S \times A \times \lbrace -1, 0, 1 \rbrace</span></p>
-<p>is called <em>transition function</em>. If <span class="math inline">δ(s, a) = (s&#39;, b, m)</span>, one demands that the following axioms are satisfied</p>
-<ul>
-<li><span class="math inline">a = \texttt{\S}</span> if and only if <span class="math inline">b = \texttt{\S}</span>,</li>
-<li>If <span class="math inline">a = \texttt{\S}</span>, then <span class="math inline">m \neq -1</span>, and</li>
-<li>If <span class="math inline">s = s_{halt}</span>, then <span class="math inline">s&#39; = s_{halt}</span>, <span class="math inline">a = b</span> and <span class="math inline">m = 0</span>.</li>
-</ul>
-</div><div class="column" style="width:30%;">
-<figure>
-<img data-src="imgs/Turing.jpg" alt="" /><figcaption>Alan Turing</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="turing-machines-1" class="slide level2">
-<h2>Turing machines</h2>
-<h3 id="example-adding-1-to-a-number-in-binary-encoding">Example: Adding <span class="math inline">1</span> to a number in binary encoding</h3>
-<div class="columns">
-<div class="column" style="width:60%;">
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1"></a>δ(<span class="st">&quot;start&quot;</span>,    <span class="ch">&#39;§&#39;</span>) <span class="ot">=</span> (<span class="st">&quot;overflow&quot;</span>, <span class="ch">&#39;§&#39;</span>, <span class="dv">1</span> )</span>
-<span id="cb1-2"><a href="#cb1-2"></a>δ(<span class="st">&quot;overflow&quot;</span>, <span class="ch">&#39;1&#39;</span>) <span class="ot">=</span> (<span class="st">&quot;overflow&quot;</span>, <span class="ch">&#39;0&#39;</span>, <span class="dv">1</span> )</span>
-<span id="cb1-3"><a href="#cb1-3"></a>δ(<span class="st">&quot;overflow&quot;</span>, <span class="ch">&#39;0&#39;</span>) <span class="ot">=</span> (<span class="st">&quot;return&quot;</span>,   <span class="ch">&#39;1&#39;</span>, <span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb1-4"><a href="#cb1-4"></a>δ(<span class="st">&quot;overflow&quot;</span>, <span class="ch">&#39;_&#39;</span>) <span class="ot">=</span> (<span class="st">&quot;return&quot;</span>,   <span class="ch">&#39;1&#39;</span>, <span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb1-5"><a href="#cb1-5"></a>δ(<span class="st">&quot;return&quot;</span>,   <span class="ch">&#39;§&#39;</span>) <span class="ot">=</span> (<span class="st">&quot;halt&quot;</span>,     <span class="ch">&#39;§&#39;</span>, <span class="dv">0</span> )</span>
-<span id="cb1-6"><a href="#cb1-6"></a>δ(<span class="st">&quot;return&quot;</span>,   b)   <span class="ot">=</span> (<span class="st">&quot;return&quot;</span>,   b  , <span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb1-7"><a href="#cb1-7"></a>δ(<span class="st">&quot;halt&quot;</span>,     b)   <span class="ot">=</span> (<span class="st">&quot;halt&quot;</span>,     b  , <span class="dv">0</span> )</span></code></pre></div>
-</div><div class="column" style="width:40%;">
-<div class="image-float">
-<p class="fragment current-visible" data-fragment-index="0" style="position: relative; left:15px; top:15px;">
-<a href="imgs/turing_add1_1.svg"> <img src="imgs/turing_add1_1.svg" width="400vh"/> </a>
-</p>
-<p class="fragment current-visible" data-fragment-index="1" style="position:absolute; left:20px; top:20px;">
-<a href="imgs/turing_add1_2.svg"> <img src="imgs/turing_add1_2.svg" width="400vh"/> </a>
-</p>
-<p class="fragment current-visible" data-fragment-index="2" style="position:absolute; left:20px; top:20px;">
-<a href="imgs/turing_add1_3.svg"> <img src="imgs/turing_add1_3.svg" width="400vh"/> </a>
-</p>
-<p class="fragment current-visible" data-fragment-index="3" style="position:absolute; left:20px; top:20px;">
-<a href="imgs/turing_add1_4.svg"> <img src="imgs/turing_add1_4.svg" width="400vh"/> </a>
-</p>
-<p class="fragment current-visible" data-fragment-index="4" style="position:absolute; left:20px; top:20px;">
-<a href="imgs/turing_add1_5.svg"> <img src="imgs/turing_add1_5.svg" width="400vh"/> </a>
-</p>
-<p class="fragment current-visible" data-fragment-index="5" style="position:absolute; left:20px; top:20px;">
-<a href="imgs/turing_add1_6.svg"> <img src="imgs/turing_add1_6.svg" width="400vh"/> </a>
-</p>
-<p class="fragment current-visible" data-fragment-index="6" style="position:absolute; left:20px; top:20px;">
-<a href="imgs/turing_add1_7.svg"> <img src="imgs/turing_add1_7.svg" width="400vh"/> </a>
-</p>
-<p class="fragment" data-fragment-index="7" style="position:absolute; left:20px; top:20px;">
-<a href="imgs/turing_add1_8.svg"> <img src="imgs/turing_add1_8.svg" width="400vh"/> </a>
-</p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p>I write <span class="math inline">\mathbb{A}(x)</span> for the output of Turing machine <span class="math inline">\mathbb{A}</span> on input <span class="math inline">x</span> if <span class="math inline">\mathbb{A}</span> halts on <span class="math inline">x</span>.</p>
 </div>
 </section>
 <section id="decision-problems" class="slide level2">
 <h2>Decision problems</h2>
-<h3 id="definition-1">Definition</h3>
+<h3 id="definition">Definition</h3>
 <p>A <em>decision problem</em> is a subset of the set of finite <span class="math inline">\mathtt 0</span>-<span class="math inline">\mathtt 1</span>-strings <span class="math inline">ω = \lbrace \mathtt{0, 1} \rbrace^*</span> including the empty string <span class="math inline">\lambda</span>.</p>
-<h3 id="example-connected-graphs">Example: Connected graphs</h3>
-<p>The set of all connected graphs can be encoded as the set of the respective adjacency matrices written as a string</p>
-<p><span class="math display">b_{00}b_{01} … b_{0n}b_{10} … b_{nn}</span></p>
-<p>of length <span class="math inline">(n + 1)^2</span>.</p>
+<h3 id="example-simple-graphs">Example: Simple graphs</h3>
+<p>The set of all simple graphs can be encoded by strings of the form</p>
+<p><span class="math display">
+    \begin{array}{lllll}
+        x := &amp; b_{1, 2} &amp; b_{1, 3} &amp; …      &amp; b_{1, n}\\
+             &amp;    &amp; b_{2, 3} &amp; …      &amp; b_{2,n}\\
+             &amp;    &amp;          &amp; \ddots &amp; \vdots \\
+             &amp;    &amp;          &amp;        &amp; b_{n-1, n},
+    \end{array}
+</span></p>
+</section>
+<section id="turing-machines" class="slide level2">
+<h2>Turing machines</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<h3 id="definition-1">Definition</h3>
+<p>A <em>Turing machine</em> <span class="math inline">\mathbb{A}</span> on the <em>alphabet</em> <span class="math inline">A = \lbrace\mathtt{\texttt{\S}, \_, 0, 1}\rbrace</span> consists of</p>
+<ul>
+<li>a finite <em>set of states</em> <span class="math inline">S</span> containing <span class="math inline">s_{start}, s_{halt}</span> and</li>
+<li>a <em>transition function</em></li>
+</ul>
+<p><span class="math display">δ: S \times A \to S \times A \times \lbrace -1, 0, 1 \rbrace.</span></p>
+</div><div class="column" style="width:40%;">
+<figure>
+<img data-src="imgs/turing_add1.gif" id="fig:add1" alt="" /><figcaption>Figure 2: Turing machine increasing a binary number by 1</figcaption>
+</figure>
+</div>
+</div>
+<div class="fragment">
+<p>I write <span class="math inline">\mathbb{A}(x)</span> for the output of Turing machine <span class="math inline">\mathbb{A}</span> on input <span class="math inline">x ∈ ω</span> if <span class="math inline">\mathbb{A}</span> halts on <span class="math inline">x</span>.</p>
+</div>
 </section>
 <section id="decidability" class="slide level2">
 <h2>Decidability</h2>
@@ -240,40 +140,8 @@
 <h3 id="definition-3">Definition</h3>
 <p>The <em>halting set</em> is the set of all codes of Turing machines <span class="math inline">\mathbb{A}</span> that halt upon receiving their code as input i.e.</p>
 <p><span class="math display">\mathcal{K} := \left\lbrace \ulcorner \mathbb{A} \urcorner \mid \mathbb{A} \text{ halts on } \ulcorner \mathbb{A} \urcorner \right\rbrace</span></p>
-<section id="theorem" data-fragment="true">
-<h3>Theorem</h3>
-<p>The halting set is semi-decidable but not decidable.</p>
-</section>
-</section>
-<section class="slide level2">
-
-<h3 id="sketch-of-proof">Sketch of Proof</h3>
-<p>Assume <span class="math inline">\mathbb{B}</span> decides the halting set i.e.</p>
-<p><span class="math display">\mathbb{B}(\ulcorner \mathbb{A} \urcorner) =
-\begin{cases}
-  \mathtt 1&amp; \text{if } \mathbb{A} \text{ halts on } \ulcorner \mathbb{A} \urcorner \\
-  \mathtt 0&amp; \text{otherwise}
-\end{cases}.
-</span></p>
-<div class="fragment">
-<p>Consider <span class="math inline">\mathbb{B}&#39;</span> defined by</p>
-<p><span class="math display">\mathbb{B}&#39;(\ulcorner \mathbb{A} \urcorner) =
-\begin{cases}
-  \mathtt 1&amp; \text{if } \mathbb{B}(\ulcorner \mathbb{A} \urcorner) = \mathtt 0\\
-  \uparrow &amp; \text{otherwise}
-\end{cases}.
-</span></p>
-</div>
-<div class="fragment">
-<p>What is <span class="math inline">\mathbb{B}&#39;(\ulcorner \mathbb{B}&#39; \urcorner)</span>?</p>
-</div>
-</section>
-<section id="church-turing-thesis" class="slide level2">
-<h2>Church-Turing thesis</h2>
-<p>I will use without hesitation:</p>
-<blockquote>
-<p>The class of intuitively computable functions coincides with the class of all Turing computable functions.</p>
-</blockquote>
+<h3 id="theorem">Theorem</h3>
+<p>The halting set <span class="math inline">\mathcal{K}</span> is semi-decidable but not decidable.</p>
 </section>
 </section>
 <section>
@@ -758,6 +626,9 @@ t &amp;\equiv ξ \mathrel{\mathrm{mod}}(z)\\
 <div id="ref-Pheidas1988">
 <p>Pheidas, Thanases. 1988. “Hilbert’s Tenth Problem for a Class of Rings of Algebraic Integers.” <em>Proc. Amer. Math. Soc.</em> 104 (2): 611–20. <a href="https://doi.org/10.2307/2047021">https://doi.org/10.2307/2047021</a>.</p>
 </div>
+<div id="ref-Reid1970">
+<p>Reid, Constance, and Hermann Weyl. 1970. <em>Hilbert</em>. Springer Berlin Heidelberg. <a href="https://www.ebook.de/de/product/21827654/constance_reid_hermann_weyl_hilbert.html">https://www.ebook.de/de/product/21827654/constance_reid_hermann_weyl_hilbert.html</a>.</p>
+</div>
 <div id="ref-Robinson1959">
 <p>Robinson, Julia. 1959. “The Undecidability of Algebraic Rings and Fields.” <em>Proc. Amer. Math. Soc.</em> 10: 950–57. <a href="https://doi.org/10.2307/2033628">https://doi.org/10.2307/2033628</a>.</p>
 </div>
@@ -789,6 +660,8 @@ t &amp;\equiv ξ \mathrel{\mathrm{mod}}(z)\\
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
         // Push each slide change to the browser history
         history: true,
 

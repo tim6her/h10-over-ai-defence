@@ -1,8 +1,8 @@
 ---
-title: Hilbert's tenth problem
-subtitle: over rings of algebraic integers
+title: Hilbert's tenth problem over rings of algebraic integers
+subtitle: Master Defense
 author: Tim B. Herbstrith
-date: 15 June 2018
+date: 28 February 2020
 keywords: [number theory, theoretical computer science, decidability]
 ---
 
@@ -54,7 +54,7 @@ keywords: [number theory, theoretical computer science, decidability]
 </span>
 
 :::::::::::::: {.columns}
-::: {.column width="70%"}
+::: {.column width="65%"}
 > Given a Diophantine equation with any number of unknown quantities and with
 > <span class="fragment highlight-current-red" data-fragment-index="3">
     rational integral
@@ -83,105 +83,9 @@ keywords: [number theory, theoretical computer science, decidability]
 > – @Hilbert1900
 :::
 ::: {.column width="30%"}
-![David Hilbert](imgs/Hilbert.jpg)
+![Portrait of David Hilbert (1912)</br>[Published in @Reid1970]](imgs/Hilbert.jpg){#fig:David-Hilbert}
 :::
 ::::::::::::::
-
-
-## Turing machines
-
-:::::::::::::: {.columns}
-::: {.column width="70%"}
-
-### Definition
-
-A *Turing machine* $\mathbb{A}$ on the *alphabet*
-$A = \lbrace\mathtt{\sta, \_, 0, 1}\rbrace$ is a tuple $(S, δ)$,
-where $s_{start}, s_{halt} \in S$ is a finite non-empty set, called
-*set of states*, and
-
-$$δ: S \times A \to S \times A \times \lbrace -1, 0, 1 \rbrace$$
-
-is called *transition function*. If $δ(s, a) = (s', b, m)$, one
-demands that the following axioms are satisfied
-
-* $a = \sta$ if and only if $b = \sta$,
-* If $a = \sta$, then $m \neq -1$, and
-* If $s = s_{halt}$, then $s' = s_{halt}$, $a = b$ and $m = 0$.
-
-:::
-::: {.column width="30%"}
-![Alan Turing](imgs/Turing.jpg)
-:::
-::::::::::::::
-
-
-## Turing machines
-
-### Example: Adding $1$ to a number in binary encoding
-
-:::::::::::::: {.columns}
-::: {.column width="60%"}
-```haskell
-δ("start",    '§') = ("overflow", '§', 1 )
-δ("overflow", '1') = ("overflow", '0', 1 )
-δ("overflow", '0') = ("return",   '1', -1)
-δ("overflow", '_') = ("return",   '1', -1)
-δ("return",   '§') = ("halt",     '§', 0 )
-δ("return",   b)   = ("return",   b  , -1)
-δ("halt",     b)   = ("halt",     b  , 0 )
-```
-:::
-::: {.column width="40%"}
-<div class="image-float">
-  <p class="fragment current-visible" data-fragment-index="0" style="position: relative; left:15px; top:15px;">
-    <a href="imgs/turing_add1_1.svg">
-      <img src="imgs/turing_add1_1.svg" width="400vh"/>
-    </a>
-  </p>
-  <p class="fragment current-visible" data-fragment-index="1" style="position:absolute; left:20px; top:20px;">
-    <a href="imgs/turing_add1_2.svg">
-      <img src="imgs/turing_add1_2.svg" width="400vh"/>
-    </a>
-  </p>
-  <p class="fragment current-visible" data-fragment-index="2" style="position:absolute; left:20px; top:20px;">
-    <a href="imgs/turing_add1_3.svg">
-      <img src="imgs/turing_add1_3.svg" width="400vh"/>
-    </a>
-  </p>
-  <p class="fragment current-visible" data-fragment-index="3" style="position:absolute; left:20px; top:20px;">
-    <a href="imgs/turing_add1_4.svg">
-      <img src="imgs/turing_add1_4.svg" width="400vh"/>
-    </a>
-  </p>
-  <p class="fragment current-visible" data-fragment-index="4" style="position:absolute; left:20px; top:20px;">
-    <a href="imgs/turing_add1_5.svg">
-      <img src="imgs/turing_add1_5.svg" width="400vh"/>
-    </a>
-  </p>
-  <p class="fragment current-visible" data-fragment-index="5" style="position:absolute; left:20px; top:20px;">
-    <a href="imgs/turing_add1_6.svg">
-      <img src="imgs/turing_add1_6.svg" width="400vh"/>
-    </a>
-  </p>
-  <p class="fragment current-visible" data-fragment-index="6" style="position:absolute; left:20px; top:20px;">
-    <a href="imgs/turing_add1_7.svg">
-      <img src="imgs/turing_add1_7.svg" width="400vh"/>
-    </a>
-  </p>
-  <p class="fragment" data-fragment-index="7" style="position:absolute; left:20px; top:20px;">
-    <a href="imgs/turing_add1_8.svg">
-      <img src="imgs/turing_add1_8.svg" width="400vh"/>
-    </a>
-  </p>
-</div>
-:::
-::::::::::::::
-
-. . .
-
-I write $\mathbb{A}(x)$ for the output of Turing machine $\mathbb{A}$ on input
-$x$ if $\mathbb{A}$ halts on $x$.
 
 ## Decision problems
 
@@ -193,16 +97,44 @@ $\lambda$.
 
 . . .
 
-<div>
-### Example: Connected graphs
+### Example: Simple graphs
 
-The set of all connected graphs can be encoded as the set of the respective
-adjacency matrices written as a string
+The set of all simple graphs can be encoded by strings of the form
 
-$$b_{00}b_{01} … b_{0n}b_{10} … b_{nn}$$
+$$
+    \begin{array}{lllll}
+        x := & b_{1, 2} & b_{1, 3} & …      & b_{1, n}\\
+             &    & b_{2, 3} & …      & b_{2,n}\\
+             &    &          & \ddots & \vdots \\
+             &    &          &        & b_{n-1, n},
+    \end{array}
+$$
 
-of length $(n + 1)^2$.
-</div>
+## Turing machines
+
+:::::::::::::: {.columns}
+::: {.column width="55%"}
+
+### Definition
+
+A *Turing machine* $\mathbb{A}$ on the *alphabet*
+$A = \lbrace\mathtt{\sta, \_, 0, 1}\rbrace$ consists of
+
+*  a finite *set of states* $S$ containing $s_{start}, s_{halt}$ and
+*  a *transition function*
+
+$$δ: S \times A \to S \times A \times \lbrace -1, 0, 1 \rbrace.$$
+
+:::
+::: {.column width="40%"}
+![Turing machine increasing a binary number by 1](imgs/turing_add1.gif){#fig:add1}
+:::
+::::::::::::::
+
+. . .
+
+I write $\mathbb{A}(x)$ for the output of Turing machine $\mathbb{A}$ on input
+$x ∈ ω$ if $\mathbb{A}$ halts on $x$.
 
 
 ## Decidability
@@ -235,48 +167,11 @@ $$\mathcal{K} := \set{\enc{\mathbb{A}} \mid \mathbb{A} \text{ halts on } \enc{\m
 
 . . .
 
-<div fragment="true">
+<div>
 ### Theorem
 
-The halting set is semi-decidable but not decidable.
+The halting set $\mathcal{K}$ is semi-decidable but not decidable.
 </div>
-
----
-
-### Sketch of Proof
-
-Assume $\mathbb{B}$ decides the halting set i.e.
-
-$$\mathbb{B}(\enc{\mathbb{A}}) =
-\begin{cases}
-  \one & \text{if } \mathbb{A} \text{ halts on } \enc{\mathbb{A}} \\
-  \zer & \text{otherwise}
-\end{cases}.
-$$
-
-. . .
-
-Consider $\mathbb{B}'$ defined by
-
-$$\mathbb{B}'(\enc{\mathbb{A}}) =
-\begin{cases}
-  \one & \text{if } \mathbb{B}(\enc{\mathbb{A}}) = \zer \\
-  \uparrow & \text{otherwise}
-\end{cases}.
-$$
-
-. . .
-
-What is $\mathbb{B}'(\enc{\mathbb{B}'})$?
-
-
-## Church-Turing thesis
-
-I will use without hesitation:
-
->   The class of intuitively computable
->  functions coincides with the class of all Turing computable functions.
-
 
 
 # Some number theory
