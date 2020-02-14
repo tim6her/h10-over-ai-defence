@@ -1,6 +1,6 @@
 ---
 title: Hilbert's tenth problem over rings of algebraic integers
-subtitle: Master Defense
+subtitle: Master Defence
 author: Tim B. Herbstrith
 date: 28 February 2020
 keywords: [number theory, theoretical computer science, decidability]
@@ -182,26 +182,20 @@ The halting set $\mathcal{K}$ is semi-decidable but not decidable.
 
 A *number field* $K$ is a finite extension of the rationals $ℚ$.
 
-. . .
-
-<div fragment="true">
-### Examples
-
-* $ℚ[i] = \set{x + i y \mid x, y ∈ ℚ}$
-* $ℚ[\sqrt[3]{2}] = \set{x + \sqrt[3]{2} y + \sqrt[3]{4} z \mid x, y, z ∈ ℚ}$
-</div>
-
 
 ## Algebraic integers
 
 ### Definition
 
-An element $α \in ℂ$ is called *algebraic integer* if there exists a monic polynomial $p \in ℤ[X]$ such that
+An element $α \in ℂ$ is called *algebraic integer* if there exists a monic
+polynomial $p \in ℤ[X]$ such that
 
 $$p(α) = α^n + c_{n - 1} α^{n - 1} + … + c_0 = 0$$
 
-> * We write $\algint[]$ for the set of all algebraic integers …
-> * … and if $K$ is a number field, we set $\algint = \algint[] ∩ K$.
+. . .
+
+* We write $\algint[]$ for the set of all algebraic integers …
+* … and if $K$ is a number field, we set $\algint = \algint[] ∩ K$.
 
 ## Properties of algebraic integers
 
