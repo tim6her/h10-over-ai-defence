@@ -6,6 +6,13 @@ date: 28 February 2020
 keywords: [number theory, theoretical computer science, decidability]
 ---
 
+<!--
+██   ██  ██  ██████
+██   ██ ███ ██  ████
+███████  ██ ██ ██ ██
+██   ██  ██ ████  ██
+██   ██  ██  ██████
+-->
 # Hilbert's tenth problem, Turing machines, and decidability
 
 ## Hilbert's tenth problem
@@ -137,7 +144,7 @@ I write $\mathbb{A}(x)$ for the output of Turing machine $\mathbb{A}$ on input
 $x ∈ ω$ if $\mathbb{A}$ halts on $x$.
 
 
-## Decidability
+## Computability, decidability, and semi-decidability
 
 ### Definition
 
@@ -148,7 +155,7 @@ $x ∈ ω$ if $\mathbb{A}$ halts on $x$.
 
 ## Characterizations of semi-decidable sets
 
-### Proposition
+### Proposition {#sec:semi-decidable label=Proposition}
 
 Let $Q \subseteq ω$ be a problem. The following are equivalent.
 
@@ -167,21 +174,19 @@ $$\mathcal{K} := \set{\enc{\mathbb{A}} \mid \mathbb{A} \text{ halts on } \enc{\m
 
 . . .
 
-<div>
 ### Theorem
 
 The halting set $\mathcal{K}$ is semi-decidable but not decidable.
-</div>
 
 
+<!--
+███    ██ ██    ██ ███    ███        ████████ ██   ██ ███████  ██████
+████   ██ ██    ██ ████  ████           ██    ██   ██ ██      ██    ██
+██ ██  ██ ██    ██ ██ ████ ██           ██    ███████ █████   ██    ██
+██  ██ ██ ██    ██ ██  ██  ██           ██    ██   ██ ██      ██    ██
+██   ████  ██████  ██      ██ ██        ██    ██   ██ ███████  ██████  ██
+-->
 # Some number theory
-
-## Number fields
-
-### Definition
-
-A *number field* $K$ is a finite extension of the rationals $ℚ$.
-
 
 ## Algebraic integers
 
@@ -192,10 +197,9 @@ polynomial $p \in ℤ[X]$ such that
 
 $$p(α) = α^n + c_{n - 1} α^{n - 1} + … + c_0 = 0$$
 
-. . .
-
-* We write $\algint[]$ for the set of all algebraic integers …
-* … and if $K$ is a number field, we set $\algint = \algint[] ∩ K$.
+> * We write $\algint[]$ for the set of all algebraic integers …
+> * … and if $K$ is a number field, i.e. $K$ is finite extension of $ℚ$,
+    we set $\algint = \algint[] ∩ K$.
 
 ## Properties of algebraic integers
 
@@ -206,53 +210,14 @@ $$p(α) = α^n + c_{n - 1} α^{n - 1} + … + c_0 = 0$$
     called *integral basis*.
 > * The quotient field of $\algint$ is (isomorphic to) $K$.
 
-
-# Diophantine sets and variants of Hilbert's tenth problem
-
-## Purely Diophantine sets
-
-### Definition
-
-Let $R$ be a commutative ring with unit. A set $S \subseteq R^n$ is called
-*purely Diophantine* if there exists a polynomial $p \in ℤ[\seq{X}, \seq[m]{Y}]$
-such that
-
-$$(\seq{α}) \in S \Leftrightarrow \exists \seq[m]{y} \in R^m : p(\seq{α}, \seq[m]{y}) = 0$$
-
-
-## Examples of purely Diophantine sets
-
-Let $R$ be a commutative ring with unit. Then divisibility is purely Diophantine
-over $R$.
-
-. . .
-
-### Proof
-
-We have $a \mid b$ iff $\exists y ∈ R: a y = b$. Choose $p(a, b, y) = a y - b$ and obtain
-
-$$a \mid b \quad ⇔ \quad ∃ y ∈ R: p(a, b, y) = 0.$$
-
-
-## Alternative characterization
-
-### Definition
-
-The language of rings with unit is $\lang_{ring} = \set{+, -, \cdot, 0, 1}$.
-
-. . .
-
-<div fragment="true">
-  <h3>Remark</h3>
-
-  A set $S \subseteq R^n$ is purely Diophantine over the ring structure
-  $\mathfrak{R} = ⟨R; +^{\mathfrak{R}}, -^{\mathfrak{R}}, \cdot^{\mathfrak{R}}; 0^{\mathfrak{R}}, 1^{\mathfrak{R}}⟩$ iff
-
-  $$(\seq{α}) ∈ S \quad ⇔ \quad \mathfrak{R} \models ∃ \seq[m]{y}: φ(\seq{α}, \seq[m]{y})$$
-
-  holds for an atomic $\lang_{ring}$-formula $φ$.
-</div>
-
+<!--
+██████  ██  ██████  ██████  ██   ██        ███████ ███████ ████████ ███████
+██   ██ ██ ██    ██ ██   ██ ██   ██        ██      ██         ██    ██
+██   ██ ██ ██    ██ ██████  ███████        ███████ █████      ██    ███████
+██   ██ ██ ██    ██ ██      ██   ██             ██ ██         ██         ██
+██████  ██  ██████  ██      ██   ██ ██     ███████ ███████    ██    ███████
+-->
+# Diophantine sets</br>the core of Hilbert's problem
 
 ## Diophantine Sets
 
@@ -262,12 +227,14 @@ Let $R$ be a commutative ring with unit. A set $S \subseteq R^n$ is called
 *Diophantine* if there exists a polynomial $p \in R[\seq{X}, \seq[m]{Y}]$ such
 that
 
-$$(\seq{α}) \in S \Leftrightarrow \exists \seq[m]{y} \in R^m : p(\seq{α}, \seq[m]{y}) = 0$$
+$$(\seq{α}) \in S \Leftrightarrow \exists \seq[m]{y} \in R^m : p(\seq{α},
+\seq[m]{y}) = 0$$
 
 
 ## Examples of Diophantine Sets
 
-Let $R$ be an integral domain. Then every finite set $S \subset R$ is Diophantine.
+Let $R$ be an integral domain. Then every finite set $S \subset R$ is
+Diophantine.
 
 . . .
 
@@ -304,43 +271,182 @@ Using the Chinese remainder theorem one can prove that
 $$α ≠ 0 \quad ⇔ \quad ∃ β, γ ∈ \algint : α β = (2 γ - 1)(3 γ - 1).$$
 
 
-## Alternative characterization
+## Unions and conjunctions of Diophantine sets are Diophantine
+
+### Lemma
+
+If $S_1$ and $S_2$ are Diophantine over $\algint$, so are
+
+$$S_1 ∪ S_2 \quad \text{and} \quad S_1 ∩ S_2.$$
+
+The resp. polynomial identities can be found effectively.
+
+## Hilbert's tenth problem over algebraic integers
+
+Fix a number field $K$. Hilbert's tenth problem over $\algint$ can informally be
+stated as
+
+> **H10:** Does there exists an algorithm, deciding for every integer $n > 0$,
+> every Diophantine set $S ⊂ {\algint}^n$ and every $α ∈ {\algint}^n$, whether
+> $x ∈ S$?
+
+. . .
+
+<p align="center">
+<strong>Which subsets of $\algint$ are Diophantine?</strong>
+</p>
+
+
+<!--
+████████ ██   ██ ███████  ██████  ██████  ██ ███████ ███████
+   ██    ██   ██ ██      ██    ██ ██   ██ ██ ██      ██
+   ██    ███████ █████   ██    ██ ██████  ██ █████   ███████
+   ██    ██   ██ ██      ██    ██ ██   ██ ██ ██           ██
+   ██    ██   ██ ███████  ██████  ██   ██ ██ ███████ ███████
+-->
+# Model theory—towards a modern formulation of Hilbert's problem
+
+## Alternative view of Diophantine sets
 
 ### Definition
 
 Let $R$ be an at most countable commutative ring with unit.
-The $R$-language  is $\lang_{R} = \lang_{ring} ∪ \set{c_r \mid r ∈ R}$.
+
+* The language of rings with unity is
+  $\lang_{ring} = \set{\mathtt{+, -, \cdot; 0, 1}}$
+* The $R$-language  is $\lang_{R} = \lang_{ring} ∪ \set{c_r \mid r ∈ R}$.
 
 . . .
 
-<div fragment="true">
-  <h3>Remark</h3>
+### Lemma
 
-  A set $S \subseteq R^n$ is Diophantine over $R$ iff
+A set $S \subseteq R^n$ is Diophantine over $R$ iff
 
-  $$(\seq{α}) ∈ S \quad ⇔ \quad \mathfrak{R} \models ∃ \seq[m]{y}: φ(\seq{α}, \seq[m]{y})$$
+$$(\seq{α}) ∈ S \quad ⇔ \quad
+\mathfrak{R} \models ∃ \seq[m]{y}: ϕ(\seq{α}, \seq[m]{y})$$
 
-  holds for an atomic $\lang_{R}$-formula $φ$.
+holds for an atomic $\lang_{R}$-formula $ϕ$.
+
+
+## Decidability of theories
+
+### Definition
+
+Let $\lang$ be a language.
+
+> * An *$\lang$-theory* is a set of $\lang$-sentences.
+> * An $\lang$-theory $\mathtt{Th}$ is *(semi-)decidable* if the set of
+    encodings
+    $$\set{\enc{ϕ} \mid ϕ ∈ \mathtt{Th}} ⊂ ω$$
+    is (semi-)decidable.
+
+## Important theories for deciding Hilbert's tenth problem
+
+
+Let $\mathfrak{O}_K$ be the $\lang_{ring}$-structure of $\algint$.
+
+|                                                            | Quantifiers | Operators | Language       |
+| ---------------------------------------------------------- | ----------- | --------- | -------------- |
+| purely Diophantine theory $\mathtt{H10}^*(\mathfrak{O}_K)$   | $∃$         | none      | $\lang_{ring}$ |
+| primitive positive theory $\mathtt{Th}_{∃+}(\mathfrak{O}_K)$ | $∃$         | $∧$       | $\lang_{ring}$ |
+| full theory $\mathtt{Th}(\mathfrak{O}_K)$                    | $∃, ∀$      | $∧, ∨, ¬$ | $\lang_{ring}$ |
+| Diophantine theory $\mathtt{H10}(\mathfrak{O}_K)$            | $∃$         | none      | $\lang_{R}$    |
+| primitive positive diagram $D_{∃+}(\mathfrak{O}_K)$          | $∃$         | $∧$       | $\lang_{R}$    |
+| complete diagram $D^c(\mathfrak{O}_K)$               | $∃, ∀$      | $∧, ∨, ¬$ | $\lang_{R}$    |
+| atomic diagram $D(\mathfrak{O}_K)$               | none      | $¬$ | $\lang_{R}$ |
+
+
+## Relationships of the theories
+
+![](./imgs/theories.svg){width=70%}
+
+## Hilbert's tenth problem over algebraic integers
+
+Fix a number field $K$. We restate Hilbert's tenth problem over $\algint$ as
+
+> **H10:** Is the Diophantine theory $\mathtt{H10}(\mathfrak{O}_K)$ decidable?
+
+## Hilbert's tenth problem is semi-decidable
+
+### Remark
+
+The atomic diagram $D(\mathfrak{O}_K)$ is decidable by a theorem of @Malcev1961.
+
+. . .
+
+Hence, for every polynomial $p ∈ \algint[K][\seq{X}]$, the relation
+$$\mathfrak{p}(\seq{α}) \; :⇔ \; p(\seq{α}) = 0$$
+is computable.
+
+. . .
+
+We conclude that $\mathtt{H10}^*(\mathfrak{O}_K)$ and
+$\mathtt{H10}(\mathfrak{O}_K)$ are semi-decidable.
+
+<div class="notes">
+  <ul>
+    <li>
+      A structure is computable if its atomic diagram is undecidable
+    </li>
+    <li>
+      By a Theorem of Mal'cev every finitely generated ℤ-algebra is computable.
+    </li>
+  </ul>
 </div>
 
-## Connection to Hilbert's tenth problem
+## $m$-reducibility and semi-decidable sets
 
-Given a commutative ring with unit $R$ we consider $4$ theories.
+### Definition
+
+A problem $Q$ is *many-one reducible* to a second problem $Q′$ if there exists
+a total computable function $f ∶ ω → ω$ such that
+$$x ∈ Q \quad ⇔ \quad f(x) ∈ Q'.$$
+
+One writes $Q ≤_m Q'$.
+
+. . .
+
+### Proposition
+
+* Let $Q, Q' \subseteq ω$ be problems such that $Q ≤_m Q'$. Then if
+  $Q'$ is semi-decidable, so is $Q$.
+* If $Q$ is semi-decidable, then $Q ≤_m \mathcal{K}$.
 
 
-|                                | $\lang_{ring}$-theories                | $\lang_{R}$-theories           |
-| ------------------------------ | -------------------------------------- | ------------------------------ |
-| **$∃$**-quantified             | purely Diophantine $\mathtt{H10}^*(R)$ | Diophantine  $\mathtt{H10}(R)$ |
-| **$∃$**- or **$∀$**-quantified | full theory $\mathtt{Th}(R)$           | complete diagram $D^c(R)$      |
-
-
----
-
-<div style="font-size: 200%;">
-  <strong>
-    Which sets are Diophantine?
-  </strong>
+<div class="notes">
+  <ul>
+    <li>
+      ≤_m is reflexive and transitive
+    </li>
+  </ul>
 </div>
+
+
+## Relationships of the theories w.r.t many-one reducibility
+
+![](./imgs/theories_3.svg){width=70%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## What we know 1
@@ -456,77 +562,8 @@ $$∃ \seq{x} : p(\seq{x}) \doteq 0,$$
 which is semi-decidable.
 </div>
 
-<!-- ## Computable categoricity
 
-### Proposition
 
-Let $R$ be computably presentable, finitely generated ring. Then between any
-pair of computable representations $R_1, R_2$ of $R$ there is a computable
-ring-isomorphism $φ: R_1 → R_2$.
-
-. . .
-
-<div fragment="true">
-### Corollary
-
-The decidability of Hilbert's tenth problem over $\algint$ does not depend on
-the computable representation of $\algint$.
-</div>
-
-<div class="notes">
-### Sketch of proof
-
-Associate $R = R_1$ and let $R = ⟨\seq{ξ}⟩$. By assumption there is an
-isomorphism $φ: R → R_2$ and $R_2 = ⟨φ(ξ_1), …, φ(ξ_n)⟩$.
-
-Now store $φ(ξ_1), …, φ(ξ_n)$ and there multiplication table in memory and
-extend $φ$.
-</div> -->
-
-## Unions and conjunctions
-
-### Lemma
-
-If $S_1$ and $S_2$ are Diophantine over $\algint$, so are
-
-$$S_1 ∪ S_2 \quad \text{and} \quad S_1 ∩ S_2.$$
-
-The resp. polynomial identities can be found effectively.
-
----
-
-### Proof
-
-Let $p_1(X, Y), p_2(X, Y) ∈ \algint{}{[X, Y]}$ give Diophantine definitions of $S_1$ and $S_2$.
-
-. . .
-
-We have
-$$S_1 ∪ S_2 = \set{α \mid ∃ y ∈ \algint: p_1(α, y) p_2(α, y) = 0}.$$
-
----
-
-To prove the claim for intersections of Diophantine sets, let
-
-$$h(T) = a_m T^m + … + a_1 T + a_0 ∈ \algint{}[T]$$
-
-be a polynomial of degree $m > 0$ without roots in $\Quot\, \algint = K$. Then
-$\overline h(T) = T^m h(T^{-1})$ does not have roots in $K$ either.
-
-. . .
-
-Set
-
-$$H(X, Y_1, Y_2) = \sum_{i=0}^m a_i p_1(X, Y_1)^i p_2(X, Y_2)^{m - i},$$
-
-then
-
-$$∃ y_1, y_2 ∈ \algint : H(α, y_1, y_2) = 0 \quad ⇔$$
-$$∃ y_1 ∈ \algint : p_1(α, y_1) = 0 \text{ and } ∃ y_2 ∈ \algint : p_2(α, y_2) = 0$$
-
-<div class="notes">
-Divide by $p_1^m$ or $p_2^m$ and find that $h$ or $\overline{h}$ has a root.
-</div>
 
 
 ## Going up
