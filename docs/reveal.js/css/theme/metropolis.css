@@ -453,3 +453,7 @@ transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
 }
 
 .katex { font-size: 1em !important; }
+
+tr:hover {
+      background-color: #e1e1e1;
+    }
