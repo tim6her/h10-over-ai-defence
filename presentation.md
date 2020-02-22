@@ -6,13 +6,6 @@ date: 28 February 2020
 keywords: [number theory, theoretical computer science, decidability]
 ---
 
-<!--
-██   ██  ██  ██████
-██   ██ ███ ██  ████
-███████  ██ ██ ██ ██
-██   ██  ██ ████  ██
-██   ██  ██  ██████
--->
 # Hilbert's tenth problem, Turing machines, and decidability
 
 ## Hilbert's tenth problem
@@ -104,7 +97,7 @@ $\lambda$.
 
 . . .
 
-### Example: Simple graphs
+#### Example: Simple graphs
 
 The set of all simple graphs can be encoded by strings of the form
 
@@ -148,9 +141,13 @@ $x ∈ ω$ if $\mathbb{A}$ halts on $x$.
 
 ### Definition
 
-> * A partial function $f: ω \to ω$ is *computable* if there is a Turing machine $\mathbb{A}$ with $\mathbb{A}(x) = f(x)$ for all $x$ in the domain of $f$.
-> * A decision problem is *decidable* if its characteristic function is computable.
-> * A decision problem $Q$ is *semi-decidable* or *computably enumerable* if there is a Turing machine that returns $\mathtt{1}$ on all members of $Q$.
+> * A partial function $f: ω \to ω$ is *computable* if there is a Turing
+  machine $\mathbb{A}$ with $\mathbb{A}(x) = f(x)$ for all $x$ in the domain
+  of $f$.
+> * A decision problem is *decidable* if its characteristic function is
+  computable.
+> * A decision problem $Q$ is *semi-decidable* or *computably enumerable* if
+  there is a Turing machine that returns $\mathtt{1}$ on all members of $Q$.
 
 
 ## Characterizations of semi-decidable sets
@@ -159,25 +156,48 @@ $x ∈ ω$ if $\mathbb{A}$ halts on $x$.
 
 Let $Q \subseteq ω$ be a problem. The following are equivalent.
 
-* $Q$ is semi-decidable.
-* $Q$ is the range of a computable function.
-* There exists a computable binary relation $R$ on $ω^2$ such that
+> * $Q$ is semi-decidable.
+> * $Q$ is the range of a computable function.
+> * There exists a computable binary relation $R$ on $ω^2$ such that
   $$ x \in Q \Leftrightarrow \exists y : R(x, y)$$
 
 ## The halting set
 
 ### Definition
 
-The *halting set* is the set of all codes of Turing machines $\mathbb{A}$ that halt upon receiving their code as input i.e.
+The *halting set* is the set of all codes of Turing machines $\mathbb{A}$
+that halt upon receiving their code as input i.e.
 
-$$\mathcal{K} := \set{\enc{\mathbb{A}} \mid \mathbb{A} \text{ halts on } \enc{\mathbb{A}}}$$
+$$\mathcal{K} :=
+  \set{\enc{\mathbb{A}} \mid \mathbb{A} \text{ halts on } \enc{\mathbb{A}}}$$
 
 . . .
 
-### Theorem
+#### Theorem
 
 The halting set $\mathcal{K}$ is semi-decidable but not decidable.
 
+::: notes
+Assume $\mathbb{B}$ decides the halting set i.e.
+
+$$\mathbb{B}(\enc{\mathbb{A}}) =
+\begin{cases}
+  \one & \text{if } \mathbb{A} \text{ halts on } \enc{\mathbb{A}} \\
+  \zer & \text{otherwise}
+\end{cases}.
+$$
+
+Consider $\mathbb{B}'$ defined by
+
+$$\mathbb{B}'(\enc{\mathbb{A}}) =
+\begin{cases}
+  \one & \text{if } \mathbb{B}(\enc{\mathbb{A}}) = \zer \\
+  \uparrow & \text{otherwise}
+\end{cases}.
+$$
+
+What is $\mathbb{B}'(\enc{\mathbb{B}'})$?
+:::
 
 <!--
 ███    ██ ██    ██ ███    ███        ████████ ██   ██ ███████  ██████
@@ -206,8 +226,8 @@ $$p(α) = α^n + c_{n - 1} α^{n - 1} + … + c_0 = 0$$
 ### Proposition
 
 > * Both $\algint[]$ and $\algint$ are sub-rings of $ℂ$ (for all $K$).
-> * $\algint$ is a finitely generated free $ℤ$-module (for all $K$). A basis is
-    called *integral basis*.
+> * $\algint$ is a finitely generated free $ℤ$-module (for all $K$). A basis
+  is called *integral basis*.
 > * The quotient field of $\algint$ is (isomorphic to) $K$.
 
 <!--
@@ -217,7 +237,10 @@ $$p(α) = α^n + c_{n - 1} α^{n - 1} + … + c_0 = 0$$
 ██   ██ ██ ██    ██ ██      ██   ██             ██ ██         ██         ██
 ██████  ██  ██████  ██      ██   ██ ██     ███████ ███████    ██    ███████
 -->
-# Diophantine sets</br>the core of Hilbert's problem
+# Diophantine sets {.sectiontitle}
+<p class="subtitle">
+At the core of Hilbert's Problem
+</p>
 
 ## Diophantine Sets
 
@@ -281,6 +304,29 @@ $$S_1 ∪ S_2 \quad \text{and} \quad S_1 ∩ S_2.$$
 
 The resp. polynomial identities can be found effectively.
 
+::: notes
+Let $p_1(X, Y), p_2(X, Y) ∈ \algint{}{[X, Y]}$ give Diophantine definitions of $S_1$ and $S_2$.
+
+We have
+$$S_1 ∪ S_2 = \set{α \mid ∃ y ∈ \algint: p_1(α, y) p_2(α, y) = 0}.$$
+
+To prove the claim for intersections of Diophantine sets, let
+
+$$h(T) = a_m T^m + … + a_1 T + a_0 ∈ \algint{}[T]$$
+
+be a polynomial of degree $m > 0$ without roots in $\Quot\, \algint = K$. Then
+$\overline h(T) = T^m h(T^{-1})$ does not have roots in $K$ either.
+
+Set
+
+$$H(X, Y_1, Y_2) = \sum_{i=0}^m a_i p_1(X, Y_1)^i p_2(X, Y_2)^{m - i},$$
+
+then
+
+$$∃ y_1, y_2 ∈ \algint : H(α, y_1, y_2) = 0 \quad ⇔$$
+$$∃ y_1 ∈ \algint : p_1(α, y_1) = 0 \text{ and } ∃ y_2 ∈ \algint : p_2(α, y_2) = 0$$
+:::
+
 ## Hilbert's tenth problem over algebraic integers
 
 Fix a number field $K$. Hilbert's tenth problem over $\algint$ can informally be
@@ -288,7 +334,7 @@ stated as
 
 > **H10:** Does there exists an algorithm, deciding for every integer $n > 0$,
 > every Diophantine set $S ⊂ {\algint}^n$ and every $α ∈ {\algint}^n$, whether
-> $x ∈ S$?
+> $α ∈ S$?
 
 . . .
 
@@ -304,7 +350,10 @@ stated as
    ██    ██   ██ ██      ██    ██ ██   ██ ██ ██           ██
    ██    ██   ██ ███████  ██████  ██   ██ ██ ███████ ███████
 -->
-# Model theory—towards a modern formulation of Hilbert's problem
+# Model theory {.sectiontitle}
+<p class="subtitle">
+Towards a modern formulation of Hilbert's problem
+</p>
 
 ## Alternative view of Diophantine sets
 
@@ -318,7 +367,7 @@ Let $R$ be an at most countable commutative ring with unit.
 
 . . .
 
-### Lemma
+#### Lemma
 
 A set $S \subseteq R^n$ is Diophantine over $R$ iff
 
@@ -370,7 +419,8 @@ Fix a number field $K$. We restate Hilbert's tenth problem over $\algint$ as
 
 ### Remark
 
-The atomic diagram $D(\mathfrak{O}_K)$ is decidable by a theorem of @Malcev1961.
+The atomic diagram $D(\mathfrak{O}_K)$ is decidable, since $\algint$ is a
+finitely generated free $ℤ$-algebra.
 
 . . .
 
@@ -383,10 +433,13 @@ is computable.
 We conclude that $\mathtt{H10}^*(\mathfrak{O}_K)$ and
 $\mathtt{H10}(\mathfrak{O}_K)$ are semi-decidable.
 
+**Note:** We identify $\algint$ with
+$\set{\enc{\mathtt{c}_α^{\mathfrak{O}_K}} \mid α ∈ \algint} \subseteq ω$.
+
 <div class="notes">
   <ul>
     <li>
-      A structure is computable if its atomic diagram is undecidable
+      A structure is computable if its atomic diagram is decidable.
     </li>
     <li>
       By a Theorem of Mal'cev every finitely generated ℤ-algebra is computable.
@@ -398,7 +451,7 @@ $\mathtt{H10}(\mathfrak{O}_K)$ are semi-decidable.
 
 ### Definition
 
-A problem $Q$ is *many-one reducible* to a second problem $Q′$ if there exists
+A problem $Q$ is *many-one reducible* to a second problem $Q'$ if there exists
 a total computable function $f ∶ ω → ω$ such that
 $$x ∈ Q \quad ⇔ \quad f(x) ∈ Q'.$$
 
@@ -406,380 +459,222 @@ One writes $Q ≤_m Q'$.
 
 . . .
 
-### Proposition
+#### Proposition
 
 * Let $Q, Q' \subseteq ω$ be problems such that $Q ≤_m Q'$. Then if
   $Q'$ is semi-decidable, so is $Q$.
 * If $Q$ is semi-decidable, then $Q ≤_m \mathcal{K}$.
 
 
-<div class="notes">
-  <ul>
-    <li>
-      ≤_m is reflexive and transitive
-    </li>
-  </ul>
-</div>
+::: notes
+  ≤_m is reflexive and transitive
+:::
 
 
 ## Relationships of the theories w.r.t many-one reducibility
 
 ![](./imgs/theories_3.svg){width=70%}
 
+## If we prove that $\mathcal{K} ≤_m \mathtt{H10}^*(\mathfrak{O}_k)$, the diagram collapses
 
+![](./imgs/theories_2.svg){width=70%}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## What we know 1
-
-### Theorem [@Goedel1931;@Rosser1936]
-
-The full theory $\mathtt{Th}(ℕ)$ is undecidable.
-
-. . .
-
-<div fragment="true">
-### Corollary
-
-The full theory $\mathtt{Th}(ℤ)$ is undecidable.
-</div>
-
-. . .
-
-<div fragment="true">
-### Theorem [@Robinson1959]
-
-The full first order theories $\mathtt{Th}(K)$ and $\mathtt{Th}(\algint)$ are undecidable for every number field $K$.
-</div>
-
-
-## What we know 2
-
-### Theorem
-
-The full theory $\mathtt{Th}(ℂ)$ is decidable. Thus, $\mathtt{H10}^*(ℂ)$ is decidable.
-
-. . .
-
-<div fragment="true">
-### Theorem [@Rumely1986;@Dries1988]
-
-The theories $\mathtt{H10}(\algint[])$ and $D^c(\algint[])$ are decidable.
-</div>
-
-
-## What we know 3
+## Hilbert's tenth problem over $ℤ$
 
 ### DPRM theorem [@Matijasevic1970]
 
-A subset of $ℤ$ is semi-decidable if and only if it is Diophantine over $ℤ$.
+A subset of $ℕ$ is semi-decidable if and only if it is Diophantine over $ℤ$.
 
 . . .
 
-<div fragment="true">
-### Corollary
+#### Corollary
 
-$\mathtt{H10}(ℤ)$ is undecidable.
-</div>
-
-
-## What we know 4
-
-### Theorem
-
-$\mathtt{H10}(\algint)$ is undecidable if
-
-* $K$ is totally real [@Denef1980],
-* $K$ has exactly one pair of non-real embeddings [@Pheidas1988; @Shlapentokh1989],
-* if $K$ is a quadratic extension of a totally real number field [@Denef1978], or
-* if $K$ is a subfield of a field with one of the properties above [@Shapiro1989].
-
-
-## What we would like to know
-
-> * Is $\mathtt{H10}(\algint)$ and $\mathtt{H10}(K)$ undecidable for all number fields $K$?
-> * Especially: Is $\mathtt{H10}(ℚ)$ decidable?
-
-
-# Computable rings and structural methods
-
-## Computable ring
-
-### Definition
-
-> * A ring $R \subseteq ω$ is *computable* if $R$ is
-    decidable and all ring operations are computable.
-> * A ring $R$ is *computably presentable* if $R$ is isomorphic to a computable
-    ring.
-
-
-## Examples of computably presentable rings
-
-> * $ℤ$ is computably presentable.
-> * Using an integral basis, the ring of integers $\algint$ is computably
-    presentable.
-> * If $R$ is a computable integral domain then the ring of polynomials
-    $R[X_1, X_2, …]$ is computably presentable.
-
-
-## Connection to Hilbert's tenth problem
-
-### Corollary
-
-Let $K$ be a number field. Then Hilbert's tenth problem over $\algint$ is
-semi-decidable.
-
-<div class="fragment fade-in">
-### Proof
-
-Let $p ∈ \algint{} [\seq{X}]$ be a polynomial. Interpret $p: \algint^n → \algint$, then $p$ is computable.
-</div>
-
-<div class="fragment fade-in">
-Deciding whether $p$ has roots in $\algint$ is equivalent to deciding
-
-$$∃ \seq{x} : p(\seq{x}) \doteq 0,$$
-
-which is semi-decidable.
-</div>
-
-
-
+$\mathcal{K} \subseteq ℕ$ is Diopantine over $ℤ$. As a consequence
+$\mathtt{H10}(\mathfrak{Z})$ is undecidable.
 
 
 ## Going up
 
 ### Lemma
 
-Let $L / K$ be an extension of algebraic number fields. If $\mathtt{H10}$ is undecidable over $\algint$ and $\algint$ is Diophantine over $\algint[L]$, then $\mathtt{H10}$ is undecidable over $\algint[L]$.
+Let $L / K$ be an extension of algebraic number fields. If
+$\mathtt{H10}(\mathfrak{O}_K)$ is undecidable and $\algint$ is Diophantine over
+$\algint[L]$, then $\mathtt{H10}$ is undecidable over $\algint[L]$.
 
 . . .
 
-<div fragment="true">
-### Proof
+#### Proof
 
-Assume otherwise and let $p_K ∈ \algint[L][X, Y]$ give a Diophantine definition of $\algint$ over $\algint[L]$.
+Let $p_K ∈ \algint[L][X, \mathbf{Y}]$ give a Diophantine definition
+of $\algint$ over $\algint[L]$.
 
 If $q ∈ \algint{}[X_1, …, X_n]$, then $q$ has a root in $\algint$ if and only if
 
-$$∃ \seq{x} ∈ \algint[L] \; ∃ \seq{y} ∈ \algint[L] : q(\seq{x}) = 0 ∧ \bigwedge_{i=1}^n p_K(x_i, y_i) = 0$$
-</div>
+$$∃ \seq{x} ∈ \algint[L] \; ∃ \seq{\mathbf{y}} ∈ \algint[L]^k : q(\seq{x}) = 0 ∧
+\bigwedge_{i=1}^n p_K(x_i, \mathbf{y}_i) = 0.$$
 
 
 ## A Diophantine definition of rational integers is key
 
 ### Theorem
 
-Every semi-decidable subset of $\algint$ is Diophantine if and only if $ℤ$ is
-Diophantine over $\algint$.
+If $ℤ$ is Diophantine over $\algint$, then $\mathcal{K} ≤_m
+\mathtt{H10}^*(\mathfrak{O}_K)$.
+
+. . .
+
+#### Corollary
+
+If $ℤ$ is Diophantine over $\algint$ then $\mathtt{H10}^*(\mathfrak{O}_K)$ and
+$\mathtt{H10}(\mathfrak{O}_K)$ are undecidable.
+
+. . .
+
+##### DPRM Theorem over $\algint$ [@Davis1976]
+
+Every semi-decidable subset of $\algint$ is Diophantine over $\algint$ if and
+only if $ℤ$ is Diophantine over $\algint$.
 
 
-## Strong vertical method of Denef and Lipshitz
+<!--
+██████  ██  ██████  ██████  ██   ██     ██████  ███████ ███████
+██   ██ ██ ██    ██ ██   ██ ██   ██     ██   ██ ██      ██
+██   ██ ██ ██    ██ ██████  ███████     ██   ██ █████   █████
+██   ██ ██ ██    ██ ██      ██   ██     ██   ██ ██      ██
+██████  ██  ██████  ██      ██   ██     ██████  ███████ ██
+-->
+# Hilbert's tenth problem over totally real number fields and number fields with one pair of non-real embeddings
 
-### Theorem
+## Two sequences solving Pell's equation
 
-Let $L  /K$ be an extension of number fields and $n = [L : ℚ]$. If $x, y ∈
-\algint[L]$ and $α ∈ \algint$ satisfy
-
-1. $y$ is not a unit,
-2. $|σ_i(x)| ≤ |N_{L/ℚ}(y^c)|$ for all $1 ≤ i ≤ n$,
-3. $|σ_i(α)| ≤ |N_{L/ℚ}(y^c)|$ for all $1 ≤ i ≤ n$, and
-4. $x \equiv α \Mod \left(2 y^{2cn}\right)$ in $\algint[L]$
-
-where $\seq{σ}$ denote the embeddings of $L$ into  $ℂ$ and $c ∈
-ℕ$ is a fixed, then
-
-$$x = α ∈ \algint.$$
-
-
-# A Diophantine definition of rational integers over the integers of a totally real number field
-
-## Two sequences
-
-<div fragment="true">
 ### Definition
 
-Let $K$ be totally real and $a ∈ \algint$. We set
+Let $K$ be a number field and $a ∈ \algint$. We set
 
 * $δ(a) := \sqrt{a^2 - 1}$ and
 * $ε(a) := a + δ(a)$.
-</div>
 
 . . .
 
-<div fragment="true">
 If $δ(a) ∉ K$, we define $\px_m(a), \py_m(a)$ by
 
-$$\px_m(a) + δ(a) \py_m(a) = ε(a)^m$$
-</div>
+$$\px_m(a) + δ(a) \py_m(a) = ε(a)^m.$$
 
 . . .
 
-<div fragment="true">
-View this as an analogue to
+#### Lemma
 
-$$\cos(m) + i \sin(m) = e^{im}$$
-</div>
+$(±\px_m(a), ±\py_m(a))_{m ∈ ℕ}$ are all solutions to Pell's equation with
+parameter $a$ in $\algint$, i.e. if
 
+$$α^2 - (a^2 - 1) β^2 = 1,$$
 
-## Pell's equation
+then $α = ±\px_m(a)$ and $β = ±\py_m(a)$ for some $m ∈ ℕ$.
 
-$$X^2 - (a^2 - 1) Y^2 = 1$$
+## Notation
 
-### Lemma
+* Let $K$ be number field of degree $n = [K : ℚ]$ and let $\seq{σ}$ denote
+  all embeddings of $K$ into $ℂ$.
+* $r_K$ denotes the number of real embeddings and $s_K$ the number of pairs
+  of pairs of non-real embeddings.
+* All embeddings $σ_i$ with $2 s_K < i$ are assumed to be real and
+  $σ_1 := \id_K$.
 
-$(±\px_m(a), ±\py_m(a))_{m ∈ ℕ}$ are all solutions to Pell's equation with parameter $a$ in $\algint$.
-
-. . .
-
-<div fragment="true">
-View this as an analogue to
-
-$$\cos(m)^2 - i^2 \sin(m)^2 = 1$$
-</div>
-
-
----
-
-### Notation
-
-Let $K$ be number field of degree $n = [K : ℚ]$ and let $\seq{σ}$ denote all embeddings of $K$ into $ℂ$. For all $α ∈ K$ we set
-
-$$α_i := σ_i(α) \quad\text{for all } 1 ≤ i ≤ n$$
-
----
-
-### Main Lemma
-
-Let $K ≠ ℚ$ be a totally real number field of degree $n = [K : ℚ]$ and let $a ∈ \algint$ satisfy
-
-$$a_1 ≥ 2^{2n}, \quad |a_i| ≤ \frac{1}{8} \text{ for all } 2 ≤ i ≤ n.$$
-
-Define $S \subseteq \algint$ by $ξ ∈ S ⇔ ∃ x, y, w, z, u, v, s, t, b ∈ \algint:$
-
-:::::::::::::: {.columns}
-::: {.column width="25%"}
-
-$$\begin{aligned}
-x^2 - (a^2 - 1)y^2 &= 1\\
-w^2 - (a^2 - 1)z^2 &= 1\\
-u^2 - (a^2 - 1)v^2 &= 1\\
-s^2 - (b^2 - 1)t^2 &= 1\\
-v &≠ 0\\
-z^2 & \mid v\\
-\end{aligned}$$
-
+::: notes
+Third point can be obtained by replacing $K$ with an isomorphic field.
 :::
-::: {.column width="36%"}
 
-$$\begin{aligned}
-b_1 &≥ 2^{2n}\\
-|b_i| &≤ \frac{1}{2} \; \text{for } 2 ≤ i ≤ n\\
-|u_i| &≥ \frac{1}{2} \; \text{for } 2 ≤ i ≤ n\\
-|z_i| &≥ \frac{1}{2} \; \text{for } 2 ≤ i ≤ n\\
-b &\equiv 1 \Mod (z)\\
-\end{aligned}$$
 
+## Main Lemma
+
+Let $K ≠ ℚ$ be a number field of degree $n > 1$, let $a ∈ \algint$ and $r_K$
+satisfy
+
+::: small
+$$\begin{cases}
+  r_K = n > 1\\
+  a > 2^{2(n + 1)}\\
+  0 < σ_i(a) < \frac{1}{2} &\text{for } 1 < i ≤ n
+\end{cases}
+\quad \text{or} \quad
+\begin{cases}
+  r_K = n - 2 > 0\\
+  |σ_i(a)| > 2^{2(n + 1)} &\text{for } i ∈ \set{1, 2}\\
+  0 < σ_i(a) < \frac{1}{2} &\text{for } 2 < i ≤ n
+\end{cases},$$ {#eq:approx_of_a}
 :::
-::: {.column width="39%"}
+and let $ν = |μ(K)|$. Define $S \subseteq \algint$ by
+$ξ ∈ S ⇔ ∃ x, y, w, z, u, v, s, t, x', y', w', z', u', v', s', t', b ∈ \algint:$
 
-$$\begin{aligned}
-b &\equiv a \Mod (u)\\
-s &\equiv x \Mod (u)\\
-t &\equiv ξ \Mod (z)\\
-2^{2n+1}& \prod_{i = 0}^{n - 1} (ξ + i)^n \prod_{j = 0}^{n - 1} (x + j)^n \;\big\vert\; z
-\end{aligned}$$
-
+::: small
+$$
+\begin{array}{lll}
+\begin{cases}
+  x'^2 - (a^2 - 1) y'^2 = 1 \\
+  w'^2 - (a^2 - 1) z'^2 = 1 \\
+  u'^2 - (a^2 - 1) v'^2 = 1 \\
+  s'^2 - (b^2 - 1) t'^2 = 1
+\end{cases}
+&
+\begin{cases}
+  x + δ y = {(x' + δ(a) y')}^ν \\
+  u + δ v = {(u' + δ(a) v')}^ν \\
+  s + δ y = {(s' + δ(b) t')}^ν
+\end{cases}
+&
+\begin{array}{lr}
+0 < σ_i(b) < 2^{-18} & \text{for all } s_K + 1 < i ≤ n \\
+\begin{cases}
+  |σ_i(z)| ≥ C \\
+  |σ_i(u)| ≥ ½
+\end{cases} & \text{for all } s_K + 1 < i ≤ n\\
+v ≠ 0, \quad z^2 \mid v & \\
+\end{array} \\
+w + δ z = (w' + δ(a) {z')}^{νe}
+&
+b \equiv 1 \mod (z),
+&
+2^{n + 1} \prod_{i = 0}^{n - 1} (ξ + i)^n (x + i)^n \mid z
+\\
+s \equiv x \mod (u)
+&
+t \equiv ξ \mod (z)
+&
+b \equiv a \mod (u)
+\end{array}
+$$
 :::
-::::::::::::::
 
-Then $ℕ \subseteq S \subseteq ℤ$.
+Then $νℕ \subseteq S \subseteq ℤ$.
 
----
 
-### Main Lemma
+## Remarks on the Main lemma
 
-Let $K ≠ ℚ$ be a totally real number field of degree $n = [K : ℚ]$ and let $a ∈ \algint$ satisfy
+One uses Minkowski's theorem on convex bodies to find an $a ∈ \algint$
+satisfying the estimates @eq:approx_of_a in the previous lemma.
 
-$$a_1 ≥ 2^{2n}, \quad |a_i| ≤ \frac{1}{8} \text{ for all } 2 ≤ i ≤ n.$$
-
-Define $S \subseteq \algint$ by $ξ ∈ S ⇔ ∃ x, y, w, z, u, v, s, t, b ∈ \algint:$
-
-:::::::::::::: {.columns}
-::: {.column width="25%"}
-
-$$\begin{aligned}
-x = ±\px_k(a), & \; y = ±\py_k(a)\\
-w = ±\px_h(a), & \; z = ±\py_h(a)\\
-u = ±\px_m(a), & \; v = ±\py_m(a)\\
-s = ±\px_j(b), & \; t = ±\py_k(b)\\
-v &≠ 0\\
-z^2 & \mid v\\
-\end{aligned}$$
-
-:::
-::: {.column width="36%"}
-
-$$\begin{aligned}
-b_1 &≥ 2^{2n}\\
-|b_i| &≤ \frac{1}{2} \; \text{for } 2 ≤ i ≤ n\\
-|u_i| &≥ \frac{1}{2} \; \text{for } 2 ≤ i ≤ n\\
-|z_i| &≥ \frac{1}{2} \; \text{for } 2 ≤ i ≤ n\\
-b &\equiv 1 \Mod (z)\\
-\end{aligned}$$
-
-:::
-::: {.column width="39%"}
-
-$$\begin{aligned}
-b &\equiv a \Mod (u)\\
-s &\equiv x \Mod (u)\\
-t &\equiv ξ \Mod (z)\\
-2^{2n+1}& \prod_{i = 0}^{n - 1} (ξ + i)^n \prod_{j = 0}^{n - 1} (x + j)^n \;\big\vert\; z
-\end{aligned}$$
-
-:::
-::::::::::::::
-
-Then $ℕ \subseteq S \subseteq ℤ$.
 
 ## Diophantine definition of the rational integers
 
-### Theorem [@Denef1980]
+### Theorem [@Denef1980;@Pheidas1988;@Shlapentokh1989]
 
-Let $K$ be a totally real number field. Then $ℤ$ is Diophantine over $\algint$.
-
-. . .
-
-<div fragment="true">
-Use Minkowski's theorem on convex bodies to find an $a ∈ \algint$ satisfying the estimates in the previous lemma.
-</div>
+Let $K$ be a totally real number field or a number field with exactly one pair
+of non-real embeddings and at least one real embedding. Then $ℤ$ is
+Diophantine over $\algint$.
 
 . . .
 
-<div fragment="true">
-Then $ℕ \subseteq S \subseteq ℤ$ is Diophantine over $\algint$, and $\set{-1, 1}$ is Diophantine as well. Now
+#### Proof
 
-$$α ∈ ℤ \quad ⇔ \quad ∃ s, ξ: α = s ξ ∧ (s - 1)(s + 1) = 0 ∧ ξ ∈ S$$
-</div>
+By the lemma $ν ℕ ⊂ S ⊂ ℤ$ is Diopantine. Thus,
+$$
+\begin{aligned}
+α ∈ ℤ \; ⇔ \; ∃& β_1, β_2, β_3 ∈ \algint :\\
+    & α = β_1 β_2 + β_3\\
+    & β_1 ∈ S\\
+    & β_2 ∈ \set{-1, 1}) ∧ (β_3 ∈ \set{0, 1, …, ν - 1})= 0.
+\end{aligned}
+$$
+is a Diopantine representation of $ℤ$.
 
 ## References
