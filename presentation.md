@@ -434,7 +434,7 @@ We conclude that $\mathtt{H10}^*(\mathfrak{O}_K)$ and
 $\mathtt{H10}(\mathfrak{O}_K)$ are semi-decidable.
 
 **Note:** We identify $\algint$ with
-$\set{\enc{\mathtt{c}_α^{\mathfrak{O}_K}} \mid α ∈ \algint} \subseteq ω$.
+$\set{\enc{\mathtt{c}_α \mid α ∈ \algint} \subseteq ω$.
 
 <div class="notes">
   <ul>
@@ -499,20 +499,23 @@ $\mathtt{H10}(\mathfrak{Z})$ is undecidable.
 
 Let $L / K$ be an extension of algebraic number fields. If
 $\mathtt{H10}(\mathfrak{O}_K)$ is undecidable and $\algint$ is Diophantine over
-$\algint[L]$, then $\mathtt{H10}$ is undecidable over $\algint[L]$.
+$\algint[L]$, then $\mathtt{H10}(\mathfrak{O}_L)$ is undecidable.
 
 . . .
 
 #### Proof
 
+Assume to the contray, that $\mathtt{H10}(\mathfrak{O}_L)$ is decidable.
+
 Let $p_K ∈ \algint[L][X, \mathbf{Y}]$ give a Diophantine definition
 of $\algint$ over $\algint[L]$.
 
-If $q ∈ \algint{}[X_1, …, X_n]$, then $q$ has a root in $\algint$ if and only if
+If $q ∈ \algint{}[X_1, …, X_n]$, then $q$ has roots in $\algint$ if and only if
 
 $$∃ \seq{x} ∈ \algint[L] \; ∃ \seq{\mathbf{y}} ∈ \algint[L]^k : q(\seq{x}) = 0 ∧
 \bigwedge_{i=1}^n p_K(x_i, \mathbf{y}_i) = 0.$$
 
+We conclude that $\mathtt{H10}(\mathfrak{O}_K)$ is decidable.
 
 ## A Diophantine definition of rational integers is key
 
@@ -617,9 +620,9 @@ $$
 \end{cases}
 &
 \begin{cases}
-  x + δ y = {(x' + δ(a) y')}^ν \\
-  u + δ v = {(u' + δ(a) v')}^ν \\
-  s + δ y = {(s' + δ(b) t')}^ν
+  x + δ(a) y = {(x' + δ(a) y')}^ν \\
+  u + δ(a) v = {(u' + δ(a) v')}^ν \\
+  s + δ(b) y = {(s' + δ(b) t')}^ν
 \end{cases}
 &
 \begin{array}{lr}
@@ -630,7 +633,7 @@ $$
 \end{cases} & \text{for all } s_K + 1 < i ≤ n\\
 v ≠ 0, \quad z^2 \mid v & \\
 \end{array} \\
-w + δ z = (w' + δ(a) {z')}^{νe}
+w + δ(a) z = (w' + δ(a) {z')}^{νe}
 &
 b \equiv 1 \mod (z),
 &
@@ -646,12 +649,6 @@ $$
 :::
 
 Then $νℕ \subseteq S \subseteq ℤ$.
-
-
-## Remarks on the Main lemma
-
-One uses Minkowski's theorem on convex bodies to find an $a ∈ \algint$
-satisfying the estimates @eq:approx_of_a in the previous lemma.
 
 
 ## Diophantine definition of the rational integers
@@ -670,11 +667,16 @@ By the lemma $ν ℕ ⊂ S ⊂ ℤ$ is Diopantine. Thus,
 $$
 \begin{aligned}
 α ∈ ℤ \; ⇔ \; ∃& β_1, β_2, β_3 ∈ \algint :\\
-    & α = β_1 β_2 + β_3\\
-    & β_1 ∈ S\\
-    & β_2 ∈ \set{-1, 1}) ∧ (β_3 ∈ \set{0, 1, …, ν - 1})= 0.
+    & α = β_1 β_2 + β_3 ∧\\
+    & β_1 ∈ S ∧\\
+    & (β_2 ∈ \set{-1, 1}) ∧ (β_3 ∈ \set{0, 1, …, ν - 1})= 0.
 \end{aligned}
 $$
 is a Diopantine representation of $ℤ$.
+
+## Remarks on the Main lemma
+
+One uses Minkowski's theorem on convex bodies to find an $a ∈ \algint$
+satisfying the estimates @eq:approx_of_a in the previous lemma.
 
 ## References

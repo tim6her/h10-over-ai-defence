@@ -400,7 +400,7 @@ Towards a modern formulation of Hilbert’s problem
 </div>
 <div class="fragment">
 <p>We conclude that <span class="math inline">\mathtt{H10}^*(\mathfrak{O}_K)</span> and <span class="math inline">\mathtt{H10}(\mathfrak{O}_K)</span> are semi-decidable.</p>
-<p><strong>Note:</strong> We identify <span class="math inline">\mathcal{O}_{K}</span> with <span class="math inline">\left\lbrace \ulcorner \mathtt{c}_α^{\mathfrak{O}_K} \urcorner \mid α ∈ \mathcal{O}_{K} \right\rbrace \subseteq ω</span>.</p>
+<p><strong>Note:</strong> We identify <span class="math inline">\mathcal{O}_{K}</span> with <span class="math inline">\set{\ulcorner \mathtt{c}_α \mid α ∈ \mathcal{O}_{K} \urcorner \subseteq ω</span>.</p>
 <aside class="notes">
 <ul>
 <li>
@@ -449,13 +449,15 @@ By a Theorem of Mal’cev every finitely generated ℤ-algebra is computable.
 <section id="going-up" class="slide level2">
 <h2>Going up</h2>
 <h3 id="lemma-2">Lemma</h3>
-<p>Let <span class="math inline">L / K</span> be an extension of algebraic number fields. If <span class="math inline">\mathtt{H10}(\mathfrak{O}_K)</span> is undecidable and <span class="math inline">\mathcal{O}_{K}</span> is Diophantine over <span class="math inline">\mathcal{O}_{L}</span>, then <span class="math inline">\mathtt{H10}</span> is undecidable over <span class="math inline">\mathcal{O}_{L}</span>.</p>
+<p>Let <span class="math inline">L / K</span> be an extension of algebraic number fields. If <span class="math inline">\mathtt{H10}(\mathfrak{O}_K)</span> is undecidable and <span class="math inline">\mathcal{O}_{K}</span> is Diophantine over <span class="math inline">\mathcal{O}_{L}</span>, then <span class="math inline">\mathtt{H10}(\mathfrak{O}_L)</span> is undecidable.</p>
 <div class="fragment">
 <h4 id="proof-3">Proof</h4>
+<p>Assume to the contray, that <span class="math inline">\mathtt{H10}(\mathfrak{O}_L)</span> is decidable.</p>
 <p>Let <span class="math inline">p_K ∈ \mathcal{O}_{L}[X, \mathbf{Y}]</span> give a Diophantine definition of <span class="math inline">\mathcal{O}_{K}</span> over <span class="math inline">\mathcal{O}_{L}</span>.</p>
-<p>If <span class="math inline">q ∈ \mathcal{O}_{K}{}[X_1, …, X_n]</span>, then <span class="math inline">q</span> has a root in <span class="math inline">\mathcal{O}_{K}</span> if and only if</p>
+<p>If <span class="math inline">q ∈ \mathcal{O}_{K}{}[X_1, …, X_n]</span>, then <span class="math inline">q</span> has roots in <span class="math inline">\mathcal{O}_{K}</span> if and only if</p>
 <p><span class="math display">∃ {x}_1, \ldots, {x}_{n} ∈ \mathcal{O}_{L} \; ∃ {\mathbf{y}}_1, \ldots, {\mathbf{y}}_{n} ∈ \mathcal{O}_{L}^k : q({x}_1, \ldots, {x}_{n}) = 0 ∧
 \bigwedge_{i=1}^n p_K(x_i, \mathbf{y}_i) = 0.</span></p>
+<p>We conclude that <span class="math inline">\mathtt{H10}(\mathfrak{O}_K)</span> is decidable.</p>
 </div>
 </section>
 <section id="a-diophantine-definition-of-rational-integers-is-key" class="slide level2">
@@ -542,9 +544,9 @@ By a Theorem of Mal’cev every finitely generated ℤ-algebra is computable.
 \end{cases}
 &amp;
 \begin{cases}
-  x + δ y = {(x&#39; + δ(a) y&#39;)}^ν \\
-  u + δ v = {(u&#39; + δ(a) v&#39;)}^ν \\
-  s + δ y = {(s&#39; + δ(b) t&#39;)}^ν
+  x + δ(a) y = {(x&#39; + δ(a) y&#39;)}^ν \\
+  u + δ(a) v = {(u&#39; + δ(a) v&#39;)}^ν \\
+  s + δ(b) y = {(s&#39; + δ(b) t&#39;)}^ν
 \end{cases}
 &amp;
 \begin{array}{lr}
@@ -555,7 +557,7 @@ By a Theorem of Mal’cev every finitely generated ℤ-algebra is computable.
 \end{cases} &amp; \text{for all } s_K + 1 &lt; i ≤ n\\
 v ≠ 0, \quad z^2 \mid v &amp; \\
 \end{array} \\
-w + δ z = (w&#39; + δ(a) {z&#39;)}^{νe}
+w + δ(a) z = (w&#39; + δ(a) {z&#39;)}^{νe}
 &amp;
 b \equiv 1 \mod (z),
 &amp;
@@ -571,10 +573,6 @@ b \equiv a \mod (u)
 </div>
 <p>Then <span class="math inline">νℕ \subseteq S \subseteq ℤ</span>.</p>
 </section>
-<section id="remarks-on-the-main-lemma" class="slide level2">
-<h2>Remarks on the Main lemma</h2>
-<p>One uses Minkowski’s theorem on convex bodies to find an <span class="math inline">a ∈ \mathcal{O}_{K}</span> satisfying the estimates eq. 1 in the previous lemma.</p>
-</section>
 <section id="diophantine-definition-of-the-rational-integers" class="slide level2">
 <h2>Diophantine definition of the rational integers</h2>
 <h3 id="theorem-denef1980pheidas1988shlapentokh1989">Theorem <span class="citation" data-cites="Denef1980 Pheidas1988 Shlapentokh1989">(Denef 1980; Pheidas 1988; Shlapentokh 1989)</span></h3>
@@ -584,12 +582,16 @@ b \equiv a \mod (u)
 <p>By the lemma <span class="math inline">ν ℕ ⊂ S ⊂ ℤ</span> is Diopantine. Thus, <span class="math display">
 \begin{aligned}
 α ∈ ℤ \; ⇔ \; ∃&amp; β_1, β_2, β_3 ∈ \mathcal{O}_{K}:\\
-    &amp; α = β_1 β_2 + β_3\\
-    &amp; β_1 ∈ S\\
-    &amp; β_2 ∈ \left\lbrace -1, 1 \right\rbrace) ∧ (β_3 ∈ \left\lbrace 0, 1, …, ν - 1 \right\rbrace)= 0.
+    &amp; α = β_1 β_2 + β_3 ∧\\
+    &amp; β_1 ∈ S ∧\\
+    &amp; (β_2 ∈ \left\lbrace -1, 1 \right\rbrace) ∧ (β_3 ∈ \left\lbrace 0, 1, …, ν - 1 \right\rbrace)= 0.
 \end{aligned}
 </span> is a Diopantine representation of <span class="math inline">ℤ</span>.</p>
 </div>
+</section>
+<section id="remarks-on-the-main-lemma" class="slide level2">
+<h2>Remarks on the Main lemma</h2>
+<p>One uses Minkowski’s theorem on convex bodies to find an <span class="math inline">a ∈ \mathcal{O}_{K}</span> satisfying the estimates eq. 1 in the previous lemma.</p>
 </section>
 <section id="references" class="slide level2 unnumbered">
 <h2 class="unnumbered">References</h2>
