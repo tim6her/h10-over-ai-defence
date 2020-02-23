@@ -95,6 +95,8 @@ A *decision problem* is a subset of the set of finite $\mathtt 0$-$\mathtt
 1$-strings $ω = \lbrace \mathtt{0, 1} \rbrace^*$ including the empty string
 $\lambda$.
 
+An injective function $\mathcal{Q} → ω, \; x ↦ \enc{x}$ is called an *encoding*.
+
 . . .
 
 #### Example: Simple graphs
@@ -106,7 +108,7 @@ $$
         x := & b_{1, 2} & b_{1, 3} & …      & b_{1, n}\\
              &    & b_{2, 3} & …      & b_{2,n}\\
              &    &          & \ddots & \vdots \\
-             &    &          &        & b_{n-1, n},
+             &    &          &        & b_{n-1, n}.
     \end{array}
 $$
 
@@ -144,10 +146,11 @@ $x ∈ ω$ if $\mathbb{A}$ halts on $x$.
 > * A partial function $f: ω \to ω$ is *computable* if there is a Turing
   machine $\mathbb{A}$ with $\mathbb{A}(x) = f(x)$ for all $x$ in the domain
   of $f$.
-> * A decision problem is *decidable* if its characteristic function is
-  computable.
+> *  problem $Q$ is *decidable* if its characteristic function
+  𝟙${}_Q$ is computable.
 > * A decision problem $Q$ is *semi-decidable* or *computably enumerable* if
-  there is a Turing machine that returns $\mathtt{1}$ on all members of $Q$.
+  there exists a Turing machine $\mathbb{A}$ such that
+  $$x ∈ Q \quad ⇔ \quad \mathbb{A}(x) = \one.$$
 
 
 ## Characterizations of semi-decidable sets
@@ -159,7 +162,7 @@ Let $Q \subseteq ω$ be a problem. The following are equivalent.
 > * $Q$ is semi-decidable.
 > * $Q$ is the range of a computable function.
 > * There exists a computable binary relation $R$ on $ω^2$ such that
-  $$ x \in Q \Leftrightarrow \exists y : R(x, y)$$
+  $$ x ∈ Q \quad ⇔ \quad ∃ y : R(x, y)$$
 
 ## The halting set
 
@@ -265,7 +268,7 @@ Diophantine.
 
 Take
 
-$$p(X) = \prod_{a ∈ S} (X - a).$$
+$$p(X) = \prod_{α ∈ S} (X - α).$$
 
 
 ## Examples of Diophantine sets
@@ -278,7 +281,30 @@ The set of natural numbers $ℕ$ is Diophantine over $ℤ$.
 
 Using Minkowski's theorem on convex bodies one can prove that
 
-$$x ∈ ℕ \quad \Leftrightarrow \quad \exists y_1, y_2, y_3, y_4 \in ℤ: x = y_1^2 + y_2^2 + y_3^2 + y_4^2.$$
+$$α ∈ ℕ \quad \Leftrightarrow \quad \exists β_1, β_2, β_3, β_4 \in
+  ℤ: α = β_1^2 + β_2^2 + β_3^2 + β_4^2.$$
+
+This fact is known as Lagrange's foure square theorem.
+
+::: notes
+One proves that $0, 1, 2$ can be presented this way and that if $a, b$ are sums
+of four squares, so is $ab$. Thus, one proves the claim for odd primes $p$, by
+considering the lattice of solutions
+
+By the pigeonhole principle there exist integers $m, n ∈ \set{0, 1, …, p - 1}$
+solving the congruence
+$$
+  m^2 + n^2 + 1 \equiv 0 \mod p.
+$$
+
+For a fixed solution $(m, n)$ of the above congruence, we consider the set
+$Λ$ of all integral solutions $(a, b, c, d) ∈ ℤ^4$ of the simultaneous
+congruence
+$$
+  c \equiv m a + n b \mod p \quad \text{and} \quad
+  d \equiv m b - n a \mod p.
+$$
+:::
 
 ## Examples of Diophantine sets
 
@@ -302,9 +328,11 @@ If $S_1$ and $S_2$ are Diophantine over $\algint$, so are
 
 $$S_1 ∪ S_2 \quad \text{and} \quad S_1 ∩ S_2.$$
 
-The resp. polynomial identities can be found effectively.
+The respective polynomial identities can be found effectively.
 
 ::: notes
+In the easy example $\algint = ℤ$ one obtains $P = p^2 + q^2$.
+
 Let $p_1(X, Y), p_2(X, Y) ∈ \algint{}{[X, Y]}$ give Diophantine definitions of $S_1$ and $S_2$.
 
 We have
@@ -359,11 +387,12 @@ Towards a modern formulation of Hilbert's problem
 
 ### Definition
 
-Let $R$ be an at most countable commutative ring with unit.
+Let $R$ be a commutative ring with unit.
 
 * The language of rings with unity is
   $\lang_{ring} = \set{\mathtt{+, -, \cdot; 0, 1}}$
-* The $R$-language  is $\lang_{R} = \lang_{ring} ∪ \set{c_r \mid r ∈ R}$.
+* The $R$-language  is
+  $\lang_{R} = \lang_{ring} ∪ \set{\mathtt{c}_r \mid r ∈ R}$.
 
 . . .
 
@@ -372,9 +401,14 @@ Let $R$ be an at most countable commutative ring with unit.
 A set $S \subseteq R^n$ is Diophantine over $R$ iff
 
 $$(\seq{α}) ∈ S \quad ⇔ \quad
-\mathfrak{R} \models ∃ \seq[m]{y}: ϕ(\seq{α}, \seq[m]{y})$$
+\mathfrak{R} \models ∃ \mathtt{\seq[m]{y}}: ϕ(\seq{α}, \mathtt{\seq[m]{y}})$$
 
-holds for an atomic $\lang_{R}$-formula $ϕ$.
+holds for an atomic $\lang_{R}$-formula $ϕ$. Here $\mathfrak{R}$ denotes the
+$\lang_R$-structure of $R$.
+
+::: notes
+Term functions of $\lang_R$ are polynomials with coefficients in $R$.
+:::
 
 
 ## Decidability of theories
@@ -392,17 +426,17 @@ Let $\lang$ be a language.
 ## Important theories for deciding Hilbert's tenth problem
 
 
-Let $\mathfrak{O}_K$ be the $\lang_{ring}$-structure of $\algint$.
+Let $\mathfrak{R}$ be an $\lang_{R}$-structure with universe $R$.
 
 |                                                            | Quantifiers | Operators | Language       |
 | ---------------------------------------------------------- | ----------- | --------- | -------------- |
-| purely Diophantine theory $\mathtt{H10}^*(\mathfrak{O}_K)$   | $∃$         | none      | $\lang_{ring}$ |
-| primitive positive theory $\mathtt{Th}_{∃+}(\mathfrak{O}_K)$ | $∃$         | $∧$       | $\lang_{ring}$ |
-| full theory $\mathtt{Th}(\mathfrak{O}_K)$                    | $∃, ∀$      | $∧, ∨, ¬$ | $\lang_{ring}$ |
-| Diophantine theory $\mathtt{H10}(\mathfrak{O}_K)$            | $∃$         | none      | $\lang_{R}$    |
-| primitive positive diagram $D_{∃+}(\mathfrak{O}_K)$          | $∃$         | $∧$       | $\lang_{R}$    |
-| complete diagram $D^c(\mathfrak{O}_K)$               | $∃, ∀$      | $∧, ∨, ¬$ | $\lang_{R}$    |
-| atomic diagram $D(\mathfrak{O}_K)$               | none      | $¬$ | $\lang_{R}$ |
+| purely Diophantine theory $\mathtt{H10}^*(\mathfrak{R})$   | $∃$         | none      | $\lang_{ring}$ |
+| primitive positive theory $\mathtt{Th}_{∃+}(\mathfrak{R})$ | $∃$         | $∧$       | $\lang_{ring}$ |
+| full theory $\mathtt{Th}(\mathfrak{R})$                    | $∃, ∀$      | $∧, ∨, ¬$ | $\lang_{ring}$ |
+| Diophantine theory $\mathtt{H10}(\mathfrak{R})$            | $∃$         | none      | $\lang_{R}$    |
+| primitive positive diagram $D_{∃+}(\mathfrak{R})$          | $∃$         | $∧$       | $\lang_{R}$    |
+| complete diagram $D^c(\mathfrak{R})$               | $∃, ∀$      | $∧, ∨, ¬$ | $\lang_{R}$    |
+| atomic diagram $D(\mathfrak{R})$               | none      | $¬$ | $\lang_{R}$ |
 
 
 ## Relationships of the theories
@@ -434,7 +468,7 @@ We conclude that $\mathtt{H10}^*(\mathfrak{O}_K)$ and
 $\mathtt{H10}(\mathfrak{O}_K)$ are semi-decidable.
 
 **Note:** We identify $\algint$ with
-$\set{\enc{\mathtt{c}_α \mid α ∈ \algint} \subseteq ω$.
+$\set{\enc{\mathtt{c}_α} \mid α ∈ \algint} \subseteq ω$.
 
 <div class="notes">
   <ul>
@@ -567,12 +601,13 @@ $$\px_m(a) + δ(a) \py_m(a) = ε(a)^m.$$
 
 #### Lemma
 
-$(±\px_m(a), ±\py_m(a))_{m ∈ ℕ}$ are all solutions to Pell's equation with
-parameter $a$ in $\algint$, i.e. if
+$(±\px_m(a), ±\py_m(a))_{m ∈ ℕ}$ are essentially all solutions to Pell's
+equation i.e. if
 
-$$α^2 - (a^2 - 1) β^2 = 1,$$
+$$α^2 - δ(a)^2 β^2 = 1 \quad \text{and} \quad x + δ(a) y = (α + δ(a)β)^ν,$$
 
-then $α = ±\px_m(a)$ and $β = ±\py_m(a)$ for some $m ∈ ℕ$.
+then $x = ±\px_m(a)$ and $y = ±\py_m(a)$ for some $m ∈ ℕ$. Here
+$ν = |μ(K)|$.
 
 ## Notation
 
@@ -604,7 +639,7 @@ $$\begin{cases}
   r_K = n - 2 > 0\\
   |σ_i(a)| > 2^{2(n + 1)} &\text{for } i ∈ \set{1, 2}\\
   0 < σ_i(a) < \frac{1}{2} &\text{for } 2 < i ≤ n
-\end{cases},$$ {#eq:approx_of_a}
+\end{cases},$$
 :::
 and let $ν = |μ(K)|$. Define $S \subseteq \algint$ by
 $ξ ∈ S ⇔ ∃ x, y, w, z, u, v, s, t, x', y', w', z', u', v', s', t', b ∈ \algint:$
@@ -626,16 +661,16 @@ $$
 \end{cases}
 &
 \begin{array}{lr}
-0 < σ_i(b) < 2^{-18} & \text{for all } s_K + 1 < i ≤ n \\
+0 < σ_i(b) < 2^{-18}, & s_K + 1 < i ≤ n \\
 \begin{cases}
   |σ_i(z)| ≥ C \\
   |σ_i(u)| ≥ ½
-\end{cases} & \text{for all } s_K + 1 < i ≤ n\\
+\end{cases}, & s_K + 1 < i ≤ n\\
 v ≠ 0, \quad z^2 \mid v & \\
 \end{array} \\
 w + δ(a) z = (w' + δ(a) {z')}^{νe}
 &
-b \equiv 1 \mod (z),
+b \equiv 1 \mod (z)
 &
 2^{n + 1} \prod_{i = 0}^{n - 1} (ξ + i)^n (x + i)^n \mid z
 \\
@@ -648,8 +683,53 @@ b \equiv a \mod (u)
 $$
 :::
 
-Then $νℕ \subseteq S \subseteq ℤ$.
+Then $S$ is Diopantine over $\algint$ and $νℕ \subseteq S \subseteq ℤ$.
 
+## Idea of the proof
+
+By the previous lemma, there exist integers $k, h, m, j ∈ ℕ$ such that
+
+::: small
+$$
+\begin{array}{lll}
+\begin{cases}
+  x'^2 - (a^2 - 1) y'^2 = 1 \\
+  w'^2 - (a^2 - 1) z'^2 = 1 \\
+  u'^2 - (a^2 - 1) v'^2 = 1 \\
+  s'^2 - (b^2 - 1) t'^2 = 1
+\end{cases}
+&
+\begin{cases}
+  x + δ(a) y = {(x' + δ(a) y')}^ν \\
+  u + δ(a) v = {(u' + δ(a) v')}^ν \\
+  s + δ(b) y = {(s' + δ(b) t')}^ν
+\end{cases}
+&
+w + δ(a) z = (w' + δ(a) {z')}^{νe}
+\end{array}
+$$
+:::
+
+can be replaced by
+
+::: small
+$$
+\begin{aligned}
+x &= ±\px_k(a),    & y &= ±\py_k(a),   \\
+w &= ±\px_{eh}(a), & z &= ±\py_{eh}(a),\\
+u &= ±\px_m(a),    & v &= ±\py_m(a), \\
+s &= ±\px_j(b),\; \text{and}    & t &= ±\py_j(b).
+\end{aligned}
+$$
+:::
+
+. . .
+
+By a [theorem](./backup.html#strong-vertical-method) of @Denef1978 we conclude
+that
+$$
+ξ = ±k ∈ ℤ.
+$$
 
 ## Diophantine definition of the rational integers
 
@@ -669,14 +749,13 @@ $$
 α ∈ ℤ \; ⇔ \; ∃& β_1, β_2, β_3 ∈ \algint :\\
     & α = β_1 β_2 + β_3 ∧\\
     & β_1 ∈ S ∧\\
-    & (β_2 ∈ \set{-1, 1}) ∧ (β_3 ∈ \set{0, 1, …, ν - 1})= 0.
+    & β_2 ∈ \set{-1, 1} ∧ β_3 ∈ \set{0, 1, …, ν - 1}.
 \end{aligned}
 $$
 is a Diopantine representation of $ℤ$.
 
-## Remarks on the Main lemma
-
-One uses Minkowski's theorem on convex bodies to find an $a ∈ \algint$
-satisfying the estimates @eq:approx_of_a in the previous lemma.
+::: right
+[☛ Comments](./backup.html)
+:::
 
 ## References

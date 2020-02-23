@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Tim B. Herbstrith">
+  <meta name="dcterms.date" content="2020-02-28">
+  <meta name="keywords" content="number theory, theoretical computer science, decidability">
+  <title>Hilbert’s tenth problem over rings of algebraic integers</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="./reveal.js/css/reset.css">
+  <link rel="stylesheet" href="./reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="./reveal.js/css/theme/metropolis.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? './reveal.js/css/print/pdf.css' : './reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="./reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+   var mathElements = document.getElementsByClassName("math");
+   for (var i = 0; i < mathElements.length; i++) {
+    var texText = mathElements[i].firstChild;
+    if (mathElements[i].tagName == "SPAN") {
+     katex.render(texText.data, mathElements[i], {
+      displayMode: mathElements[i].classList.contains('display'),
+      throwOnError: false,
+      fleqn: false
+     });
+  }}});
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Hilbert’s tenth problem over rings of algebraic integers</h1>
+  <p class="subtitle">Miscellaneous comments on subjects of the talk</p>
+  <p class="author">Tim B. Herbstrith</p>
+  <p class="date">28 February 2020</p>
+</section>
+
+<section>
+<section id="remarks-on-the-main-lemma" class="title-slide slide level1">
+<h1>Remarks on the main lemma</h1>
+<p><span>      </p>
+<p></span></p>
+</section>
+<section id="estimates-for-a" class="slide level2">
+<h2>Estimates for <span class="math inline">a</span></h2>
+<p>One uses <a href="#/strong-approximation-theorem">strong approximation theorem</a> to find an <span class="math inline">a ∈ \mathcal{O}_{K}</span> satisfying the estimates</p>
+<div class="small">
+<p><span class="math display">\begin{cases}
+  r_K = n &gt; 1\\
+  a &gt; 2^{2(n + 1)}\\
+  0 &lt; σ_i(a) &lt; \frac{1}{2} &amp;\text{for } 1 &lt; i ≤ n
+\end{cases}
+\quad \text{or} \quad
+\begin{cases}
+  r_K = n - 2 &gt; 0\\
+  |σ_i(a)| &gt; 2^{2(n + 1)} &amp;\text{for } i ∈ \left\lbrace 1, 2 \right\rbrace\\
+  0 &lt; σ_i(a) &lt; \frac{1}{2} &amp;\text{for } 2 &lt; i ≤ n
+\end{cases},</span></p>
+</div>
+<p>of the <a href="./index.html#main-lemma">main lemma</a>.</p>
+</section>
+<section id="strong-vertical-method" class="slide level2">
+<h2>Strong vertical method</h2>
+<h3 id="theorem-denef1978">Theorem <span class="citation" data-cites="Denef1978">(Denef and Lipshitz 1978)</span></h3>
+<p>Let <span class="math inline">L/K</span> be an extension of number fields and <span class="math inline">n = [L : ℚ]</span>. If <span class="math inline">x, y ∈ \mathcal{O}_{L}</span>, <span class="math inline">y ≠ 0</span>, and <span class="math inline">α ∈ \mathcal{O}_{K}</span> satisfy <span class="math display">
+\begin{aligned}
+  &amp; |σ_i(x)| &lt; \frac{1}{2} |N_{L/ℚ}(y)|^{\frac{1}{n}}
+    \text{ for all } 1 ≤ i ≤ n, \\
+  &amp; |σ_i(α)| &lt; \frac{1}{2} |N_{L/ℚ}(y)|^{\frac{1}{n}}
+    \text{ for all } 1 ≤ i ≤ n, \text{ and}\\
+  &amp; x \equiv α \mod (y) \text{ in } \mathcal{O}_{L},
+\end{aligned}
+</span> where <span class="math inline">{σ}_1, \ldots, {σ}_{n}</span> denote the embeddings of <span class="math inline">L</span> into the complex pane <span class="math inline">ℂ</span>. Then <span class="math display">
+  x = α ∈ \mathcal{O}_{K}.
+</span></p>
+</section>
+<section id="approximations-of-real-embeddings-are-diophantine" class="slide level2">
+<h2>Approximations of real embeddings are Diophantine</h2>
+<h3 id="lemma-denef1980">Lemma <span class="citation" data-cites="Denef1980">(Denef 1980)</span></h3>
+<p>Let <span class="math inline">K</span> be a number field and <span class="math inline">σ: K → ℝ</span> be a real embedding. Then the relation <span class="math inline">σ(α) ≥ 0</span> is Diophantine over <span class="math inline">\mathcal{O}_{K}</span>.</p>
+<div class="fragment">
+<p>As a consequence, the relations of the <a href="./index.html#main-lemma">main lemma</a> <span class="math display">
+\begin{array}{lr}
+0 &lt; σ_i(b) &lt; 2^{-18}, &amp; s_K + 1 &lt; i ≤ n \\
+\begin{cases}
+  |σ_i(z)| ≥ C \\
+  |σ_i(u)| ≥ ½
+\end{cases}, &amp; s_K + 1 &lt; i ≤ n\\
+\end{array}
+</span> are Diophantine.</p>
+<aside class="notes">
+<p>Replace <span class="math inline">α</span> by <span class="math inline">u - ½</span>.</p>
+</aside>
+<!--
+██       ██████   ██████     ███████ ██      ██████  ███████
+██      ██    ██ ██          ██      ██      ██   ██ ██
+██      ██    ██ ██          █████   ██      ██   ██ ███████
+██      ██    ██ ██          ██      ██      ██   ██      ██
+███████  ██████   ██████     ██      ███████ ██████  ███████
+-->
+</div>
+</section>
+</section>
+<section>
+<section id="local-fields" class="title-slide slide level1">
+<h1>Local fields</h1>
+
+</section>
+<section id="absolute-values" class="slide level2">
+<h2>Absolute values</h2>
+<p>An <em>absolute value</em> on a field <span class="math inline">K</span> is a function <span class="math inline">|\cdot| : K → ℝ, x ↦ |x|</span> with the properties</p>
+<ul>
+<li><span class="math inline">|x| ≥ 0</span> for all <span class="math inline">x ∈ K</span> and <span class="math inline">|x| = 0</span> if and only if <span class="math inline">x = 0</span>;</li>
+<li><span class="math inline">|xy| = |x| |y|</span> for all <span class="math inline">x, y ∈ K</span>; and</li>
+<li><span class="math inline">|x + y| ≤ |x| + |y|</span> for all <span class="math inline">x, y ∈ K</span>.</li>
+</ul>
+<p>If additionally the stronger condition</p>
+<ul>
+<li><span class="math inline">|x + y| ≤ \max(|x|, |y|)</span></li>
+</ul>
+<p>holds for all <span class="math inline">x, y ∈ K</span> then <span class="math inline">|\cdot|</span> is called a .</p>
+</section>
+<section id="absolute-values-of-a-number-field" class="slide level2">
+<h2>Absolute values of a number field</h2>
+<p>Let <span class="math inline">K</span> be a number field. Then <span class="math inline">K</span> has the following absolute values</p>
+<ul>
+<li><p>a trivial absolute value defined by <span class="math inline">|0|_1 := 0</span> and <span class="math inline">|x|_1 := 1</span> for all <span class="math inline">x ∈ K \setminus \left\lbrace 0 \right\rbrace</span>;</p></li>
+<li><p>one absolute value for each embedding <span class="math inline">σ: K → ℂ</span> by setting <span class="math inline">|x| := |σ(a)|_ℂ</span>, where <span class="math inline">|\cdot|_{ℂ}</span> denotes the complex modulus; and</p></li>
+<li><p>one  for each non-zero prime ideal <span class="math inline">\mathfrak{p}</span> defined by <span class="math display">
+  |x|_{\mathfrak{p}} :=
+   \left(\frac{1}{ℕ\mathfrak{p}}\right)^{\mathop{\mathrm{\mathrm{ord}}}_{\mathfrak{p}}(x\mathcal{O}_{K})},
+</span> where <span class="math inline">ℕ\mathfrak{p} := [\mathcal{O}_{K}: \mathfrak{p}]</span>.</p></li>
+</ul>
+</section>
+<section id="strong-approximation-theorem" class="slide level2">
+<h2>Strong approximation theorem</h2>
+<p>Let <span class="math inline">K</span> be a number field, let <span class="math inline">\mathcal{M}_K</span> be the set of all the absolute values of <span class="math inline">K</span>, let <span class="math inline">\mathcal{F}_K = \left\lbrace |\cdot|_1,… ,|\cdot|_ℓ \right\rbrace ⊂ \mathcal{M}_K</span> be a non-empty finite subset, and let <span class="math inline">a_1,…,a_{ℓ - 1} ∈ K</span>. Then for any <span class="math inline">ε &gt; 0</span> there exists an <span class="math inline">x ∈ K</span> such that the following conditions are satisfied.</p>
+<ul>
+<li><p>For <span class="math inline">1 ≤ i ≤ ℓ - 1</span> we have that <span class="math inline">|x − a_i|_i &lt;ε</span>.</p></li>
+<li><p>For any absolute value <span class="math inline">|\cdot|</span> not contained in <span class="math inline">\mathcal{F}_K</span> we have that <span class="math inline">|x| ≤ 1</span>.</p></li>
+</ul>
+<!--
+███████  █████   ██████ ████████ ███████
+██      ██   ██ ██         ██    ██
+█████   ███████ ██         ██    ███████
+██      ██   ██ ██         ██         ██
+██      ██   ██  ██████    ██    ███████
+-->
+</section>
+</section>
+<section>
+<section id="known-facts-and-related-problems" class="title-slide slide level1">
+<h1>Known facts and related problems</h1>
+
+</section>
+<section id="what-we-know-1" class="slide level2">
+<h2>What we know 1</h2>
+<h3 id="theorem-goedel1931rosser1936">Theorem <span class="citation" data-cites="Goedel1931 Rosser1936">(Gödel 1931; Rosser 1936)</span></h3>
+<p>The full theory <span class="math inline">\mathtt{Th}(\mathfrak{N})</span> of <span class="math inline">ℕ</span> is undecidable.</p>
+<div class="fragment">
+<h4 id="corollary">Corollary</h4>
+<p>The full theory <span class="math inline">\mathtt{Th}(\mathfrak{Z})</span> of <span class="math inline">ℤ</span> is undecidable.</p>
+<h4 id="theorem-robinson1959">Theorem <span class="citation" data-cites="Robinson1959">(Robinson 1959)</span></h4>
+<p>The full first order theories <span class="math inline">\mathtt{Th}(\mathfrak{K})</span> and <span class="math inline">\mathtt{Th}(\mathfrak{O}_K)</span> are undecidable for every number field <span class="math inline">K</span>.</p>
+</div>
+</section>
+<section id="what-we-know-2" class="slide level2">
+<h2>What we know 2</h2>
+<h3 id="theorem">Theorem</h3>
+<p>The full theory <span class="math inline">\mathtt{Th}(\mathfrak{C})</span> of <span class="math inline">ℂ</span> is decidable. Thus, <span class="math inline">\mathtt{H10}^*(\mathfrak{C})</span> is decidable.</p>
+<div class="fragment">
+<h4 id="theorem-rumely1986dries1988">Theorem <span class="citation" data-cites="Rumely1986 Dries1988">(Rumely 1986; van den Dries 1988)</span></h4>
+<p>The theories <span class="math inline">\mathtt{H10}(\mathfrak{O})</span> and <span class="math inline">D^c(\mathfrak{O})</span> of the integral closure <span class="math inline">\mathcal{O}_{}</span> of <span class="math inline">ℤ</span> are decidable.</p>
+</div>
+</section>
+<section id="what-we-know-3" class="slide level2">
+<h2>What we know 3</h2>
+<h3 id="dprm-theorem-matijasevic1970">DPRM theorem <span class="citation" data-cites="Matijasevic1970">(Matijasevič 1970)</span></h3>
+<p>A subset of <span class="math inline">ℤ</span> is semi-decidable if and only if it is Diophantine over <span class="math inline">ℤ</span>.</p>
+<div class="fragment">
+<h4 id="corollary-1">Corollary</h4>
+<p><span class="math inline">\mathtt{H10}(\mathfrak{Z})</span> is undecidable.</p>
+</div>
+</section>
+<section id="what-we-know-4" class="slide level2">
+<h2>What we know 4</h2>
+<h3 id="theorem-1">Theorem</h3>
+<p><span class="math inline">\mathtt{H10}(\mathfrak{O}_K)</span> is undecidable if</p>
+<ul>
+<li><span class="math inline">K</span> is totally real <span class="citation" data-cites="Denef1980">(Denef 1980)</span>,</li>
+<li><span class="math inline">K</span> has exactly one pair of non-real embeddings <span class="citation" data-cites="Pheidas1988 Shlapentokh1989">(Pheidas 1988; Shlapentokh 1989)</span>,</li>
+<li>if <span class="math inline">K</span> is a quadratic extension of a totally real number field <span class="citation" data-cites="Denef1978">(Denef and Lipshitz 1978)</span>, or</li>
+<li>if <span class="math inline">K</span> is a subfield of a field with one of the properties above <span class="citation" data-cites="Shapiro1989">(Shapiro and Shlapentokh 1989)</span>.</li>
+</ul>
+</section>
+<section id="what-we-would-like-to-know" class="slide level2">
+<h2>What we would like to know</h2>
+<ul>
+<li>Are <span class="math inline">\mathtt{H10}(\mathfrak{O}_K)</span> and <span class="math inline">\mathtt{H10}(\mathfrak{K})</span> undecidable for all number fields <span class="math inline">K</span>?</li>
+<li>Especially: Is Hilbert’s tenth problem <span class="math inline">\mathtt{H10}(\mathfrak{Q})</span> over <span class="math inline">ℚ</span> decidable?</li>
+</ul>
+</section>
+<section id="references" class="slide level2 unnumbered">
+<h2 class="unnumbered">References</h2>
+<div id="refs" class="references hanging-indent" role="doc-bibliography">
+<div id="ref-Denef1980">
+<p>Denef, J. 1980. “Diophantine Sets over Algebraic Integer Rings. II.” <em>Trans. Amer. Math. Soc.</em> 257 (1): 227–36. <a href="https://doi.org/10.2307/1998133">https://doi.org/10.2307/1998133</a>.</p>
+</div>
+<div id="ref-Denef1978">
+<p>Denef, J., and L. Lipshitz. 1978. “Diophantine Sets over Some Rings of Algebraic Integers.” <em>J. London Math. Soc. (2)</em> 18 (3): 385–91. <a href="https://doi.org/10.1112/jlms/s2-18.3.385">https://doi.org/10.1112/jlms/s2-18.3.385</a>.</p>
+</div>
+<div id="ref-Goedel1931">
+<p>Gödel, Kurt. 1931. “Über Formal Unentscheidbare Sätze Der Principia Mathematica Und Verwandter Systeme I.” <em>Monatsh. Math. Phys.</em> 38 (1): 173–98. <a href="https://doi.org/10.1007/BF01700692">https://doi.org/10.1007/BF01700692</a>.</p>
+</div>
+<div id="ref-Matijasevic1970">
+<p>Matijasevič, Ju. V. 1970. “The Diophantineness of Enumerable Sets.” <em>Doklady Akademii Nauk SSSR</em> 191: 279–82.</p>
+</div>
+<div id="ref-Pheidas1988">
+<p>Pheidas, Thanases. 1988. “Hilbert’s Tenth Problem for a Class of Rings of Algebraic Integers.” <em>Proc. Amer. Math. Soc.</em> 104 (2): 611–20. <a href="https://doi.org/10.2307/2047021">https://doi.org/10.2307/2047021</a>.</p>
+</div>
+<div id="ref-Robinson1959">
+<p>Robinson, Julia. 1959. “The Undecidability of Algebraic Rings and Fields.” <em>Proc. Amer. Math. Soc.</em> 10: 950–57. <a href="https://doi.org/10.2307/2033628">https://doi.org/10.2307/2033628</a>.</p>
+</div>
+<div id="ref-Rosser1936">
+<p>Rosser, Barkley. 1936. “Extensions of Some Theorems of Gödel and Church.” <em>Journal of Symbolic Logic</em> 1 (3): 87–91. <a href="https://doi.org/10.2307/2269028">https://doi.org/10.2307/2269028</a>.</p>
+</div>
+<div id="ref-Rumely1986">
+<p>Rumely, Robert S. 1986. “Arithmetic over the Ring of All Algebraic Integers.” <em>J. Reine Angew. Math.</em> 368: 127–33. <a href="https://doi.org/10.1515/crll.1986.368.127">https://doi.org/10.1515/crll.1986.368.127</a>.</p>
+</div>
+<div id="ref-Shapiro1989">
+<p>Shapiro, Harold N., and Alexandra Shlapentokh. 1989. “Diophantine Relationships Between Algebraic Number Fields.” <em>Comm. Pure Appl. Math.</em> 42 (8): 1113–22. <a href="https://doi.org/10.1002/cpa.3160420805">https://doi.org/10.1002/cpa.3160420805</a>.</p>
+</div>
+<div id="ref-Shlapentokh1989">
+<p>Shlapentokh, Alexandra. 1989. “Extension of Hilbert’s Tenth Problem to Some Algebraic Number Fields.” <em>Comm. Pure Appl. Math.</em> 42 (7): 939–62. <a href="https://doi.org/10.1002/cpa.3160420703">https://doi.org/10.1002/cpa.3160420703</a>.</p>
+</div>
+<div id="ref-Dries1988">
+<p>van den Dries, Lou. 1988. “Elimination Theory for the Ring of Algebraic Integers.” <em>J. Reine Angew. Math.</em> 388: 189–205. <a href="https://doi.org/10.1515/crll.1988.388.189">https://doi.org/10.1515/crll.1988.388.189</a>.</p>
+</div>
+</div>
+</section>
+</section>
+    </div>
+  </div>
+
+  <script src="./reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: false,
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: './reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: './reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: './reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

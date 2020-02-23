@@ -18,13 +18,13 @@
   \tikzstyle{vertex}=[circle,fill=black!25,minimum size=17pt,inner sep=0pt]
 
   \path
-    (0, 0) node (pdt) {\(\mathtt{H10}^*(\mathfrak{O}_K)\)} --
-    (0, 1) node (the) {\(\mathtt{Th}_{∃+}(\mathfrak{O}_K)\)} --
-    (0, 2) node (cth) {\(\mathtt{Th}(\mathfrak{O}_K)\)} --
-    (4, 0) node (ad) {\(D(\mathfrak{O}_K)\)} --
-    (2, 0.5) node (h10) {\(\mathtt{H10}(\mathfrak{O}_K)\)} --
-    (2, 1.5) node (de) {\(D_{∃+}(\mathfrak{O}_K)\)} --
-    (2, 2.5) node (cd) {\(D^c(\mathfrak{O}_K)\)};
+    (0, 0) node (pdt) {\(\mathtt{H10}^*(\mathfrak{R})\)} --
+    (0, 1) node (the) {\(\mathtt{Th}_{∃+}(\mathfrak{R})\)} --
+    (0, 2) node (cth) {\(\mathtt{Th}(\mathfrak{R})\)} --
+    (4, 0) node (ad) {\(D(\mathfrak{R})\)} --
+    (2, 0.5) node (h10) {\(\mathtt{H10}(\mathfrak{R})\)} --
+    (2, 1.5) node (de) {\(D_{∃+}(\mathfrak{R})\)} --
+    (2, 2.5) node (cd) {\(D^c(\mathfrak{R})\)};
 
   \foreach \f/\t in {cd/cth, cd/de, cth/the, the/pdt, de/the, de/h10, h10/pdt}
     \path[draw, very thick, <-]

@@ -84,6 +84,7 @@
 <h2>Decision problems</h2>
 <h3 id="definition">Definition</h3>
 <p>A <em>decision problem</em> is a subset of the set of finite <span class="math inline">\mathtt 0</span>-<span class="math inline">\mathtt 1</span>-strings <span class="math inline">ω = \lbrace \mathtt{0, 1} \rbrace^*</span> including the empty string <span class="math inline">\lambda</span>.</p>
+<p>An injective function <span class="math inline">\mathcal{Q} → ω, \; x ↦ \ulcorner x \urcorner</span> is called an <em>encoding</em>.</p>
 <div class="fragment">
 <h4 id="example-simple-graphs">Example: Simple graphs</h4>
 <p>The set of all simple graphs can be encoded by strings of the form</p>
@@ -92,7 +93,7 @@
         x := &amp; b_{1, 2} &amp; b_{1, 3} &amp; …      &amp; b_{1, n}\\
              &amp;    &amp; b_{2, 3} &amp; …      &amp; b_{2,n}\\
              &amp;    &amp;          &amp; \ddots &amp; \vdots \\
-             &amp;    &amp;          &amp;        &amp; b_{n-1, n},
+             &amp;    &amp;          &amp;        &amp; b_{n-1, n}.
     \end{array}
 </span></p>
 </div>
@@ -123,8 +124,8 @@
 <h3 id="definition-2">Definition</h3>
 <ul>
 <li class="fragment">A partial function <span class="math inline">f: ω \to ω</span> is <em>computable</em> if there is a Turing machine <span class="math inline">\mathbb{A}</span> with <span class="math inline">\mathbb{A}(x) = f(x)</span> for all <span class="math inline">x</span> in the domain of <span class="math inline">f</span>.</li>
-<li class="fragment">A decision problem is <em>decidable</em> if its characteristic function is computable.</li>
-<li class="fragment">A decision problem <span class="math inline">Q</span> is <em>semi-decidable</em> or <em>computably enumerable</em> if there is a Turing machine that returns <span class="math inline">\mathtt{1}</span> on all members of <span class="math inline">Q</span>.</li>
+<li class="fragment">problem <span class="math inline">Q</span> is <em>decidable</em> if its characteristic function 𝟙<span class="math inline">{}_Q</span> is computable.</li>
+<li class="fragment">A decision problem <span class="math inline">Q</span> is <em>semi-decidable</em> or <em>computably enumerable</em> if there exists a Turing machine <span class="math inline">\mathbb{A}</span> such that <span class="math display">x ∈ Q \quad ⇔ \quad \mathbb{A}(x) = \mathtt 1.</span></li>
 </ul>
 </section>
 <section id="characterizations-of-semi-decidable-sets" class="slide level2">
@@ -134,7 +135,7 @@
 <ul>
 <li class="fragment"><span class="math inline">Q</span> is semi-decidable.</li>
 <li class="fragment"><span class="math inline">Q</span> is the range of a computable function.</li>
-<li class="fragment">There exists a computable binary relation <span class="math inline">R</span> on <span class="math inline">ω^2</span> such that <span class="math display"> x \in Q \Leftrightarrow \exists y : R(x, y)</span></li>
+<li class="fragment">There exists a computable binary relation <span class="math inline">R</span> on <span class="math inline">ω^2</span> such that <span class="math display"> x ∈ Q \quad ⇔ \quad ∃ y : R(x, y)</span></li>
 </ul>
 </section>
 <section id="the-halting-set" class="slide level2">
@@ -225,7 +226,7 @@ At the core of Hilbert’s Problem
 <div class="fragment">
 <h3 id="proof">Proof</h3>
 <p>Take</p>
-<p><span class="math display">p(X) = \prod_{a ∈ S} (X - a).</span></p>
+<p><span class="math display">p(X) = \prod_{α ∈ S} (X - α).</span></p>
 </div>
 </section>
 <section id="examples-of-diophantine-sets-1" class="slide level2">
@@ -234,7 +235,19 @@ At the core of Hilbert’s Problem
 <div class="fragment">
 <h3 id="proof-1">Proof</h3>
 <p>Using Minkowski’s theorem on convex bodies one can prove that</p>
-<p><span class="math display">x ∈ ℕ \quad \Leftrightarrow \quad \exists y_1, y_2, y_3, y_4 \in ℤ: x = y_1^2 + y_2^2 + y_3^2 + y_4^2.</span></p>
+<p><span class="math display">α ∈ ℕ \quad \Leftrightarrow \quad \exists β_1, β_2, β_3, β_4 \in
+  ℤ: α = β_1^2 + β_2^2 + β_3^2 + β_4^2.</span></p>
+<p>This fact is known as Lagrange’s foure square theorem.</p>
+<aside class="notes">
+<p>One proves that <span class="math inline">0, 1, 2</span> can be presented this way and that if <span class="math inline">a, b</span> are sums of four squares, so is <span class="math inline">ab</span>. Thus, one proves the claim for odd primes <span class="math inline">p</span>, by considering the lattice of solutions</p>
+<p>By the pigeonhole principle there exist integers <span class="math inline">m, n ∈ \left\lbrace 0, 1, …, p - 1 \right\rbrace</span> solving the congruence <span class="math display">
+  m^2 + n^2 + 1 \equiv 0 \mod p.
+</span></p>
+<p>For a fixed solution <span class="math inline">(m, n)</span> of the above congruence, we consider the set <span class="math inline">Λ</span> of all integral solutions <span class="math inline">(a, b, c, d) ∈ ℤ^4</span> of the simultaneous congruence <span class="math display">
+  c \equiv m a + n b \mod p \quad \text{and} \quad
+  d \equiv m b - n a \mod p.
+</span></p>
+</aside>
 </div>
 </section>
 <section id="examples-of-diophantine-sets-2" class="slide level2">
@@ -251,8 +264,9 @@ At the core of Hilbert’s Problem
 <h3 id="lemma">Lemma</h3>
 <p>If <span class="math inline">S_1</span> and <span class="math inline">S_2</span> are Diophantine over <span class="math inline">\mathcal{O}_{K}</span>, so are</p>
 <p><span class="math display">S_1 ∪ S_2 \quad \text{and} \quad S_1 ∩ S_2.</span></p>
-<p>The resp. polynomial identities can be found effectively.</p>
+<p>The respective polynomial identities can be found effectively.</p>
 <aside class="notes">
+<p>In the easy example <span class="math inline">\mathcal{O}_{K}= ℤ</span> one obtains <span class="math inline">P = p^2 + q^2</span>.</p>
 <p>Let <span class="math inline">p_1(X, Y), p_2(X, Y) ∈ \mathcal{O}_{K}{}{[X, Y]}</span> give Diophantine definitions of <span class="math inline">S_1</span> and <span class="math inline">S_2</span>.</p>
 <p>We have <span class="math display">S_1 ∪ S_2 = \left\lbrace α \mid ∃ y ∈ \mathcal{O}_{K}: p_1(α, y) p_2(α, y) = 0 \right\rbrace.</span></p>
 <p>To prove the claim for intersections of Diophantine sets, let</p>
@@ -294,17 +308,20 @@ Towards a modern formulation of Hilbert’s problem
 <section id="alternative-view-of-diophantine-sets" class="slide level2">
 <h2>Alternative view of Diophantine sets</h2>
 <h3 id="definition-6">Definition</h3>
-<p>Let <span class="math inline">R</span> be an at most countable commutative ring with unit.</p>
+<p>Let <span class="math inline">R</span> be a commutative ring with unit.</p>
 <ul>
 <li>The language of rings with unity is <span class="math inline">\mathcal{L}_{ring} = \left\lbrace \mathtt{+, -, \cdot; 0, 1} \right\rbrace</span></li>
-<li>The <span class="math inline">R</span>-language is <span class="math inline">\mathcal{L}_{R} = \mathcal{L}_{ring} ∪ \left\lbrace c_r \mid r ∈ R \right\rbrace</span>.</li>
+<li>The <span class="math inline">R</span>-language is <span class="math inline">\mathcal{L}_{R} = \mathcal{L}_{ring} ∪ \left\lbrace \mathtt{c}_r \mid r ∈ R \right\rbrace</span>.</li>
 </ul>
 <div class="fragment">
 <h4 id="lemma-1">Lemma</h4>
 <p>A set <span class="math inline">S \subseteq R^n</span> is Diophantine over <span class="math inline">R</span> iff</p>
 <p><span class="math display">({α}_1, \ldots, {α}_{n}) ∈ S \quad ⇔ \quad
-\mathfrak{R} \models ∃ {y}_1, \ldots, {y}_{m}: ϕ({α}_1, \ldots, {α}_{n}, {y}_1, \ldots, {y}_{m})</span></p>
-<p>holds for an atomic <span class="math inline">\mathcal{L}_{R}</span>-formula <span class="math inline">ϕ</span>.</p>
+\mathfrak{R} \models ∃ \mathtt{{y}_1, \ldots, {y}_{m}}: ϕ({α}_1, \ldots, {α}_{n}, \mathtt{{y}_1, \ldots, {y}_{m}})</span></p>
+<p>holds for an atomic <span class="math inline">\mathcal{L}_{R}</span>-formula <span class="math inline">ϕ</span>. Here <span class="math inline">\mathfrak{R}</span> denotes the <span class="math inline">\mathcal{L}_R</span>-structure of <span class="math inline">R</span>.</p>
+<aside class="notes">
+<p>Term functions of <span class="math inline">\mathcal{L}_R</span> are polynomials with coefficients in <span class="math inline">R</span>.</p>
+</aside>
 </div>
 </section>
 <section id="decidability-of-theories" class="slide level2">
@@ -318,7 +335,7 @@ Towards a modern formulation of Hilbert’s problem
 </section>
 <section id="important-theories-for-deciding-hilberts-tenth-problem" class="slide level2">
 <h2>Important theories for deciding Hilbert’s tenth problem</h2>
-<p>Let <span class="math inline">\mathfrak{O}_K</span> be the <span class="math inline">\mathcal{L}_{ring}</span>-structure of <span class="math inline">\mathcal{O}_{K}</span>.</p>
+<p>Let <span class="math inline">\mathfrak{R}</span> be an <span class="math inline">\mathcal{L}_{R}</span>-structure with universe <span class="math inline">R</span>.</p>
 <table>
 <colgroup>
 <col style="width: 63%" />
@@ -336,43 +353,43 @@ Towards a modern formulation of Hilbert’s problem
 </thead>
 <tbody>
 <tr class="odd">
-<td>purely Diophantine theory <span class="math inline">\mathtt{H10}^*(\mathfrak{O}_K)</span></td>
+<td>purely Diophantine theory <span class="math inline">\mathtt{H10}^*(\mathfrak{R})</span></td>
 <td><span class="math inline">∃</span></td>
 <td>none</td>
 <td><span class="math inline">\mathcal{L}_{ring}</span></td>
 </tr>
 <tr class="even">
-<td>primitive positive theory <span class="math inline">\mathtt{Th}_{∃+}(\mathfrak{O}_K)</span></td>
+<td>primitive positive theory <span class="math inline">\mathtt{Th}_{∃+}(\mathfrak{R})</span></td>
 <td><span class="math inline">∃</span></td>
 <td><span class="math inline">∧</span></td>
 <td><span class="math inline">\mathcal{L}_{ring}</span></td>
 </tr>
 <tr class="odd">
-<td>full theory <span class="math inline">\mathtt{Th}(\mathfrak{O}_K)</span></td>
+<td>full theory <span class="math inline">\mathtt{Th}(\mathfrak{R})</span></td>
 <td><span class="math inline">∃, ∀</span></td>
 <td><span class="math inline">∧, ∨, ¬</span></td>
 <td><span class="math inline">\mathcal{L}_{ring}</span></td>
 </tr>
 <tr class="even">
-<td>Diophantine theory <span class="math inline">\mathtt{H10}(\mathfrak{O}_K)</span></td>
+<td>Diophantine theory <span class="math inline">\mathtt{H10}(\mathfrak{R})</span></td>
 <td><span class="math inline">∃</span></td>
 <td>none</td>
 <td><span class="math inline">\mathcal{L}_{R}</span></td>
 </tr>
 <tr class="odd">
-<td>primitive positive diagram <span class="math inline">D_{∃+}(\mathfrak{O}_K)</span></td>
+<td>primitive positive diagram <span class="math inline">D_{∃+}(\mathfrak{R})</span></td>
 <td><span class="math inline">∃</span></td>
 <td><span class="math inline">∧</span></td>
 <td><span class="math inline">\mathcal{L}_{R}</span></td>
 </tr>
 <tr class="even">
-<td>complete diagram <span class="math inline">D^c(\mathfrak{O}_K)</span></td>
+<td>complete diagram <span class="math inline">D^c(\mathfrak{R})</span></td>
 <td><span class="math inline">∃, ∀</span></td>
 <td><span class="math inline">∧, ∨, ¬</span></td>
 <td><span class="math inline">\mathcal{L}_{R}</span></td>
 </tr>
 <tr class="odd">
-<td>atomic diagram <span class="math inline">D(\mathfrak{O}_K)</span></td>
+<td>atomic diagram <span class="math inline">D(\mathfrak{R})</span></td>
 <td>none</td>
 <td><span class="math inline">¬</span></td>
 <td><span class="math inline">\mathcal{L}_{R}</span></td>
@@ -400,7 +417,7 @@ Towards a modern formulation of Hilbert’s problem
 </div>
 <div class="fragment">
 <p>We conclude that <span class="math inline">\mathtt{H10}^*(\mathfrak{O}_K)</span> and <span class="math inline">\mathtt{H10}(\mathfrak{O}_K)</span> are semi-decidable.</p>
-<p><strong>Note:</strong> We identify <span class="math inline">\mathcal{O}_{K}</span> with <span class="math inline">\set{\ulcorner \mathtt{c}_α \mid α ∈ \mathcal{O}_{K} \urcorner \subseteq ω</span>.</p>
+<p><strong>Note:</strong> We identify <span class="math inline">\mathcal{O}_{K}</span> with <span class="math inline">\left\lbrace \ulcorner \mathtt{c}_α \urcorner \mid α ∈ \mathcal{O}_{K} \right\rbrace \subseteq ω</span>.</p>
 <aside class="notes">
 <ul>
 <li>
@@ -500,9 +517,9 @@ By a Theorem of Mal’cev every finitely generated ℤ-algebra is computable.
 </div>
 <div class="fragment">
 <h4 id="lemma-3">Lemma</h4>
-<p><span class="math inline">(±\mathrm x_m(a), ±\mathrm y_m(a))_{m ∈ ℕ}</span> are all solutions to Pell’s equation with parameter <span class="math inline">a</span> in <span class="math inline">\mathcal{O}_{K}</span>, i.e. if</p>
-<p><span class="math display">α^2 - (a^2 - 1) β^2 = 1,</span></p>
-<p>then <span class="math inline">α = ±\mathrm x_m(a)</span> and <span class="math inline">β = ±\mathrm y_m(a)</span> for some <span class="math inline">m ∈ ℕ</span>.</p>
+<p><span class="math inline">(±\mathrm x_m(a), ±\mathrm y_m(a))_{m ∈ ℕ}</span> are essentially all solutions to Pell’s equation i.e. if</p>
+<p><span class="math display">α^2 - δ(a)^2 β^2 = 1 \quad \text{and} \quad x + δ(a) y = (α + δ(a)β)^ν,</span></p>
+<p>then <span class="math inline">x = ±\mathrm x_m(a)</span> and <span class="math inline">y = ±\mathrm y_m(a)</span> for some <span class="math inline">m ∈ ℕ</span>. Here <span class="math inline">ν = |μ(K)|</span>.</p>
 </div>
 </section>
 <section id="notation" class="slide level2">
@@ -520,7 +537,7 @@ By a Theorem of Mal’cev every finitely generated ℤ-algebra is computable.
 <h2>Main Lemma</h2>
 <p>Let <span class="math inline">K ≠ ℚ</span> be a number field of degree <span class="math inline">n &gt; 1</span>, let <span class="math inline">a ∈ \mathcal{O}_{K}</span> and <span class="math inline">r_K</span> satisfy</p>
 <div class="small">
-<p><span id="eq:approx_of_a"><span class="math display">\begin{cases}
+<p><span class="math display">\begin{cases}
   r_K = n &gt; 1\\
   a &gt; 2^{2(n + 1)}\\
   0 &lt; σ_i(a) &lt; \frac{1}{2} &amp;\text{for } 1 &lt; i ≤ n
@@ -530,7 +547,7 @@ By a Theorem of Mal’cev every finitely generated ℤ-algebra is computable.
   r_K = n - 2 &gt; 0\\
   |σ_i(a)| &gt; 2^{2(n + 1)} &amp;\text{for } i ∈ \left\lbrace 1, 2 \right\rbrace\\
   0 &lt; σ_i(a) &lt; \frac{1}{2} &amp;\text{for } 2 &lt; i ≤ n
-\end{cases},\qquad(1)</span></span></p>
+\end{cases},</span></p>
 </div>
 <p>and let <span class="math inline">ν = |μ(K)|</span>. Define <span class="math inline">S \subseteq \mathcal{O}_{K}</span> by <span class="math inline">ξ ∈ S ⇔ ∃ x, y, w, z, u, v, s, t, x&#39;, y&#39;, w&#39;, z&#39;, u&#39;, v&#39;, s&#39;, t&#39;, b ∈ \mathcal{O}_{K}:</span></p>
 <div class="small">
@@ -550,16 +567,16 @@ By a Theorem of Mal’cev every finitely generated ℤ-algebra is computable.
 \end{cases}
 &amp;
 \begin{array}{lr}
-0 &lt; σ_i(b) &lt; 2^{-18} &amp; \text{for all } s_K + 1 &lt; i ≤ n \\
+0 &lt; σ_i(b) &lt; 2^{-18}, &amp; s_K + 1 &lt; i ≤ n \\
 \begin{cases}
   |σ_i(z)| ≥ C \\
   |σ_i(u)| ≥ ½
-\end{cases} &amp; \text{for all } s_K + 1 &lt; i ≤ n\\
+\end{cases}, &amp; s_K + 1 &lt; i ≤ n\\
 v ≠ 0, \quad z^2 \mid v &amp; \\
 \end{array} \\
 w + δ(a) z = (w&#39; + δ(a) {z&#39;)}^{νe}
 &amp;
-b \equiv 1 \mod (z),
+b \equiv 1 \mod (z)
 &amp;
 2^{n + 1} \prod_{i = 0}^{n - 1} (ξ + i)^n (x + i)^n \mid z
 \\
@@ -571,7 +588,47 @@ b \equiv a \mod (u)
 \end{array}
 </span></p>
 </div>
-<p>Then <span class="math inline">νℕ \subseteq S \subseteq ℤ</span>.</p>
+<p>Then <span class="math inline">S</span> is Diopantine over <span class="math inline">\mathcal{O}_{K}</span> and <span class="math inline">νℕ \subseteq S \subseteq ℤ</span>.</p>
+</section>
+<section id="idea-of-the-proof" class="slide level2">
+<h2>Idea of the proof</h2>
+<p>By the previous lemma, there exist integers <span class="math inline">k, h, m, j ∈ ℕ</span> such that</p>
+<div class="small">
+<p><span class="math display">
+\begin{array}{lll}
+\begin{cases}
+  x&#39;^2 - (a^2 - 1) y&#39;^2 = 1 \\
+  w&#39;^2 - (a^2 - 1) z&#39;^2 = 1 \\
+  u&#39;^2 - (a^2 - 1) v&#39;^2 = 1 \\
+  s&#39;^2 - (b^2 - 1) t&#39;^2 = 1
+\end{cases}
+&amp;
+\begin{cases}
+  x + δ(a) y = {(x&#39; + δ(a) y&#39;)}^ν \\
+  u + δ(a) v = {(u&#39; + δ(a) v&#39;)}^ν \\
+  s + δ(b) y = {(s&#39; + δ(b) t&#39;)}^ν
+\end{cases}
+&amp;
+w + δ(a) z = (w&#39; + δ(a) {z&#39;)}^{νe}
+\end{array}
+</span></p>
+</div>
+<p>can be replaced by</p>
+<div class="small">
+<p><span class="math display">
+\begin{aligned}
+x &amp;= ±\mathrm x_k(a),    &amp; y &amp;= ±\mathrm y_k(a),   \\
+w &amp;= ±\mathrm x_{eh}(a), &amp; z &amp;= ±\mathrm y_{eh}(a),\\
+u &amp;= ±\mathrm x_m(a),    &amp; v &amp;= ±\mathrm y_m(a), \\
+s &amp;= ±\mathrm x_j(b),\; \text{and}    &amp; t &amp;= ±\mathrm y_j(b).
+\end{aligned}
+</span></p>
+</div>
+<div class="fragment">
+<p>By a <a href="./backup.html#strong-vertical-method">theorem</a> of <span class="citation" data-cites="Denef1978">Denef and Lipshitz (1978)</span> we conclude that <span class="math display">
+ξ = ±k ∈ ℤ.
+</span></p>
+</div>
 </section>
 <section id="diophantine-definition-of-the-rational-integers" class="slide level2">
 <h2>Diophantine definition of the rational integers</h2>
@@ -584,14 +641,13 @@ b \equiv a \mod (u)
 α ∈ ℤ \; ⇔ \; ∃&amp; β_1, β_2, β_3 ∈ \mathcal{O}_{K}:\\
     &amp; α = β_1 β_2 + β_3 ∧\\
     &amp; β_1 ∈ S ∧\\
-    &amp; (β_2 ∈ \left\lbrace -1, 1 \right\rbrace) ∧ (β_3 ∈ \left\lbrace 0, 1, …, ν - 1 \right\rbrace)= 0.
+    &amp; β_2 ∈ \left\lbrace -1, 1 \right\rbrace ∧ β_3 ∈ \left\lbrace 0, 1, …, ν - 1 \right\rbrace.
 \end{aligned}
 </span> is a Diopantine representation of <span class="math inline">ℤ</span>.</p>
+<div class="right">
+<p><a href="./backup.html">☛ Comments</a></p>
 </div>
-</section>
-<section id="remarks-on-the-main-lemma" class="slide level2">
-<h2>Remarks on the Main lemma</h2>
-<p>One uses Minkowski’s theorem on convex bodies to find an <span class="math inline">a ∈ \mathcal{O}_{K}</span> satisfying the estimates eq. 1 in the previous lemma.</p>
+</div>
 </section>
 <section id="references" class="slide level2 unnumbered">
 <h2 class="unnumbered">References</h2>
@@ -601,6 +657,9 @@ b \equiv a \mod (u)
 </div>
 <div id="ref-Denef1980">
 <p>Denef, J. 1980. “Diophantine Sets over Algebraic Integer Rings. II.” <em>Trans. Amer. Math. Soc.</em> 257 (1): 227–36. <a href="https://doi.org/10.2307/1998133">https://doi.org/10.2307/1998133</a>.</p>
+</div>
+<div id="ref-Denef1978">
+<p>Denef, J., and L. Lipshitz. 1978. “Diophantine Sets over Some Rings of Algebraic Integers.” <em>J. London Math. Soc. (2)</em> 18 (3): 385–91. <a href="https://doi.org/10.1112/jlms/s2-18.3.385">https://doi.org/10.1112/jlms/s2-18.3.385</a>.</p>
 </div>
 <div id="ref-Hilbert1900">
 <p>Hilbert, David. 1900. “Mathematische Probleme. Vortrag, Gehalten Auf Dem Internationalen Mathematiker-Kongreß Zu Paris 1900.” <em>Nachrichten von Der Königl. Gesellschaft Der Wissenschaften Zu Göttingen.</em>, 253–79.</p>
@@ -612,7 +671,7 @@ b \equiv a \mod (u)
 <p>Pheidas, Thanases. 1988. “Hilbert’s Tenth Problem for a Class of Rings of Algebraic Integers.” <em>Proc. Amer. Math. Soc.</em> 104 (2): 611–20. <a href="https://doi.org/10.2307/2047021">https://doi.org/10.2307/2047021</a>.</p>
 </div>
 <div id="ref-Reid1970">
-<p>Reid, Constance, and Hermann Weyl. 1970. <em>Hilbert</em>. Springer Berlin Heidelberg. <a href="https://www.ebook.de/de/product/21827654/constance_reid_hermann_weyl_hilbert.html">https://www.ebook.de/de/product/21827654/constance_reid_hermann_weyl_hilbert.html</a>.</p>
+<p>Reid, Constance, and Hermann Weyl. 1970. <em>Hilbert</em>. Springer Berlin Heidelberg.</p>
 </div>
 <div id="ref-Shlapentokh1989">
 <p>Shlapentokh, Alexandra. 1989. “Extension of Hilbert’s Tenth Problem to Some Algebraic Number Fields.” <em>Comm. Pure Appl. Math.</em> 42 (7): 939–62. <a href="https://doi.org/10.1002/cpa.3160420703">https://doi.org/10.1002/cpa.3160420703</a>.</p>
