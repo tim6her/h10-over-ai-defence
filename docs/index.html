@@ -124,18 +124,8 @@
 <h3 id="definition-2">Definition</h3>
 <ul>
 <li class="fragment">A partial function <span class="math inline">f: ω \to ω</span> is <em>computable</em> if there is a Turing machine <span class="math inline">\mathbb{A}</span> with <span class="math inline">\mathbb{A}(x) = f(x)</span> for all <span class="math inline">x</span> in the domain of <span class="math inline">f</span>.</li>
-<li class="fragment">problem <span class="math inline">Q</span> is <em>decidable</em> if its characteristic function 𝟙<span class="math inline">{}_Q</span> is computable.</li>
+<li class="fragment">A decision problem <span class="math inline">Q</span> is <em>decidable</em> if its characteristic function 𝟙<span class="math inline">{}_Q</span> is computable.</li>
 <li class="fragment">A decision problem <span class="math inline">Q</span> is <em>semi-decidable</em> or <em>computably enumerable</em> if there exists a Turing machine <span class="math inline">\mathbb{A}</span> such that <span class="math display">x ∈ Q \quad ⇔ \quad \mathbb{A}(x) = \mathtt 1.</span></li>
-</ul>
-</section>
-<section id="characterizations-of-semi-decidable-sets" class="slide level2">
-<h2>Characterizations of semi-decidable sets</h2>
-<h3 label="Proposition" id="sec:semi-decidable" label="Proposition">Proposition</h3>
-<p>Let <span class="math inline">Q \subseteq ω</span> be a problem. The following are equivalent.</p>
-<ul>
-<li class="fragment"><span class="math inline">Q</span> is semi-decidable.</li>
-<li class="fragment"><span class="math inline">Q</span> is the range of a computable function.</li>
-<li class="fragment">There exists a computable binary relation <span class="math inline">R</span> on <span class="math inline">ω^2</span> such that <span class="math display"> x ∈ Q \quad ⇔ \quad ∃ y : R(x, y)</span></li>
 </ul>
 </section>
 <section id="the-halting-set" class="slide level2">
@@ -187,6 +177,7 @@
 <ul>
 <li class="fragment">We write <span class="math inline">\mathcal{O}_{}</span> for the set of all algebraic integers …</li>
 <li class="fragment">… and if <span class="math inline">K</span> is a number field, i.e. <span class="math inline">K</span> is finite extension of <span class="math inline">ℚ</span>, we set <span class="math inline">\mathcal{O}_{K}= \mathcal{O}_{} ∩ K</span>.</li>
+<li class="fragment">For <span class="math inline">K = ℚ</span> we find <span class="math inline">\mathcal{O}_{ℚ} = \mathcal{O}_{} ∩ ℚ = ℤ</span>.</li>
 </ul>
 </section>
 <section id="properties-of-algebraic-integers" class="slide level2">
@@ -520,6 +511,11 @@ By a Theorem of Mal’cev every finitely generated ℤ-algebra is computable.
 <p><span class="math inline">(±\mathrm x_m(a), ±\mathrm y_m(a))_{m ∈ ℕ}</span> are essentially all solutions to Pell’s equation i.e. if</p>
 <p><span class="math display">α^2 - δ(a)^2 β^2 = 1 \quad \text{and} \quad x + δ(a) y = (α + δ(a)β)^ν,</span></p>
 <p>then <span class="math inline">x = ±\mathrm x_m(a)</span> and <span class="math inline">y = ±\mathrm y_m(a)</span> for some <span class="math inline">m ∈ ℕ</span>. Here <span class="math inline">ν = |μ(K)|</span>.</p>
+<aside class="notes">
+<p><span class="math inline">δ(a)</span> is integral over <span class="math inline">\mathcal{O}_{K}</span>, thus integral. <span class="math inline">ε(a)</span> is <span class="math inline">a + δ(a)</span> is integral as well.</p>
+<p><span class="math display">\mathrm x_m(a) = \sum_{\substack{i = 0\\i \text{ even}}}^n a^{i - n} {δ(a)}^{i}
+∈ \mathcal{O}_{L} ∩ K</span></p>
+</aside>
 </div>
 </section>
 <section id="notation" class="slide level2">

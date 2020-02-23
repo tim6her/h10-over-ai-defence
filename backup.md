@@ -175,6 +175,26 @@ conditions are satisfied.
 we have that $|x| ≤ 1$.
 
 <!--
+ ██████  ██████  ███    ███ ██████  ████████ ██   ████████ ██    ██
+██      ██    ██ ████  ████ ██   ██    ██    ██      ██     ██  ██
+██      ██    ██ ██ ████ ██ ██████     ██    ██      ██      ████
+██      ██    ██ ██  ██  ██ ██         ██    ██      ██       ██
+ ██████  ██████  ██      ██ ██         ██    ███████ ██       ██
+-->
+# More on Computability theory
+
+## Characterizations of semi-decidable sets
+
+### Proposition {#sec:semi-decidable label=Proposition}
+
+Let $Q \subseteq ω$ be a problem. The following are equivalent.
+
+> * $Q$ is semi-decidable.
+> * $Q$ is the range of a computable function.
+> * There exists a computable binary relation $R$ on $ω^2$ such that
+  $$ x ∈ Q \quad ⇔ \quad ∃ y ∈ ω: R(x, y)$$
+
+<!--
 ███████  █████   ██████ ████████ ███████
 ██      ██   ██ ██         ██    ██
 █████   ███████ ██         ██    ███████
@@ -197,7 +217,7 @@ The full theory $\mathtt{Th}(\mathfrak{Z})$ of $ℤ$ is undecidable.
 
 . . .
 
-#### Theorem [@Robinson1959]
+#### Theorem [@Robinson1949;@Robinson1959]
 
 The full first order theories $\mathtt{Th}(\mathfrak{K})$ and
 $\mathtt{Th}(\mathfrak{O}_K)$ are undecidable for every number field $K$.
@@ -248,8 +268,7 @@ $\mathtt{H10}(\mathfrak{O}_K)$ is undecidable if
 
 ## What we would like to know
 
-* Are $\mathtt{H10}(\mathfrak{O}_K)$ and $\mathtt{H10}(\mathfrak{K})$
-  undecidable for all number fields $K$?
+* Is $\mathtt{H10}(\mathfrak{O}_K)$  undecidable for all number fields $K$?
 * Especially: Is Hilbert's tenth problem $\mathtt{H10}(\mathfrak{Q})$ over $ℚ$
   decidable?
 

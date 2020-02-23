@@ -146,23 +146,11 @@ $x ∈ ω$ if $\mathbb{A}$ halts on $x$.
 > * A partial function $f: ω \to ω$ is *computable* if there is a Turing
   machine $\mathbb{A}$ with $\mathbb{A}(x) = f(x)$ for all $x$ in the domain
   of $f$.
-> *  problem $Q$ is *decidable* if its characteristic function
+> * A decision problem $Q$ is *decidable* if its characteristic function
   𝟙${}_Q$ is computable.
 > * A decision problem $Q$ is *semi-decidable* or *computably enumerable* if
   there exists a Turing machine $\mathbb{A}$ such that
   $$x ∈ Q \quad ⇔ \quad \mathbb{A}(x) = \one.$$
-
-
-## Characterizations of semi-decidable sets
-
-### Proposition {#sec:semi-decidable label=Proposition}
-
-Let $Q \subseteq ω$ be a problem. The following are equivalent.
-
-> * $Q$ is semi-decidable.
-> * $Q$ is the range of a computable function.
-> * There exists a computable binary relation $R$ on $ω^2$ such that
-  $$ x ∈ Q \quad ⇔ \quad ∃ y : R(x, y)$$
 
 ## The halting set
 
@@ -223,6 +211,7 @@ $$p(α) = α^n + c_{n - 1} α^{n - 1} + … + c_0 = 0$$
 > * We write $\algint[]$ for the set of all algebraic integers …
 > * … and if $K$ is a number field, i.e. $K$ is finite extension of $ℚ$,
     we set $\algint = \algint[] ∩ K$.
+> * For $K = ℚ$ we find $\algint[ℚ] = \algint[] ∩ ℚ = ℤ$.
 
 ## Properties of algebraic integers
 
@@ -608,6 +597,14 @@ $$α^2 - δ(a)^2 β^2 = 1 \quad \text{and} \quad x + δ(a) y = (α + δ(a)β)^ν
 
 then $x = ±\px_m(a)$ and $y = ±\py_m(a)$ for some $m ∈ ℕ$. Here
 $ν = |μ(K)|$.
+
+::: notes
+$δ(a)$ is integral over $\algint$, thus integral.
+$ε(a)$ is $a + δ(a)$ is integral as well.
+
+$$\px_m(a) = \sum_{\substack{i = 0\\i \text{ even}}}^n a^{i - n} {δ(a)}^{i}
+∈ \algint[L] ∩ K$$
+:::
 
 ## Notation
 
