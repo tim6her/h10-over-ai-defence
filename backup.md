@@ -261,9 +261,12 @@ $\mathtt{H10}(\mathfrak{Z})$ is undecidable.
 $\mathtt{H10}(\mathfrak{O}_K)$ is undecidable if
 
 * $K$ is totally real [@Denef1980],
-* $K$ has exactly one pair of non-real embeddings [@Pheidas1988; @Shlapentokh1989],
-* if $K$ is a quadratic extension of a totally real number field [@Denef1978], or
-* if $K$ is a subfield of a field with one of the properties above [@Shapiro1989].
+* $K$ has exactly one pair of non-real embeddings and at least one real
+ embedding [@Pheidas1988; @Shlapentokh1989],
+* if $K$ is a quadratic extension of a totally real number field [@Denef1978],
+  or
+* if $K$ is a subfield of a field with one of the properties above
+ [@Shapiro1989].
 
 
 ## What we would like to know

@@ -512,7 +512,7 @@ A subset of $ℕ$ is semi-decidable if and only if it is Diophantine over $ℤ$.
 
 #### Corollary
 
-$\mathcal{K} \subseteq ℕ$ is Diopantine over $ℤ$. As a consequence
+$\mathcal{K} \subseteq ℕ$ is Diophantine over $ℤ$. As a consequence
 $\mathtt{H10}(\mathfrak{Z})$ is undecidable.
 
 
@@ -680,7 +680,7 @@ b \equiv a \mod (u)
 $$
 :::
 
-Then $S$ is Diopantine over $\algint$ and $νℕ \subseteq S \subseteq ℤ$.
+Then $S$ is Diophantine over $\algint$ and $νℕ \subseteq S \subseteq ℤ$.
 
 ## Idea of the proof
 
@@ -740,7 +740,7 @@ Diophantine over $\algint$.
 
 #### Proof
 
-By the lemma $ν ℕ ⊂ S ⊂ ℤ$ is Diopantine. Thus,
+By the lemma $ν ℕ ⊂ S ⊂ ℤ$ is Diophantine. Thus,
 $$
 \begin{aligned}
 α ∈ ℤ \; ⇔ \; ∃& β_1, β_2, β_3 ∈ \algint :\\
@@ -749,7 +749,7 @@ $$
     & β_2 ∈ \set{-1, 1} ∧ β_3 ∈ \set{0, 1, …, ν - 1}.
 \end{aligned}
 $$
-is a Diopantine representation of $ℤ$.
+is a Diophantine representation of $ℤ$.
 
 ::: right
 [☛ Comments](./backup.html)
