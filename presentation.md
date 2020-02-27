@@ -130,7 +130,7 @@ $$δ: S \times A \to S \times A \times \lbrace -1, 0, 1 \rbrace.$$
 :::
 ::: {.column width="40%"}
 <div class="image-float">
-  <p class="fragment current-visible" data-fragment-index="0" style="position:absolute; left:20px; bottom:0px">
+  <p class="fragment fade-out" data-fragment-index="1" style="position:absolute; left:20px; bottom:0px">
     <a href="imgs/turing_add1_1.svg">
       <img src="imgs/turing_add1_1.svg" width="400vh"/>
     </a>
@@ -171,6 +171,11 @@ $$δ: S \times A \to S \times A \times \lbrace -1, 0, 1 \rbrace.$$
     </a>
   </p>
 </div>
+
+:::: small
+A Turing machine adding $1$ to a number in (reversed) binary encoding.
+::::
+
 :::
 ::::::::::::::
 
