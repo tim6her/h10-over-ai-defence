@@ -110,9 +110,32 @@
 </ul>
 <p><span class="math display">δ: S \times A \to S \times A \times \lbrace -1, 0, 1 \rbrace.</span></p>
 </div><div class="column" style="width:40%;">
-<figure>
-<img data-src="imgs/turing_add1.gif" id="fig:add1" alt="" /><figcaption>Figure 2: Turing machine increasing a binary number by 1</figcaption>
-</figure>
+<div class="image-float">
+<p class="fragment current-visible" data-fragment-index="0" style="position:absolute; left:20px; bottom:0px">
+<a href="imgs/turing_add1_1.svg"> <img src="imgs/turing_add1_1.svg" width="400vh"/> </a>
+</p>
+<p class="fragment current-visible" data-fragment-index="1" style="position:absolute; left:20px; bottom:0px;">
+<a href="imgs/turing_add1_2.svg"> <img src="imgs/turing_add1_2.svg" width="400vh"/> </a>
+</p>
+<p class="fragment current-visible" data-fragment-index="2" style="position:absolute; left:20px; bottom:0px;">
+<a href="imgs/turing_add1_3.svg"> <img src="imgs/turing_add1_3.svg" width="400vh"/> </a>
+</p>
+<p class="fragment current-visible" data-fragment-index="3" style="position:absolute; left:20px; bottom:0px;">
+<a href="imgs/turing_add1_4.svg"> <img src="imgs/turing_add1_4.svg" width="400vh"/> </a>
+</p>
+<p class="fragment current-visible" data-fragment-index="4" style="position:absolute; left:20px; bottom:0px;">
+<a href="imgs/turing_add1_5.svg"> <img src="imgs/turing_add1_5.svg" width="400vh"/> </a>
+</p>
+<p class="fragment current-visible" data-fragment-index="5" style="position:absolute; left:20px; bottom:0px;">
+<a href="imgs/turing_add1_6.svg"> <img src="imgs/turing_add1_6.svg" width="400vh"/> </a>
+</p>
+<p class="fragment current-visible" data-fragment-index="6" style="position:absolute; left:20px; bottom:0px;">
+<a href="imgs/turing_add1_7.svg"> <img src="imgs/turing_add1_7.svg" width="400vh"/> </a>
+</p>
+<p class="fragment" data-fragment-index="7" style="position:absolute; left:20px; bottom:0px;">
+<a href="imgs/turing_add1_8.svg"> <img src="imgs/turing_add1_8.svg" width="400vh"/> </a>
+</p>
+</div>
 </div>
 </div>
 <div class="fragment">
@@ -206,10 +229,24 @@ At the core of Hilbert’s Problem
 </section>
 <section id="diophantine-sets-1" class="slide level2">
 <h2>Diophantine Sets</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
 <h3 id="definition-5">Definition</h3>
 <p>Let <span class="math inline">R</span> be a commutative ring with unit. A set <span class="math inline">S \subseteq R^n</span> is called <em>Diophantine</em> if there exists a polynomial <span class="math inline">p \in R[{X}_1, \ldots, {X}_{n}, {Y}_1, \ldots, {Y}_{m}]</span> such that</p>
-<p><span class="math display">({α}_1, \ldots, {α}_{n}) \in S \Leftrightarrow \exists {y}_1, \ldots, {y}_{m} \in R^m : p({α}_1, \ldots, {α}_{n},
-{y}_1, \ldots, {y}_{m}) = 0</span></p>
+<p><span class="math display">
+\begin{aligned}
+&amp;({α}_1, \ldots, {α}_{n}) \in S  ⇔ \\
+&amp;\quad \exists {y}_1, \ldots, {y}_{m} \in R^m : \\
+&amp;\quad \quad p({α}_1, \ldots, {α}_{n}, {y}_1, \ldots, {y}_{m}) = 0
+\end{aligned}
+</span></p>
+</div><div class="column" style="width:40%;">
+<div class="fragment">
+<p><img data-src="imgs/diophantine.svg" style="width:60.0%" /></p>
+<p>Diophantine sets are projections of vanishing sets of a polynomial.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="examples-of-diophantine-sets" class="slide level2">
 <h2>Examples of Diophantine Sets</h2>
@@ -248,6 +285,26 @@ At the core of Hilbert’s Problem
 <h3 id="proof-2">Proof</h3>
 <p>Using the Chinese remainder theorem one can prove that</p>
 <p><span class="math display">α ≠ 0 \quad ⇔ \quad ∃ β, γ ∈ \mathcal{O}_{K}: α β = (2 γ - 1)(3 γ - 1).</span></p>
+<aside class="notes">
+<p>Note that the polynomial on the right hand side has the roots <span class="math inline">1/2</span> and <span class="math inline">1/3</span> in <span class="math inline">ℚ</span>.</p>
+<p>As <span class="math inline">\mathcal{O}_{K}</span> is Dedekind domain, <span class="math inline">(α) = \mathfrak{x}_2 \mathfrak{x}_3</span> with <span class="math display">
+\begin{aligned}
+\mathfrak{x}_2 + \mathfrak{x}_3 &amp;= \mathcal{O}_{K}\\
+\mathfrak{x}_2 + (2) &amp;= \mathcal{O}_{K}\\
+\mathfrak{x}_3 + (3) &amp;= \mathcal{O}_{K}
+\end{aligned}
+</span></p>
+<p>As a consequence of the Chinese remainder theorem the congruences <span class="math display">
+ γ \equiv y_2 \mod \mathfrak x_2 \quad \text{and} \quad
+ γ \equiv y_3 \mod \mathfrak x_3
+</span> are simultaneously solvable. This implies that <span class="math display">
+ 2 γ \equiv 2 y_2 \equiv 1 \mod \mathfrak x_2 \quad \text{and} \quad
+ 3 γ \equiv 3 y_3 \equiv 1 \mod \mathfrak x_3.
+</span> This can be rewritten as <span class="math display">
+ 2 γ - 1 ∈ \mathfrak x_2  \quad \text{and} \quad
+ 3 γ - 1 ∈ \mathfrak x_3.
+</span></p>
+</aside>
 </div>
 </section>
 <section id="unions-and-conjunctions-of-diophantine-sets-are-diophantine" class="slide level2">
@@ -326,7 +383,7 @@ Towards a modern formulation of Hilbert’s problem
 </section>
 <section id="important-theories-for-deciding-hilberts-tenth-problem" class="slide level2">
 <h2>Important theories for deciding Hilbert’s tenth problem</h2>
-<p>Let <span class="math inline">\mathfrak{R}</span> be an <span class="math inline">\mathcal{L}_{R}</span>-structure with universe <span class="math inline">R</span>.</p>
+<p>Let <span class="math inline">\mathfrak{R}</span> be an <span class="math inline">\mathcal{L}_{ring}</span>-structure with universe <span class="math inline">R</span>.</p>
 <table>
 <colgroup>
 <col style="width: 63%" />
@@ -408,6 +465,8 @@ Towards a modern formulation of Hilbert’s problem
 </div>
 <div class="fragment">
 <p>We conclude that <span class="math inline">\mathtt{H10}^*(\mathfrak{O}_K)</span> and <span class="math inline">\mathtt{H10}(\mathfrak{O}_K)</span> are semi-decidable.</p>
+</div>
+<div class="fragment">
 <p><strong>Note:</strong> We identify <span class="math inline">\mathcal{O}_{K}</span> with <span class="math inline">\left\lbrace \ulcorner \mathtt{c}_α \urcorner \mid α ∈ \mathcal{O}_{K} \right\rbrace \subseteq ω</span>.</p>
 <aside class="notes">
 <ul>
@@ -421,8 +480,8 @@ By a Theorem of Mal’cev every finitely generated ℤ-algebra is computable.
 </aside>
 </div>
 </section>
-<section id="m-reducibility-and-semi-decidable-sets" class="slide level2">
-<h2><span class="math inline">m</span>-reducibility and semi-decidable sets</h2>
+<section id="many-one-reducibility-and-semi-decidable-sets" class="slide level2">
+<h2>many-one-reducibility and semi-decidable sets</h2>
 <h3 id="definition-8">Definition</h3>
 <p>A problem <span class="math inline">Q</span> is <em>many-one reducible</em> to a second problem <span class="math inline">Q&#39;</span> if there exists a total computable function <span class="math inline">f ∶ ω → ω</span> such that <span class="math display">x ∈ Q \quad ⇔ \quad f(x) ∈ Q&#39;.</span></p>
 <p>One writes <span class="math inline">Q ≤_m Q&#39;</span>.</p>
@@ -433,7 +492,8 @@ By a Theorem of Mal’cev every finitely generated ℤ-algebra is computable.
 <li>If <span class="math inline">Q</span> is semi-decidable, then <span class="math inline">Q ≤_m \mathcal{K}</span>.</li>
 </ul>
 <aside class="notes">
-<p>≤_m is reflexive and transitive</p>
+<p><span class="math inline">≤_m</span> is reflexive and transitive</p>
+<p><span class="math inline">\mathcal{K}</span> contains the information of all semi-decidable sets</p>
 </aside>
 </div>
 </section>
@@ -441,8 +501,12 @@ By a Theorem of Mal’cev every finitely generated ℤ-algebra is computable.
 <h2>Relationships of the theories w.r.t many-one reducibility</h2>
 <p><img data-src="./imgs/theories_3.svg" style="width:70.0%" /></p>
 </section>
-<section id="if-we-prove-that-mathcalk-_m-mathtth10mathfrako_k-the-diagram-collapses" class="slide level2">
-<h2>If we prove that <span class="math inline">\mathcal{K} ≤_m \mathtt{H10}^*(\mathfrak{O}_k)</span>, the diagram collapses</h2>
+<section id="if-we-prove-that-mathcalk-_m-mathtth10mathfrako_k-the-diagram-collapses" class="slide level2" data-transition="none">
+<h2 data-transition="none">If we prove that <span class="math inline">\mathcal{K} ≤_m \mathtt{H10}^*(\mathfrak{O}_k)</span>, the diagram collapses</h2>
+<p><img data-src="./imgs/theories_4.svg" style="width:70.0%" /></p>
+</section>
+<section id="if-we-prove-that-mathcalk-_m-mathtth10mathfrako_k-the-diagram-collapses-1" class="slide level2" data-transition="none">
+<h2 data-transition="none">If we prove that <span class="math inline">\mathcal{K} ≤_m \mathtt{H10}^*(\mathfrak{O}_k)</span>, the diagram collapses</h2>
 <p><img data-src="./imgs/theories_2.svg" style="width:70.0%" /></p>
 </section>
 <section id="hilberts-tenth-problem-over-ℤ" class="slide level2">
@@ -470,11 +534,11 @@ By a Theorem of Mal’cev every finitely generated ℤ-algebra is computable.
 </section>
 <section id="a-diophantine-definition-of-rational-integers-is-key" class="slide level2">
 <h2>A Diophantine definition of rational integers is key</h2>
-<h3 id="theorem-1">Theorem</h3>
-<p>If <span class="math inline">ℤ</span> is Diophantine over <span class="math inline">\mathcal{O}_{K}</span>, then <span class="math inline">\mathcal{K} ≤_m \mathtt{H10}^*(\mathfrak{O}_K)</span>.</p>
+<h3 id="corollary-1">Corollary</h3>
+<p>If <span class="math inline">ℤ</span> is Diophantine over <span class="math inline">\mathcal{O}_{K}</span> then <span class="math inline">\mathtt{H10}(\mathfrak{O}_K)</span> is undecidable.</p>
 <div class="fragment">
-<h4 id="corollary-1">Corollary</h4>
-<p>If <span class="math inline">ℤ</span> is Diophantine over <span class="math inline">\mathcal{O}_{K}</span> then <span class="math inline">\mathtt{H10}^*(\mathfrak{O}_K)</span> and <span class="math inline">\mathtt{H10}(\mathfrak{O}_K)</span> are undecidable.</p>
+<h4 id="theorem-1">Theorem</h4>
+<p>If <span class="math inline">ℤ</span> is Diophantine over <span class="math inline">\mathcal{O}_{K}</span>, then <span class="math inline">\mathcal{K} ≤_m \mathtt{H10}^*(\mathfrak{O}_K)</span>.</p>
 <div class="fragment">
 <h5 id="dprm-theorem-over-mathcalo_k-davis1976">DPRM Theorem over <span class="math inline">\mathcal{O}_{K}</span> <span class="citation" data-cites="Davis1976">(Davis, Matijasevič, and Robinson 1976)</span></h5>
 <p>Every semi-decidable subset of <span class="math inline">\mathcal{O}_{K}</span> is Diophantine over <span class="math inline">\mathcal{O}_{K}</span> if and only if <span class="math inline">ℤ</span> is Diophantine over <span class="math inline">\mathcal{O}_{K}</span>.</p>

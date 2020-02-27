@@ -225,10 +225,10 @@ $\mathtt{Th}(\mathfrak{O}_K)$ are undecidable for every number field $K$.
 
 ## What we know 2
 
-### Theorem
+### Theorem [@Tarski1931]
 
-The full theory $\mathtt{Th}(\mathfrak{C})$ of $ℂ$ is decidable. Thus,
-$\mathtt{H10}^*(\mathfrak{C})$ is decidable.
+The full theories $\mathtt{Th}(\mathfrak{C})$ of $ℂ$ and $\mathtt{Th}(\mathfrak{R})$ of $ℝ$ are decidable. Thus,
+$\mathtt{H10}^*(\mathfrak{C})$ and $\mathtt{H10}^*(\mathfrak{R})$ are decidable.
 
 . . .
 

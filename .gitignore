@@ -1,3 +1,5 @@
 .DS_Store
 *.bib.bak
 *.pdf
+*.xdv
+*.log

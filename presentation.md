@@ -129,7 +129,48 @@ $$δ: S \times A \to S \times A \times \lbrace -1, 0, 1 \rbrace.$$
 
 :::
 ::: {.column width="40%"}
-![Turing machine increasing a binary number by 1](imgs/turing_add1.gif){#fig:add1}
+<div class="image-float">
+  <p class="fragment current-visible" data-fragment-index="0" style="position:absolute; left:20px; bottom:0px">
+    <a href="imgs/turing_add1_1.svg">
+      <img src="imgs/turing_add1_1.svg" width="400vh"/>
+    </a>
+  </p>
+  <p class="fragment current-visible" data-fragment-index="1" style="position:absolute; left:20px; bottom:0px;">
+    <a href="imgs/turing_add1_2.svg">
+      <img src="imgs/turing_add1_2.svg" width="400vh"/>
+    </a>
+  </p>
+  <p class="fragment current-visible" data-fragment-index="2" style="position:absolute; left:20px; bottom:0px;">
+    <a href="imgs/turing_add1_3.svg">
+      <img src="imgs/turing_add1_3.svg" width="400vh"/>
+    </a>
+  </p>
+  <p class="fragment current-visible" data-fragment-index="3" style="position:absolute; left:20px; bottom:0px;">
+    <a href="imgs/turing_add1_4.svg">
+      <img src="imgs/turing_add1_4.svg" width="400vh"/>
+    </a>
+  </p>
+  <p class="fragment current-visible" data-fragment-index="4" style="position:absolute; left:20px; bottom:0px;">
+    <a href="imgs/turing_add1_5.svg">
+      <img src="imgs/turing_add1_5.svg" width="400vh"/>
+    </a>
+  </p>
+  <p class="fragment current-visible" data-fragment-index="5" style="position:absolute; left:20px; bottom:0px;">
+    <a href="imgs/turing_add1_6.svg">
+      <img src="imgs/turing_add1_6.svg" width="400vh"/>
+    </a>
+  </p>
+  <p class="fragment current-visible" data-fragment-index="6" style="position:absolute; left:20px; bottom:0px;">
+    <a href="imgs/turing_add1_7.svg">
+      <img src="imgs/turing_add1_7.svg" width="400vh"/>
+    </a>
+  </p>
+  <p class="fragment" data-fragment-index="7" style="position:absolute; left:20px; bottom:0px;">
+    <a href="imgs/turing_add1_8.svg">
+      <img src="imgs/turing_add1_8.svg" width="400vh"/>
+    </a>
+  </p>
+</div>
 :::
 ::::::::::::::
 
@@ -236,14 +277,36 @@ At the core of Hilbert's Problem
 
 ## Diophantine Sets
 
+:::::::::::::: {.columns}
+::: {.column width="55%"}
+
 ### Definition
 
 Let $R$ be a commutative ring with unit. A set $S \subseteq R^n$ is called
 *Diophantine* if there exists a polynomial $p \in R[\seq{X}, \seq[m]{Y}]$ such
 that
 
-$$(\seq{α}) \in S \Leftrightarrow \exists \seq[m]{y} \in R^m : p(\seq{α},
-\seq[m]{y}) = 0$$
+$$
+\begin{aligned}
+&(\seq{α}) \in S  ⇔ \\
+&\quad \exists \seq[m]{y} \in R^m : \\
+&\quad \quad p(\seq{α}, \seq[m]{y}) = 0
+\end{aligned}
+$$
+
+:::
+:::::: {.column width="40%"}
+
+::: fragment
+![](imgs/diophantine.svg){width=60%}
+
+Diophantine sets are projections of vanishing sets of a polynomial.
+:::
+
+::::::
+::::::::::::::
+
+
 
 
 ## Examples of Diophantine Sets
@@ -307,6 +370,36 @@ Then $\algint \setminus \set{0}$ is Diophantine over $\algint$.
 Using the Chinese remainder theorem one can prove that
 
 $$α ≠ 0 \quad ⇔ \quad ∃ β, γ ∈ \algint : α β = (2 γ - 1)(3 γ - 1).$$
+
+::: notes
+Note that the polynomial on the right hand side has the roots
+$1/2$ and $1/3$ in $ℚ$.
+
+As $\algint$ is Dedekind domain, $(α) = \mathfrak{x}_2 \mathfrak{x}_3$ with
+$$
+\begin{aligned}
+\mathfrak{x}_2 + \mathfrak{x}_3 &= \algint \\
+\mathfrak{x}_2 + (2) &= \algint \\
+\mathfrak{x}_3 + (3) &= \algint
+\end{aligned}
+$$
+
+As a consequence of the Chinese remainder theorem the congruences
+$$
+ γ \equiv y_2 \mod \mathfrak x_2 \quad \text{and} \quad
+ γ \equiv y_3 \mod \mathfrak x_3
+$$
+are simultaneously solvable. This implies that
+$$
+ 2 γ \equiv 2 y_2 \equiv 1 \mod \mathfrak x_2 \quad \text{and} \quad
+ 3 γ \equiv 3 y_3 \equiv 1 \mod \mathfrak x_3.
+$$
+This can be rewritten as
+$$
+ 2 γ - 1 ∈ \mathfrak x_2  \quad \text{and} \quad
+ 3 γ - 1 ∈ \mathfrak x_3.
+$$
+:::
 
 
 ## Unions and conjunctions of Diophantine sets are Diophantine
@@ -415,7 +508,7 @@ Let $\lang$ be a language.
 ## Important theories for deciding Hilbert's tenth problem
 
 
-Let $\mathfrak{R}$ be an $\lang_{R}$-structure with universe $R$.
+Let $\mathfrak{R}$ be an $\lang_{ring}$-structure with universe $R$.
 
 |                                                            | Quantifiers | Operators | Language       |
 | ---------------------------------------------------------- | ----------- | --------- | -------------- |
@@ -456,6 +549,8 @@ is computable.
 We conclude that $\mathtt{H10}^*(\mathfrak{O}_K)$ and
 $\mathtt{H10}(\mathfrak{O}_K)$ are semi-decidable.
 
+. . .
+
 **Note:** We identify $\algint$ with
 $\set{\enc{\mathtt{c}_α} \mid α ∈ \algint} \subseteq ω$.
 
@@ -470,7 +565,7 @@ $\set{\enc{\mathtt{c}_α} \mid α ∈ \algint} \subseteq ω$.
   </ul>
 </div>
 
-## $m$-reducibility and semi-decidable sets
+## many-one-reducibility and semi-decidable sets
 
 ### Definition
 
@@ -490,15 +585,22 @@ One writes $Q ≤_m Q'$.
 
 
 ::: notes
-  ≤_m is reflexive and transitive
+  $≤_m$ is reflexive and transitive
+
+  $\mathcal{K}$ contains the information of all semi-decidable sets
 :::
 
 
 ## Relationships of the theories w.r.t many-one reducibility
 
+
 ![](./imgs/theories_3.svg){width=70%}
 
-## If we prove that $\mathcal{K} ≤_m \mathtt{H10}^*(\mathfrak{O}_k)$, the diagram collapses
+## If we prove that $\mathcal{K} ≤_m \mathtt{H10}^*(\mathfrak{O}_k)$, the diagram collapses {data-transition="none"}
+
+![](./imgs/theories_4.svg){width=70%}
+
+## If we prove that $\mathcal{K} ≤_m \mathtt{H10}^*(\mathfrak{O}_k)$, the diagram collapses {data-transition="none"}
 
 ![](./imgs/theories_2.svg){width=70%}
 
@@ -542,17 +644,17 @@ We conclude that $\mathtt{H10}(\mathfrak{O}_K)$ is decidable.
 
 ## A Diophantine definition of rational integers is key
 
-### Theorem
+### Corollary
 
-If $ℤ$ is Diophantine over $\algint$, then $\mathcal{K} ≤_m
-\mathtt{H10}^*(\mathfrak{O}_K)$.
+If $ℤ$ is Diophantine over $\algint$ then $\mathtt{H10}(\mathfrak{O}_K)$ is
+undecidable.
 
 . . .
 
-#### Corollary
+#### Theorem
 
-If $ℤ$ is Diophantine over $\algint$ then $\mathtt{H10}^*(\mathfrak{O}_K)$ and
-$\mathtt{H10}(\mathfrak{O}_K)$ are undecidable.
+If $ℤ$ is Diophantine over $\algint$, then $\mathcal{K} ≤_m
+\mathtt{H10}^*(\mathfrak{O}_K)$.
 
 . . .
 
