@@ -682,7 +682,8 @@ only if $ℤ$ is Diophantine over $\algint$.
 
 ### Definition
 
-Let $K$ be a number field and $a ∈ \algint$. We set
+Let $K$ be a totally real number field or a number field with exactly one pair
+of non-real embeddings and at least one real embedding and $a ∈ \algint$. We set
 
 * $δ(a) := \sqrt{a^2 - 1}$ and
 * $ε(a) := a + δ(a)$.
